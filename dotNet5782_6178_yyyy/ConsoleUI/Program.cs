@@ -1,12 +1,21 @@
 ﻿using System;
 
-namespace ConsoleUI
+namespace Targil0
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Welcome6178();
+            Welcome3797();
+        }
+
+        static partial void Welcome3797();
+        private static void Welcome6178()
+        {
+            Console.WriteLine("Enter your name: ");
+            string user = Console.ReadLine();
+            Console.WriteLine("{0}, welcome to our first console application!", user);
         }
     }
 }
