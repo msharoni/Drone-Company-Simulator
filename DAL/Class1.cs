@@ -7,6 +7,14 @@ namespace IDAL
         public struct BaseStation{
 
         }
-        public struct
+        public struct{ }
+
+
+
+        class RANDOM
+        { 
+
+        };
+
     }
 }
