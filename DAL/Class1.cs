@@ -5,7 +5,7 @@ namespace IDAL
     namespace DO
     {
         public struct Drone{
-            int Id;
+            int Id {get; set};
             string Model;
             WeightCategories MaxWeight;
             DroneStatuses Status;
@@ -44,13 +44,7 @@ namespace IDAL
         }
 
 
-        class DataSource
-        { 
-            internal static Drones[10];
-            internal static Station Stations[5];
-            internal static Customer Customers[100];
-            internal static Parcel Parcels[1000];
-        };
+        
 
     }
 }
