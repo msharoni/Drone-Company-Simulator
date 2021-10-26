@@ -32,6 +32,9 @@ namespace ConsoleUI
             FreeStations
 
         }
+
+        
+        DalObject.DalObject db=
         static void Main(string[] args)
         {
             bool run = true;
