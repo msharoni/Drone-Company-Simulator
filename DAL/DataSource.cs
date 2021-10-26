@@ -1,12 +1,14 @@
 namespace DalObject{
 
     class DataSource{ 
-            internal static Drone[] Drones;
+            internal static Drone[] Drones =  new Drone[10];
             internal static Station[] Stations;
             internal static Customer[] Customers;
             internal static Parcel[] Parcels;
 
             internal class Config{
+
+                
                 static void Intalize(){
                     Random r = new Random();
                     int[] ids = {r.Next(9999999,100000000),r.Next(9999999,100000000),r.Next(9999999,100000000)};

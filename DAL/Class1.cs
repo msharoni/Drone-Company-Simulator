@@ -12,6 +12,10 @@ namespace IDAL
             DroneStatuses Status {get; set};
             double Battery {get; set};
 
+            public override string ToString()
+            {
+                return $"Id: {Id} Model: {Model} MaxWeight: {MaxWeight} Status {Status} Battery {Battery}";
+            }
         }
         public struct Station {
             int Id {get; set};
@@ -19,10 +23,20 @@ namespace IDAL
             double Longitude {get; set};
             double Lattitude {get; set};
             int ChargeSlots {get; set};
+
+            public override string ToString()
+            {
+                return $"Id: {Id} Name: {Name} Longitude: {Longitude} Lattitude: {Lattitude} ChargeSlots: {ChargeSlots}";
+            }
          }
         public struct DroneCharge {
-             int DroneId {get; set};
-             int StationId {get; set};
+            int DroneId {get; set};
+            int StationId {get; set};
+
+            public override string ToString()
+            {
+                return $"DroneId: {DroneId} StationId: {StationId}";
+            }
          }
         public struct Parcel {
             int Id {get; set};
@@ -35,6 +49,14 @@ namespace IDAL
             DateTime Scheduled {get; set};
             DateTime PickedUp {get; set};
             DateTime Delivered {get; set};
+            +
+                $" 
+            public override string ToString()
+            {
+                return $"Id: {Id} Senderid: {Senderid} Targetid: {Targetid} Weight:{Weight}" +
+                $"Priority: {Priority} Requested: {Requested} DroneId: {DroneId} Scheduled: {Scheduled} PickedUp: {PickedUp} Delivered: {Delivered}";
+            }
+            
         }
         public struct Customer{
             int Id {get; set};
@@ -42,6 +64,11 @@ namespace IDAL
             string Phone {get; set};
             double Longitude {get; set};
             double Lattitude {get; set};
+
+            public override string ToString()
+            {
+                return $"Id: {Id} Name: {Name} Phone: {Phone} Longitude: {Longitude} Lattitude: {Lattitude}";
+            }
         }
         enum WeightCategories{
             Light,
