@@ -33,8 +33,11 @@ namespace ConsoleUI
 
         }
 
-        
-        DalObject.DalObject db=
+        DalObject.DalObject db= DalObject.DalObject;
+        //functions
+
+
+
         static void Main(string[] args)
         {
             bool run = true;

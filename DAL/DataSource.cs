@@ -1,5 +1,7 @@
+using IDAL.DO;
 namespace DalObject{
     class DalObject{
+        //adding each type using list.Add
         public void AddDrone(int Id, string Model, WeightCategories MaxWeight, DroneStatuses Status, double Battery){
             DataSource.Drones.Add(new Drone(Id,Model,MaxWeight,Status,Battery));
         }
@@ -12,7 +14,85 @@ namespace DalObject{
         public void AddParcel(int Id, int SenderId, int TargetId, WeightCategories Weight, Priorities Priority, DateTime Requested, int DroneId, DateTime Scheduled, DateTime PickedUp, DateTime Delivered){
             DataSource.Parcels.Add(new Parcel(Id,TargetId,Weight,Priority,Requested,DroneId,Scheduled,PickedUp,Delivered));
         }
-        DataSource.Drones.Add();
+
+        //Linking the parcel to a drone
+        public void LinkParcel(int DroneId, int ParcelId)
+        {
+            //finding the relevant drone/parcel
+            Drone drone = DataSource.Drones.find(drone=> drone.Id == DroneId);
+            Parcel parcel = DataSource.Parcels.find(parcel => parcel.Id == ParcelId);
+            //saving their index for later
+            int Dindex = DataSource.Drones.IndexOf(drone);
+            int Pindex = DataSource.Parcels.IndexOf(parcel);
+            //making the needed changes
+            drone.Status = DroneStatuses.Delivery;
+            parcel.DroneId = DroneId;
+            //copying them back into the list
+            DataSource.Parcels[Pindex] = parcel;
+            DataSource.Drones[Dindex] = drone;
+        }
+
+        //returning each type as a string using the overrided tostring function
+        public string DisplayStation(int StationId){
+            Station station = DataSource.Stations.find(station => station.Id == StationId);
+            return station.ToString();
+        }
+        public string DisplayDrone(DroneId){
+            Drone drone = DataSource.Drones.find(drone=> drone.Id == DroneId);
+            return drone.ToString();
+
+        }
+        public string DisplayParcel(ParcelId){
+            Parcel parcel = DataSource.Parcels.find(parcel=> parcel.Id == ParcelId);
+
+        }
+        public string DisplayCustomer(CustomerId){
+            Customer customer = DataSource.Customers.find(customer => customer.Id == CustomerId);
+            return customer.ToString();
+        }
+
+        //returning each list as a list of strings
+        public list<string> DisplayStations(){
+            list<string> Mylist;
+            for(int i = 0; i < DataSource.Stations.Length(); ++i)
+                Mylist.Add(DataSource.Stations[i].ToString());
+            return Mylist;
+        }
+        public list<string> DisplayDrones(){
+            list<string> Mylist;
+            for(int i = 0; i < DataSource.Drones.Length(); ++i)
+                Mylist.Add(DataSource.Drones[i].ToString());
+            return Mylist;
+        }
+        public list<string> DisplayParcels(){
+            list<string> Mylist;
+            for(int i = 0; i < DataSource.Parcels.Length(); ++i)
+                Mylist.Add(DataSource.Parcels[i].ToString());
+            return Mylist;
+        }
+        public list<string> DisplayCustomers(){
+            list<string> Mylist;
+            for(int i = 0; i < DataSource.Customers.Length(); ++i)
+                Mylist.Add(DataSource.Customers[i].ToString());
+            return Mylist;
+        }
+
+        //
+        public list<string> DisplayFreeParcels(){
+            list<string> Mylist;
+            for(int i = 0; i < DataSource.Parcels.Length(); ++i)
+                if(DataSource.Parcels[i].DroneId == "I DONT KNOW YET")    
+                    Mylist.Add(DataSource.Parcels[i].ToString());
+            return Mylist;
+        }
+        public list<string> DisplayFreeStations(){
+            list<string> Mylist;
+            for(int i = 0; i < DataSource.Stations.Length(); ++i)
+                if(DataSource.Stations[i].ChargeSlots == "I DONT KNOW YET")
+                    Mylist.Add(DataSource.Stations[i].ToString());
+            return Mylist;
+        }
+        
 
     }
 
@@ -36,7 +116,7 @@ namespace DalObject{
                     for(int i=0; i<10; ++i)
                         Customers.Add(new Customer {Id = r.Next(99999990,1000000000), Name= Names[r.Next(Names.Length())], Phone= (string)r.Next(999999999,10000000000), Longitude= r.Next(-180,181), Lattitude= r.Next(-90,91)});
                     for(int i=0; i<10; ++i)
-                        Parcels.Add(new Parcel {Id = r.Next(99999999,1000000000), SenderId = r.Next(99999999,1000000000) , TargetId = r.Next(99999999,1000000000),Weight = (WeightCategories)r.Next(3),Priority = (Priorities)r.Next(3), Requested = DateTime.Now, DroneId = , Scheduled = new DateTime(), PickedUp= new DateTime(),Delivered = new DateTime() });
+                        Parcels.Add(new Parcel {Id = r.Next(99999999,1000000000), SenderId = r.Next(99999999,1000000000) , TargetId = r.Next(99999999,1000000000),Weight = (WeightCategories)r.Next(3),Priority = (Priorities)r.Next(3), Requested = DateTime.Now, DroneId = r.Next(100), Scheduled = new DateTime(), PickedUp= new DateTime(),Delivered = new DateTime() });
                 }
             internal class Config{
 

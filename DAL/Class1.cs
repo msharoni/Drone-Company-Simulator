@@ -122,17 +122,17 @@ namespace IDAL
             }
         }
         enum WeightCategories{
-            Light,
+            Light=1,
             Medium,
             Heavy
         }
         enum DroneStatuses{
-            Available,
+            Available=1,
             maintenance,
             Delivery
         }
         enum Priorities{
-            Regular,
+            Regular=1,
             Fast,
             Emergency
         }
