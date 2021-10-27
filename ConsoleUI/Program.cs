@@ -34,7 +34,23 @@ namespace ConsoleUI
         }
 
         DalObject.DalObject db= DalObject.DalObject;
-        //functions
+        //input output Add functions
+        //MAKE SURE THAT I AM ALLOWED TO DO THIS
+        void AddStation()
+        {
+            Console.WriteLine("enter ID"); 
+            int _Id = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("enter Model"); 
+            string _Model = Console.ReadLine();
+            Console.WriteLine("enter Max weight (1,2,3):"); 
+            WeightCategories _MaxWeight = (WeightCategories)Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("enter Drone Status (1 for available, 2 for maintenance and 3 for delivery):");
+            DroneStatuses _Status = (DroneStatuses)Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("enter battery power (1-100):");
+            double _Battery = Convert.ToDouble(Console.ReadLine());
+            //probally dosent work like this
+            db.AddStation(_Id,_Model,_MaxWeight,_Status,_Battery);
+        }
 
 
 
@@ -53,6 +69,7 @@ namespace ConsoleUI
                         switch(choice)
                         {
                             case (int)AddChoices.Station:
+
                                 break;
                             case (int)AddChoices.Drone:
                                 break;
