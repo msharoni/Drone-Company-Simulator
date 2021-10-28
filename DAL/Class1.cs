@@ -6,17 +6,16 @@ namespace IDAL
     {
         
         public struct Drone{
-            int Id {get; set};
-            string Model {get; set};
-            WeightCategories MaxWeight {get; set};
-            DroneStatuses Status {get; set};
-            double Battery {get; set};
+            public int Id {get; set;}
+            public string Model {get; set;}
+            public WeightCategories MaxWeight {get; set;}
+            public DroneStatuses Status {get; set;}
+            public double Battery {get; set;}
 
             //Drone struct constructor
             public Drone(int _Id, string _Model, WeightCategories _MaxWeight, DroneStatuses _Status, double _Battery)
-            )
             {
-`               Id = _Id;
+                Id = _Id;
                 Model = _Model;
                 MaxWeight = _MaxWeight;
                 Status = _Status;
@@ -29,11 +28,11 @@ namespace IDAL
             }
         }
         public struct Station {
-            int Id {get; set};
-            string Name {get; set};
-            double Longitude {get; set};
-            double Lattitude {get; set};
-            int ChargeSlots {get; set};
+            public int Id {get; set;}
+            public string Name {get; set;}
+            public double Longitude {get; set;}
+            public double Lattitude {get; set;}
+            public int ChargeSlots {get; set;}
 
             //Station struct Constructor
             public Station(int _Id, string _Name, double _Longitude, double _Lattitude, int _ChargeSlots)
@@ -51,11 +50,11 @@ namespace IDAL
             }
          }
         public struct DroneCharge {
-            int DroneId {get; set};
-            int StationId {get; set};
+            public int DroneId {get; set;}
+            public int StationId {get; set;}
 
             //DroneCharge struct constructor
-            publoc DroneCharge(int _DroneId, int _StationId)
+            public DroneCharge(int _DroneId, int _StationId)
             {
                 DroneId = _DroneId;
                 StationId = _StationId;
@@ -67,18 +66,18 @@ namespace IDAL
             }
          }
         public struct Parcel {
-            int Id {get; set};
-            int SenderId {get; set};
-            int TargetId {get; set};
-            WeightCategories Weight {get; set};
-            Priorities Priority {get; set};
-            DateTime Requested {get; set};
-            int DroneId {get; set};
-            DateTime Scheduled {get; set};
-            DateTime PickedUp {get; set};
-            DateTime Delivered {get; set};
+            public int Id {get; set;}
+            public int SenderId {get; set;}
+            public int TargetId {get; set;}
+            public WeightCategories Weight {get; set;}
+            public Priorities Priority {get; set;}
+            public DateTime Requested {get; set;}
+            public int? DroneId {get; set;}
+            public DateTime? Scheduled {get; set;}
+            public DateTime? PickedUp {get; set;}
+            public DateTime? Delivered {get; set;}
             //Parcel struct constructor
-            public Parcel(int _Id, int _Senderid, int _TargetId, WeightCategories _Weight, Priorities _Priority, DateTime _Requested, int _DroneId, DateTime _Scheduled, DateTime _PickedUp, DateTime _Delivered)
+            public Parcel(int _Id, int _SenderId, int _TargetId, WeightCategories _Weight, Priorities _Priority, DateTime _Requested, int? _DroneId, DateTime? _Scheduled, DateTime? _PickedUp, DateTime? _Delivered)
             {
                 Id = _Id;
                 SenderId = _SenderId;
@@ -94,17 +93,17 @@ namespace IDAL
             //ToString overrided func
             public override string ToString()
             {
-                return $"Id: {Id} Senderid: {Senderid} Targetid: {Targetid} Weight:{Weight}" +
+                return $"Id: {Id} Senderid: {SenderId} Targetid: {TargetId} Weight:{Weight}" +
                 $"Priority: {Priority} Requested: {Requested} DroneId: {DroneId} Scheduled: {Scheduled} PickedUp: {PickedUp} Delivered: {Delivered}";
             }
             
         }
         public struct Customer{
-            int Id {get; set};
-            string Name {get; set};
-            string Phone {get; set};
-            double Longitude {get; set};
-            double Lattitude {get; set};
+            public int Id {get; set;}
+            public string Name {get; set;}
+            public string Phone {get; set;}
+            public double Longitude {get; set;}
+            public double Lattitude {get; set;}
 
             //Customer struct constructor
             public Customer(int _Id, string _Name, string _Phone, double _Longitude, double _Lattitude)
@@ -121,17 +120,17 @@ namespace IDAL
                 return $"Id: {Id} Name: {Name} Phone: {Phone} Longitude: {Longitude} Lattitude: {Lattitude}";
             }
         }
-        enum WeightCategories{
+        public enum WeightCategories{
             Light=1,
             Medium,
             Heavy
         }
-        enum DroneStatuses{
+        public enum DroneStatuses{
             Available=1,
             maintenance,
             Delivery
         }
-        enum Priorities{
+        public enum Priorities{
             Regular=1,
             Fast,
             Emergency

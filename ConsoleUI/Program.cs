@@ -1,4 +1,5 @@
 ﻿using System;
+using IDAL.DO;
 
 namespace ConsoleUI
 {
@@ -17,6 +18,13 @@ namespace ConsoleUI
             Customer,
             Parcel
         }
+        enum Updates { 
+            LinkDrone = 1,
+            PickUp,
+            DropOff,
+            Charge,
+            Uncharge
+        }
         enum Display{
             Station=1,
             Drone,
@@ -33,26 +41,25 @@ namespace ConsoleUI
 
         }
 
-        DalObject.DalObject db= DalObject.DalObject;
+        static DalObject.DalObject db = new DalObject.DalObject();
 
-
+        /*              add functions             */
         //input output Add functions
-        //MAKE SURE THAT I AM ALLOWED TO DO THIS
-        void AddDrone()
+        static void AddDrone()
         {
             Console.WriteLine("enter ID:"); 
             int _Id = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("enter Model:"); 
             string _Model = Console.ReadLine();
             Console.WriteLine("enter Max weight (1,2,3):"); 
-            WeightCategories _MaxWeight = (WeightCategories)Convert.ToInt32(Console.ReadLine());
+            IDAL.DO.WeightCategories _MaxWeight = (WeightCategories)Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("enter Drone Status (1 for available, 2 for maintenance and 3 for delivery):");
             DroneStatuses _Status = (DroneStatuses)Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("enter battery power (1-100):");
             double _Battery = Convert.ToDouble(Console.ReadLine());
             db.AddDrone(_Id,_Model,_MaxWeight,_Status,_Battery);
         }
-        void AddStation()
+        static void AddStation()
         {
             Console.WriteLine("enter ID:"); 
             int _Id = Convert.ToInt32(Console.ReadLine());
@@ -66,7 +73,7 @@ namespace ConsoleUI
             int _ChargeSlots = Convert.ToInt32(Console.ReadLine());
             db.AddStation(_Id,_Name,_Longitude,_Lattitude,_ChargeSlots);
         }
-        void AddCustomer()
+        static void AddCustomer()
         {
             Console.WriteLine("enter ID:"); 
             int _Id = Convert.ToInt32(Console.ReadLine());
@@ -80,7 +87,7 @@ namespace ConsoleUI
             double _Lattitude = Convert.ToDouble(Console.ReadLine());
             db.AddCustomer(_Id,_Name,_Phone,_Longitude,_Lattitude);
         }
-        void AddParcel()
+        static void AddParcel()
         {
             Console.WriteLine("enter parcel ID:"); 
             int _Id = Convert.ToInt32(Console.ReadLine());
@@ -92,65 +99,103 @@ namespace ConsoleUI
             WeightCategories _MaxWeight = (WeightCategories)Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("enter priority Level (1,2,3):");
             Priorities _Priority = (Priorities)Convert.ToInt32(Console.ReadLine());
-
-            
-            Console.WriteLine("enter Drone ID"); 
-            int _DroneId = Convert.ToInt32(Console.ReadLine());  
+            db.AddParcel(_Id, _SenderId, _TargetId, _MaxWeight, _Priority, DateTime.Now, null, null, null, null);
         }
-        //all the diplay functions by type
-        void DisplayDrone()
+
+        /*              update functions             */
+        //link Drone to parcel
+        static void LinkDrone()
+        {
+            Console.WriteLine("Enter drone ID:");
+            int DroneId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter parcel ID:");
+            int ParcelId = Convert.ToInt32(Console.ReadLine());
+            db.LinkParcel(DroneId, ParcelId);
+        }
+
+        //pick up parcel
+        static void PickUp()
+        {
+            Console.WriteLine("Enter parcel ID:");
+            int ParcelId = Convert.ToInt32(Console.ReadLine());
+            db.DronePickUp(ParcelId);
+        }
+
+        //Drop Off parcel
+        static void DropOff()
+        {
+            Console.WriteLine("Enter parcel ID:");
+            int ParcelId = Convert.ToInt32(Console.ReadLine());
+            db.DroneDropOff(ParcelId);
+        }
+
+        //Charge Drone
+        static void Charge()
+        {
+            Console.WriteLine("Enter drone ID:");
+            int DroneId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter station ID:");
+            int StationId = Convert.ToInt32(Console.ReadLine());
+            db.ChargeDrone(DroneId,StationId);
+        }
+        //uncharge Drone
+        static void UnCharge()
+        {
+            Console.WriteLine("Enter drone ID:");
+            int DroneId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter station ID:");
+            int StationId = Convert.ToInt32(Console.ReadLine());
+            db.UnChargeDrone(DroneId, StationId);
+        }
+
+        /*              display functions             */
+        static void DisplayDrone()
         {
             Console.WriteLine("Enter Drone Id");
             int Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(db.GetDrone(Id))
+            Console.WriteLine(db.GetDrone(Id));
         }
-        void DisplayStation()
+        static void DisplayStation()
         {
             Console.WriteLine("Enter Station Id");
             int Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(db.GetStation(Id))
+            Console.WriteLine(db.GetStation(Id));
         }
-        void DisplayCustomer()
+        static void DisplayCustomer()
         {
             Console.WriteLine("Enter Customer Id");
             int Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(db.GetCustomer(Id))
+            Console.WriteLine(db.GetCustomer(Id));
         }
-        void DisplayParcel()
+        static void DisplayParcel()
         {
             Console.WriteLine("Enter Parcel Id");
             int Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(db.GetParcel(Id))
+            Console.WriteLine(db.GetParcel(Id));
         }
-        void DisplayDrone()
+        static void DisplayDrones()
         {
-            Console.WriteLine("Enter Drone Id");
-            int Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(db.GetDrone(Id))
+            db.GetDrones().ForEach(name => Console.WriteLine(name));
         }
-        void DisplayDrones()
+        static void DisplayStations()
         {
-            db.GetDrones().ForEach(Console.WriteLine);
+            db.GetStations().ForEach(name => Console.WriteLine(name));
         }
-        void DisplayStations()
+        static void DisplayCustomers()
         {
-            db.GetStations().ForEach(Console.WriteLine);
+            db.GetCustomers().ForEach( name => Console.WriteLine(name));
         }
-        void DisplayCustomers()
+        static void DisplayParcels()
         {
-            db.GetCustomers().list.ForEach(Console.WriteLine);
+            db.GetParcels().ForEach(name => Console.WriteLine(name));
         }
-        void DisplayParcels()
-        {
-            db.GetParcels().ForEach(Console.WriteLine);
+        static void DisplayFreeStations()
+        { 
+            db.GetFreeStations().ForEach(name => Console.WriteLine(name));
         }
-        void DisplayFreeStations()
+        static void DisplayFreeParcels()
         {
-            db.GetFreeStations().ForEach(Console.WriteLine);
-        }
-        void DisplayFreeParcels()
-        {
-            db.GetFreeParcels().ForEach(Console.WriteLine);
+            db.GetFreeParcels().ForEach(name => Console.WriteLine(name));
         }
 
 
@@ -165,14 +210,14 @@ namespace ConsoleUI
                     //add case
                     case (int)Choice.Add:
                         Console.WriteLine("Options: Add station press 1, Add Drone press 2, Add customer Press 3 to Add Parcel press 4");
-                        int choice = Convert.ToInt32(Console.ReadLine());
+                        choice = Convert.ToInt32(Console.ReadLine());
                         switch(choice)
                         {
                             case (int)AddChoices.Station:
                                 AddStation();
                                 break;
                             case (int)AddChoices.Drone:
-                                AddDrone()
+                                AddDrone();
                                 break;
                             case (int)AddChoices.Customer:
                                 AddCustomer();
@@ -187,17 +232,34 @@ namespace ConsoleUI
                         break;
                     //update case
                     case (int)Choice.Update:
-                        Console.WriteLine("Options: Display station press 1, Display Drone press 2, Display customer Press 3 to Display Parcel press 4");
-                        int choice = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Options: Link drone to parcel press 1, to pick up parcel press 2, to deliver parcel Press 3 to charge drone press 4 to remove drone from charging press 5");
+                        choice = Convert.ToInt32(Console.ReadLine());
                         switch(choice)
                         {
-
+                            case (int)Updates.LinkDrone:
+                                LinkDrone();
+                                break;
+                            case (int)Updates.PickUp:
+                                PickUp();
+                                break;
+                            case (int)Updates.DropOff:
+                                DropOff();
+                                break;
+                            case (int)Updates.Charge:
+                                Charge();
+                                break;
+                            case (int)Updates.Uncharge:
+                                UnCharge();
+                                break;
+                            default:
+                                Console.WriteLine("invalid input try again");
+                                break;
                         }
                         break;
                     //display by id case
                     case (int)Choice.Display:
                         Console.WriteLine("Options: Display station press 1, Display Drone press 2, Display customer Press 3 to Display Parcel press 4");
-                        int choice = Convert.ToInt32(Console.ReadLine());
+                        choice = Convert.ToInt32(Console.ReadLine());
                         switch(choice)
                         {
                             case (int)Display.Station:
@@ -207,7 +269,7 @@ namespace ConsoleUI
                                 DisplayDrone();
                                 break;
                             case (int)Display.Customer:
-                                DisplayCustomer()
+                                DisplayCustomer();
                                 break;
                             case (int)Display.Parcel:
                                 DisplayParcel();
@@ -219,7 +281,9 @@ namespace ConsoleUI
                         break;
                     //display all of certain type case
                     case (int)Choice.DisplayAll:
-                        switch(choice)
+                        Console.WriteLine("Options: Display stations press 1, Display Drones press 2, Display customers Press 3 to Display Parcels press 4 to display free parcels press 5 to display free stations press 6:");
+                        choice = Convert.ToInt32(Console.ReadLine());
+                        switch (choice)
                         {
                             case (int)DisplayAll.Stations:
                                 DisplayStations();
@@ -256,8 +320,6 @@ namespace ConsoleUI
                 }
             }
 
-
-            IDAL.DO.BaseStation baseStation = new IDAL.DO.BaseStation();
             
         }
     }
