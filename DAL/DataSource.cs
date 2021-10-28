@@ -1,7 +1,7 @@
 using IDAL.DO;
 namespace DalObject{
     class DalObject{
-        //adding each type using list.Add
+        //adding each type using List.Add
         public void AddDrone(int Id, string Model, WeightCategories MaxWeight, DroneStatuses Status, double Battery){
             DataSource.Drones.Add(new Drone(Id,Model,MaxWeight,Status,Battery));
         }
@@ -27,17 +27,68 @@ namespace DalObject{
             //making the needed changes
             drone.Status = DroneStatuses.Delivery;
             parcel.DroneId = DroneId;
-            //copying them back into the list
+            parcel.Scheduled = Date.Now;
+            //copying them back into the List
             DataSource.Parcels[Pindex] = parcel;
             DataSource.Drones[Dindex] = drone;
         }
-        public void 
-
-        //
-        //returning each type by their id
-        public Station GetStation(int StationId){
-            return DataSource.Stations.find(station => station.Id == StationId);
-
+        public void DronePickUp(int ParcelId)
+        {
+            //finding the relevant drone/parcel
+            Parcel parcel = DataSource.Parcels.find(parcel => parcel.Id == ParcelId);
+            Drone drone = DataSource.Drones.find(drone=> drone.Id == parcel.DroneId);
+            //saving their index for later
+            int Pindex = DataSource.Parcels.IndexOf(parcel);
+            //making the needed changes
+            parcel.PickedUp = DateTime.Now;
+            //copying them back into the list
+            DataSource.Parcels[Pindex] = parcel;
+        }
+        public void DroneDropOff(int ParcelId)
+        {
+            //finding the relevant drone/parcel
+            Parcel parcel = DataSource.Parcels.find(parcel => parcel.Id == ParcelId);
+            Drone drone = DataSource.Drones.find(drone=> drone.Id == parcel.DroneId);
+            //saving their index for later
+            int Pindex = DataSource.Parcels.IndexOf(parcel);
+            //making the needed changes
+            parcel.Delivered = DateTime.Now;
+             //copying them back into the list
+            DataSource.Parcels[Pindex] = parcel;
+        }
+        public void ChargeDrone(int DroneId, int StationId)
+        {
+            //finding the relevant drone/station
+            Drone drone = DataSource.Drones.find(drone => drone.Id == DroneId);
+            Station station = DataSource.Stations.find(station => station.Id == StationId);
+            //saving their index for later
+            int Dindex = DataSource.Drones.IndexOf(drone);
+            int Sindex = DataSource.Stations.IndexOf(station);
+            //making the needed changes
+            station.ChargeSlots -= 1;
+            drone.Status = DroneStatuses.maintenance;
+            DataSource.ChargingDrones.Add(new ChargeDrone(DroneId,StationId));
+             //copying them back into the list    
+            DataSource.Drones[Dindex] = drone;
+            DataSource.Starions[Sindex] = station;            
+        }
+        public void ChargeDrone(int DroneId, int StationId)
+        {
+            //finding the relevant drone/station/ChargingDrone
+            Drone drone = DataSource.Drones.find(drone => drone.Id == DroneId);
+            Station station = DataSource.Stations.find(station => station.Id == StationId);
+            ChargingDrones charging = DataSource.ChargingDrones.find(charging => charging.DroneId == DroneId);
+            //saving their index for later
+            int Dindex = DataSource.Drones.IndexOf(drone);
+            int Sindex = DataSource.Stations.IndexOf(station);
+            int Cindex = DataSource.ChargingDrones.IndexOf(charging);
+            //making the needed changes
+            station.ChargeSlots += 1;
+            drone.Status = DroneStatuses.Available;
+            DataSource.ChargingDrones.RemoveAt(Cindex);
+             //copying them back into the list    
+            DataSource.Drones[Dindex] = drone;
+            DataSource.Starions[Sindex] = station;            
         }
         public Drone GetDrone(DroneId){
             return DataSource.Drones.find(drone=> drone.Id == DroneId);
@@ -51,24 +102,24 @@ namespace DalObject{
         }
 
         //returning each list 
-        public list<Station> GetStations(){
+        public List<Station> GetStations(){
             return DataSource.Stations;
         }
-        public list<Drone> GetDrones(){
+        public List<Drone> GetDrones(){
             return DataSource.Drones;
         }
-        public list<Parcel> GetParcels(){
+        public List<Parcel> GetParcels(){
             return DataSource.Parcels;
         }
-        public list<Customer> GetCustomers(){
+        public List<Customer> GetCustomers(){
             return DataSource.Customers;
         }
 
         //making sure that the relevant fields exsist
-        public list<Parcel> GetFreeParcels(){
+        public List<Parcel> GetFreeParcels(){
             return DataSource.Parcels.FindAll(parcel => parcel.DroneId != 0);
         }
-        public list<string> GetFreeStations(){
+        public List<Station> GetFreeStations(){
             return DataSource.Stations.FindAll(station => station.ChargeSlots != 0);
         }
         
@@ -76,10 +127,11 @@ namespace DalObject{
     }
 
     class DataSource{ 
-            internal static list<Drone> Drones;
-            internal static list<Station> Stations;
-            internal static list<Customer> Customers;
-            internal static list<Parcel> Parcels;
+            internal static List<Drone> Drones;
+            internal static List<Station> Stations;
+            internal static List<Customer> Customers;
+            internal static List<Parcel> Parcels;
+            internal static List<DroneCharge> ChargingDrones;
             static void Intalize(){
                     Random r = new Random();
                     int[] ids = {,r.Next(9999999,100000000),r.Next(9999999,100000000)};
