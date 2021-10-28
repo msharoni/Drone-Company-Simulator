@@ -31,67 +31,45 @@ namespace DalObject{
             DataSource.Parcels[Pindex] = parcel;
             DataSource.Drones[Dindex] = drone;
         }
+        public void 
 
         //
-        //returning each type as a string using the overrided tostring function
-        public string DisplayStation(int StationId){
-            Station station = DataSource.Stations.find(station => station.Id == StationId);
-            return station.ToString();
-        }
-        public string DisplayDrone(DroneId){
-            Drone drone = DataSource.Drones.find(drone=> drone.Id == DroneId);
-            return drone.ToString();
+        //returning each type by their id
+        public Station GetStation(int StationId){
+            return DataSource.Stations.find(station => station.Id == StationId);
 
         }
-        public string DisplayParcel(ParcelId){
-            Parcel parcel = DataSource.Parcels.find(parcel=> parcel.Id == ParcelId);
+        public Drone GetDrone(DroneId){
+            return DataSource.Drones.find(drone=> drone.Id == DroneId);
+        }
+        public Parcel GetParcel(ParcelId){
+            return DataSource.Parcels.find(parcel=> parcel.Id == ParcelId);
 
         }
-        public string DisplayCustomer(CustomerId){
-            Customer customer = DataSource.Customers.find(customer => customer.Id == CustomerId);
-            return customer.ToString();
+        public Customer GetCustomer(CustomerId){
+            return DataSource.Customers.find(customer => customer.Id == CustomerId);
         }
 
-        //returning each list as a list of strings
-        public list<string> DisplayStations(){
-            list<string> Mylist;
-            for(int i = 0; i < DataSource.Stations.Length(); ++i)
-                Mylist.Add(DataSource.Stations[i].ToString());
-            return Mylist;
+        //returning each list 
+        public list<Station> GetStations(){
+            return DataSource.Stations;
         }
-        public list<string> DisplayDrones(){
-            list<string> Mylist;
-            for(int i = 0; i < DataSource.Drones.Length(); ++i)
-                Mylist.Add(DataSource.Drones[i].ToString());
-            return Mylist;
+        public list<Drone> GetDrones(){
+            return DataSource.Drones;
         }
-        public list<string> DisplayParcels(){
-            list<string> Mylist;
-            for(int i = 0; i < DataSource.Parcels.Length(); ++i)
-                Mylist.Add(DataSource.Parcels[i].ToString());
-            return Mylist;
+        public list<Parcel> GetParcels(){
+            return DataSource.Parcels;
         }
-        public list<string> DisplayCustomers(){
-            list<string> Mylist;
-            for(int i = 0; i < DataSource.Customers.Length(); ++i)
-                Mylist.Add(DataSource.Customers[i].ToString());
-            return Mylist;
+        public list<Customer> GetCustomers(){
+            return DataSource.Customers;
         }
 
         //making sure that the relevant fields exsist
-        public list<string> DisplayFreeParcels(){
-            list<string> Mylist;
-            for(int i = 0; i < DataSource.Parcels.Length(); ++i)
-                if(DataSource.Parcels[i].DroneId)    
-                    Mylist.Add(DataSource.Parcels[i].ToString());
-            return Mylist;
+        public list<Parcel> GetFreeParcels(){
+            return DataSource.Parcels.FindAll(parcel => parcel.DroneId != 0);
         }
-        public list<string> DisplayFreeStations(){
-            list<string> Mylist;
-            for(int i = 0; i < DataSource.Stations.Length(); ++i)
-                if(DataSource.Stations[i].ChargeSlots)
-                    Mylist.Add(DataSource.Stations[i].ToString());
-            return Mylist;
+        public list<string> GetFreeStations(){
+            return DataSource.Stations.FindAll(station => station.ChargeSlots != 0);
         }
         
 
