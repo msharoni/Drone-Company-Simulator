@@ -36,7 +36,7 @@ namespace ConsoleUI
         DalObject.DalObject db= DalObject.DalObject;
         //input output Add functions
         //MAKE SURE THAT I AM ALLOWED TO DO THIS
-        void AddStation()
+        void AddDrone()
         {
             Console.WriteLine("enter ID"); 
             int _Id = Convert.ToInt32(Console.ReadLine());
@@ -51,7 +51,27 @@ namespace ConsoleUI
             //probally dosent work like this
             db.AddStation(_Id,_Model,_MaxWeight,_Status,_Battery);
         }
+        void AddStation()
+        {
 
+        }
+        void AddCustomer()
+        {
+
+        }
+        void AddParcel()
+        {
+
+        }
+        void DisplayDrone(int Id)
+        {
+            Console.WriteLine(db.DisplayDrone(Id))
+        }
+        void DisplayDrones()
+        {
+            List<string> list = db.DisplayDrones();
+            list.ForEach(Console.WriteLine);
+        }
 
 
         static void Main(string[] args)

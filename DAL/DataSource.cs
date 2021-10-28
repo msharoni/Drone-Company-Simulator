@@ -32,6 +32,7 @@ namespace DalObject{
             DataSource.Drones[Dindex] = drone;
         }
 
+        //
         //returning each type as a string using the overrided tostring function
         public string DisplayStation(int StationId){
             Station station = DataSource.Stations.find(station => station.Id == StationId);
@@ -77,18 +78,18 @@ namespace DalObject{
             return Mylist;
         }
 
-        //
+        //making sure that the relevant fields exsist
         public list<string> DisplayFreeParcels(){
             list<string> Mylist;
             for(int i = 0; i < DataSource.Parcels.Length(); ++i)
-                if(DataSource.Parcels[i].DroneId == "I DONT KNOW YET")    
+                if(DataSource.Parcels[i].DroneId)    
                     Mylist.Add(DataSource.Parcels[i].ToString());
             return Mylist;
         }
         public list<string> DisplayFreeStations(){
             list<string> Mylist;
             for(int i = 0; i < DataSource.Stations.Length(); ++i)
-                if(DataSource.Stations[i].ChargeSlots == "I DONT KNOW YET")
+                if(DataSource.Stations[i].ChargeSlots)
                     Mylist.Add(DataSource.Stations[i].ToString());
             return Mylist;
         }
