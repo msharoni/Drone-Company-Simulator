@@ -10,6 +10,7 @@ namespace ConsoleUI
             Update,
             Display,
             DisplayAll,
+            Distance,
             Exit
         }
         enum AddChoices{
@@ -197,13 +198,40 @@ namespace ConsoleUI
         {
             db.GetFreeParcels().ForEach(name => Console.WriteLine(name));
         }
+        /*                           <----       BONUS BONUS BONUS  ---->                                      */
+        static void Distance()
+        {
+            //get the input from the user
+            Console.WriteLine("enter Lattitude");
+            double Lattitude = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("enter Longitude");
+            double Longitude = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("enter Station Id");
+            int Id = Convert.ToInt32(Console.ReadLine());
+
+            double LongitudeRadian1 = Longitude * (Math.PI / 180);
+            double LattitudeRadian1 = Lattitude * (Math.PI / 180);
+            double LongitudeRadian2 = db.GetStation(Id).Longitude * (Math.PI / 180);
+            double LattitudeRadian2 = db.GetStation(Id).Lattitude * (Math.PI / 180);
+
+            //Haversine formula
+            double dist_long = LongitudeRadian2 - LongitudeRadian1;
+            double dist_lat = LattitudeRadian2 - LattitudeRadian1;
+            double a = Math.Pow(Math.Sin(dist_lat / 2), 2) + Math.Cos(LattitudeRadian1) * Math.Cos(LattitudeRadian2) * Math.Pow(Math.Sin(dist_long / 2), 2);
+            double c = 2 * Math.Asin(Math.Sqrt(a));
+            //Radius of the earth is 6371 KM
+            double r = 6371;
+
+            Console.WriteLine(c * r);
+        }
+        /*                           <----       BONUS BONUS BONUS  ---->                                      */
 
 
         static void Main(string[] args)
         {
             bool run = true;
             while(run){
-                Console.WriteLine("Options: Add press 1, Update press 2, Display Press 3, Display-All press 4 to Exit press 5");
+                Console.WriteLine("Options: Add press 1, Update press 2, Display Press 3, Display-All press 4 to find Distance between cordinate and station press 5 Exit press 6");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch(choice)
                 {
@@ -309,6 +337,9 @@ namespace ConsoleUI
                         }
                         break;
                     //Exit case
+                    case (int)Choice.Distance:
+                        Distance();
+                        break;
                     case (int)Choice.Exit:
                         run = false;
                         break;

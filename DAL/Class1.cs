@@ -46,7 +46,7 @@ namespace IDAL
             //ToString overrided func
             public override string ToString()
             {
-                return $"Id: {Id} Name: {Name} Longitude: {Longitude} Lattitude: {Lattitude} ChargeSlots: {ChargeSlots}";
+                return $"Id: {Id} Name: {Name} Longitude/Lattitude: {DalObject.DalObject.sexagisamel(Longitude,Lattitude)} ChargeSlots: {ChargeSlots}";
             }
          }
         public struct DroneCharge {
