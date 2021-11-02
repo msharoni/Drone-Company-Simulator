@@ -9,22 +9,19 @@ namespace IDAL
             public int Id {get; set;}
             public string Model {get; set;}
             public WeightCategories MaxWeight {get; set;}
-            public DroneStatuses Status {get; set;}
-            public double Battery {get; set;}
+            
 
             //Drone struct constructor
-            public Drone(int _Id, string _Model, WeightCategories _MaxWeight, DroneStatuses _Status, double _Battery)
+            public Drone(int _Id, string _Model, WeightCategories _MaxWeight)
             {
                 Id = _Id;
                 Model = _Model;
                 MaxWeight = _MaxWeight;
-                Status = _Status;
-                Battery = _Battery;
             }
             //ToString overided func
             public override string ToString()
             {
-                return $"Id: {Id} Model: {Model} MaxWeight: {MaxWeight} Status {Status} Battery {Battery}";
+                return $"Id: {Id} Model: {Model} MaxWeight: {MaxWeight}";
             }
         }
         public struct Station {
