@@ -10,7 +10,6 @@ namespace ConsoleUI_BL
             Update,
             Display,
             DisplayAll,
-            Distance,
             Exit
         }
         static void Main(string[] args)
@@ -25,6 +24,20 @@ namespace ConsoleUI_BL
                     //add case
                     case (int)Choice.Add:
                         AddMenu();
+                        break;
+                    case (int)Choice.Update:
+                        UpdateMenu();
+                        break;
+                    case (int)Choice.Display:
+                        DisplayMenu();
+                        break;
+                    case (int)Choice.DisplayAll:
+                        DisplayAllMenu();
+                        break;
+                    case (int)Choice.Exit:
+                        break;
+                    default:
+                        Console.WriteLine("invalid input try again");
                         break;
                 }
 

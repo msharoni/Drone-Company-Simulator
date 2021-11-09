@@ -5,27 +5,35 @@ using IDAL.DO;
 
 namespace DalObject
 {
-    public class DalObject : IDAL.IDal
+    public class DalObject
     {
         public DalObject()
         {
             DataSource.Intalize();
         }
         //adding each type using List.Add
-        public void AddDrone(int Id, string Model, WeightCategories MaxWeight, DroneStatuses Status, double Battery)
+        public void AddDrone(int Id, string Model, WeightCategories MaxWeight)
         {
-            DataSource.Drones.Add(new Drone(Id, Model, MaxWeight, Status, Battery));
+            if (DataSource.Drones.Any(drone => drone.Id == Id)) ;
+            throw new Exception("Excisting drone with same Id");
+            DataSource.Drones.Add(new Drone(Id, Model, MaxWeight));
         }
         public void AddStation(int Id, string Name, double Longitude, double Lattitude, int ChargeSlots)
         {
+            if (DataSource.Stations.Any(station => station.Id == Id)) ;
+            throw new Exception("Excisting station with same Id");
             DataSource.Stations.Add(new Station(Id, Name, Longitude, Lattitude, ChargeSlots));
         }
         public void AddCustomer(int Id, string Name, string Phone, double Longitude, double Lattitude)
         {
+            if (DataSource.Customers.Any(customer => customer.Id == Id)) ;
+            throw new Exception("Excisting customer with same Id");
             DataSource.Customers.Add(new Customer(Id, Name, Phone, Longitude, Lattitude));
         }
         public void AddParcel(int Id, int SenderId, int TargetId, WeightCategories Weight, Priorities Priority, DateTime Requested, int? DroneId, DateTime? Scheduled, DateTime? PickedUp, DateTime? Delivered)
         {
+            if (DataSource.Parcels.Any(parcel => parcel.Id == Id)) ;
+            throw new Exception("Excisting station with same Id");
             DataSource.Parcels.Add(new Parcel(Id, SenderId, TargetId, Weight, Priority, Requested, DroneId, Scheduled, PickedUp, Delivered));
         }
 
@@ -126,34 +134,34 @@ namespace DalObject
         }
 
         //returning each list 
-        public List<Station> GetStations()
+        public IEnumerable<Station> GetStations()
         {
             return DataSource.Stations;
         }
-        public List<Drone> GetDrones()
+        public IEnumerable<Drone> GetDrones()
         {
             return DataSource.Drones;
         }
-        public List<Parcel> GetParcels()
+        public IEnumerable<Parcel> GetParcels()
         {
             return DataSource.Parcels;
         }
-        public List<Customer> GetCustomers()
+        public IEnumerable<Customer> GetCustomers()
         {
             return DataSource.Customers;
         }
 
         //making sure that the relevant fields exsist
-        public List<Parcel> GetFreeParcels()
+        public IEnumerable<Parcel> GetFreeParcels()
         {
             return DataSource.Parcels.FindAll(parcel => parcel.DroneId == 0);
         }
-        public List<Station> GetFreeStations()
+        public IEnumerable<Station> GetFreeStations()
         {
             return DataSource.Stations.FindAll(station => station.ChargeSlots != 0);
         }
         /*                           <----       BONUS BONUS BONUS  ---->                                      */
-        public String sexagisamel(double Longitude, double Lattitude)
+        static public String sexagisamel(double Longitude, double Lattitude)
         {
             double[] Arr = { Longitude, Lattitude };
             bool direction = true;
@@ -164,7 +172,7 @@ namespace DalObject
                     direction = true;
                 else
                     direction = false;
-                result += Math.Floor(Math.Abs(Arr[i])).ToString() + '°';
+                result += Math.Floor(Math.Abs(Arr[i])).ToString() + '�';
                 Arr[i] -= Math.Floor(Arr[i]);
                 Arr[i] *= 60;
                 result += Math.Floor(Arr[i]).ToString() + '`';
@@ -188,6 +196,6 @@ namespace DalObject
             }
             return result;
         }
-        /*                           <----       BONUS BONUS BONUS  ---->                                      */
     }
 }
+/*                           <----       BONUS BONUS BONUS  ----> */  
