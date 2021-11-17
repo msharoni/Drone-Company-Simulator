@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = BL
-build_property.ProjectDir = C:\Users\cidan\Source\Repos\msharoni\minip\dotNet5782_6178_3797\BL\
+build_property.ProjectDir = C:\Users\cidan\source\repos\msharoni\minip\dotNet5782_6178_3797\BL\
