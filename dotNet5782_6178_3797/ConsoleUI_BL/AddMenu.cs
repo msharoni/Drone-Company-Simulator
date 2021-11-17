@@ -52,7 +52,7 @@ namespace ConsoleUI_BL
                     int Id = Console.ReadLine();
                     break;
             }
-            static public void UpdateMenu()
+        static public void UpdateMenu()
         {
 
         }
