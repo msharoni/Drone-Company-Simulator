@@ -25,6 +25,9 @@ namespace DalObject
         }
         internal class Config
         {
+            static double HeavyDroneBatteryKM;
+            static double MediumDroneBatteryKM;
+            static double LightDroneBatteryKM;
 
 
 
