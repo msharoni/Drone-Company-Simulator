@@ -8,9 +8,13 @@ namespace BL
 {
     class StationForList
     {
-        int Id;
-        string Name;
-        int NumOfFreeChargers;
-        int NumOfOccupiedChargers;
+        int Id{get; set;}
+        string Name{get; set;}
+        int NumOfVacantChargers{get; set;}
+        int NumOfOccupiedChargers{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Name: {Name} Number of Vacant Chargers: {NumOfVacantChargers} Number Of Occupied Chargers: {NumOfOccupiedChargers}";
+        }
     }
 }

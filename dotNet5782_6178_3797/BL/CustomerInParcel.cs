@@ -8,7 +8,11 @@ namespace BL
 {
     class CustomerInParcel
     {
-        int Id;
-        string name;
+        int Id {get; set;}
+        string name {get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} name: {name}";
+        }
     }
 }

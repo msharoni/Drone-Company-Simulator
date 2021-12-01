@@ -8,7 +8,11 @@ namespace BL
 {
     class ChargingDrone
     {
-        int Id;
-        double Battery;
+        int Id {get; set;}
+        double Battery {get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Battery: {Battery}";
+        }
     }
 }

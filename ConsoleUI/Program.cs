@@ -38,7 +38,7 @@ namespace ConsoleUI
             Customers,
             Parcels,
             FreeParcels,
-            FreeStations
+            vacantStations
 
         }
 
@@ -70,7 +70,7 @@ namespace ConsoleUI
             double _Longitude = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("enter Lattitude cordinate:");
             double _Lattitude = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("enter ammount of free Charging slots:");
+            Console.WriteLine("enter ammount of vacant Charging slots:");
             int _ChargeSlots = Convert.ToInt32(Console.ReadLine());
             db.AddStation(_Id,_Name,_Longitude,_Lattitude,_ChargeSlots);
         }
@@ -190,9 +190,9 @@ namespace ConsoleUI
         {
             db.GetParcels().ForEach(name => Console.WriteLine(name));
         }
-        static void DisplayFreeStations()
+        static void DisplayvacantStations()
         { 
-            db.GetFreeStations().ForEach(name => Console.WriteLine(name));
+            db.GetvacantStations().ForEach(name => Console.WriteLine(name));
         }
         static void DisplayFreeParcels()
         {
@@ -309,7 +309,7 @@ namespace ConsoleUI
                         break;
                     //display all of certain type case
                     case (int)Choice.DisplayAll:
-                        Console.WriteLine("Options: Display stations press 1, Display Drones press 2, Display customers Press 3 to Display Parcels press 4 to display free parcels press 5 to display free stations press 6:");
+                        Console.WriteLine("Options: Display stations press 1, Display Drones press 2, Display customers Press 3 to Display Parcels press 4 to display free parcels press 5 to display vacant stations press 6:");
                         choice = Convert.ToInt32(Console.ReadLine());
                         switch (choice)
                         {
@@ -328,8 +328,8 @@ namespace ConsoleUI
                             case (int)DisplayAll.FreeParcels:
                                 DisplayFreeParcels();
                                 break;
-                            case (int)DisplayAll.FreeStations:
-                                DisplayFreeStations();
+                            case (int)DisplayAll.vacantStations:
+                                DisplayvacantStations();
                                 break;
                             default:
                                 Console.WriteLine("invalid input try again");

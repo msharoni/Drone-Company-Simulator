@@ -8,12 +8,16 @@ namespace BL
 {
     class Drone
     {
-        int Id;
-        string Model;
-        WeightCategories Weight;
-        double Battery;
-        DroneStatuses Status;
-        MovedParcel Parcel;
-        Place CurrentPlace;
+        int Id{get; set;}
+        string Model{get; set;}
+        WeightCategories Weight{get; set;}
+        double Battery{get; set;}
+        DroneStatuses Status{get; set;}
+        MovedParcel Parcel{get; set;}
+        Location CurrentLocation{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Model: {Model} Weight: {Weight} Battery: {Battery} Status: {Status} Parcel: {Parcel} Current Location: {CurrentLocation}";
+        }
     }
 }

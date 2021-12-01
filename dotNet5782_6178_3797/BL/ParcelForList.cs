@@ -8,11 +8,15 @@ namespace BL
 {
     class ParcelForList
     {
-        int Id;
-        string SenderName;
-        string ReciverName;
-        WeightCategories Weight;
-        Priorities Priority;
-        ParcelStatus Status;
+        int Id{get; set;}
+        string SenderName{get; set;}
+        string ReciverName{get; set;}
+        WeightCategories Weight{get; set;}
+        Priorities Priority{get; set;}
+        ParcelStatus Status{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Sender name: {SenderName} Reciver name: {ReciverName} Weight: {Weight} Priority: {Priority} Status: {Status}";
+        }
     }
 }

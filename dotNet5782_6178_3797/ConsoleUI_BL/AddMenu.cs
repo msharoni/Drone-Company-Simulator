@@ -36,9 +36,10 @@ namespace ConsoleUI_BL
         Customers,
         Parcels,
         FreeParcels,
-        FreeStations
+        VacantStations
 
     }
+
     partial class Program
     {
         static public void AddMenu()
