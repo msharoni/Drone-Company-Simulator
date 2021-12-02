@@ -192,7 +192,7 @@ namespace ConsoleUI
         }
         static void DisplayvacantStations()
         { 
-            db.GetvacantStations().ForEach(name => Console.WriteLine(name));
+            db.GetVacantStations().ForEach(name => Console.WriteLine(name));
         }
         static void DisplayFreeParcels()
         {

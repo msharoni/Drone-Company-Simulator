@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace BL
 {
     
-    class Location
+    public class Location
     {
-        double Longitude{get; set;}
-        double Lattitude{get; set;}
+        public double Longitude{get; set;}
+        public double Lattitude{get; set;}
         public override string ToString()
         {
             return $"Longitude: {Longitude} Lattitude: {Lattitude}";

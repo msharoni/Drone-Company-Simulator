@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class CustomerForList
+    public class CustomerForList
     {
-        int Id {get; set;}
-        string name {get; set;}
-        int phone {get; set;}
-        int NumOfSent {get; set;}
-        int NumOfUnsent {get; set;}
-        int NumRecived {get; set;}
-        int OnTheWay {get; set;}
+        public int Id {get; set;}
+        public string name {get; set;}
+        public int phone {get; set;}
+        public int NumOfSent {get; set;}
+        public int NumOfUnsent {get; set;}
+        public int NumRecived {get; set;}
+        public int OnTheWay {get; set;}
         public override string ToString()
         {
             return $"Id: {Id} name: {name} phone: {phone} Amount Sent: {NumOfSent} Amount not yet sent: {NumOfUnsent} Amount recived: {NumRecived} Amount on the way: {OnTheWay}";

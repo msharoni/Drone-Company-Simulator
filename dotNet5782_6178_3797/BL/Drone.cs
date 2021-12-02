@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class Drone
+    public class Drone
     {
-        int Id{get; set;}
+        public int Id{get; set;}
         string Model{get; set;}
         WeightCategories Weight{get; set;}
         double Battery{get; set;}

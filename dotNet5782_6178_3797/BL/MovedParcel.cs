@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class MovedParcel
+    public class MovedParcel
     {
         int Id{get; set;}
         bool Status{get; set;}
