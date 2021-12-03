@@ -68,4 +68,91 @@ namespace BL
         }
 
     }
+    [Serializable]
+    public class NotInMaintenance : Exception
+    {
+        private int id;
+
+        public NotInMaintenance(int id)
+        {
+            this.id = id;
+        }
+
+        public NotInMaintenance(string message) : base(message)
+        {
+        }
+
+        public NotInMaintenance(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected NotInMaintenance(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+        public override string ToString()
+        {
+            return $"the drone with Id: {id} is not in maintenance";
+        }
+
+    }
+    [Serializable]
+    public class NotLinkedYet : Exception
+    {
+        private int id;
+
+        public NotLinkedYet()
+        {
+        }
+
+        public NotLinkedYet(int droneId)
+        {
+            this.id = id;
+        }
+
+        public NotLinkedYet(string message) : base(message)
+        {
+        }
+
+        public NotLinkedYet(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected NotLinkedYet(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+        public override string ToString()
+        {
+            return $"the drone with Id: {id} is not linked to a parcel yet";
+        }
+    }
+    [Serializable]
+    public class ParcelHasAlreadyBeenPickedUp : Exception
+    {
+        private int parcelId;
+
+        public ParcelHasAlreadyBeenPickedUp()
+        {
+        }
+
+        public ParcelHasAlreadyBeenPickedUp(int parcelId)
+        {
+            this.parcelId = parcelId;
+        }
+
+        public ParcelHasAlreadyBeenPickedUp(string message) : base(message)
+        {
+        }
+
+        public ParcelHasAlreadyBeenPickedUp(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected ParcelHasAlreadyBeenPickedUp(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+        public override string ToString()
+        {
+            return $"the parcel with Id: {parcelId} has been picked up already";
+        }
+    }
 }

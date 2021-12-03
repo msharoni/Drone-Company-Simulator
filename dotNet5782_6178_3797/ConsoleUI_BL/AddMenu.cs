@@ -55,7 +55,7 @@ namespace ConsoleUI_BL
             }
         static public void UpdateMenu()
         {
-
+                int c = 0;
         }
         static public void DisplayMenu()
         {

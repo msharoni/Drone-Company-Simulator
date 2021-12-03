@@ -17,21 +17,19 @@ namespace BL
         public void AddDrone(int _Id, string _Model, int _MaxWeight, int _StationId)
         {
             dalObject.AddDrone(_Id, _Model, (IDAL.DO.WeightCategories)_MaxWeight);
-            int index = Stations.FindIndex(station => station.Id == _StationId);
-            Drones.Add(new DroneForList { Id = _Id, Model = _Model, Weight = (WeightCategories)_MaxWeight, Battery = r.Next(20, 41), Status = DroneStatuses.maintenance, CurrentLocation = Stations[index].Location, ParcelId = -1, batteryPerKM = 1/r.Next(1,11) });
+            Location StationLocation =  new Location { Longitude = dalObject.GetStation(_StationId).Longitude , Lattitude = dalObject.GetStation(_StationId).Lattitude };
+            Drones.Add(new DroneForList { Id = _Id, Model = _Model, Weight = (WeightCategories)_MaxWeight, Battery = r.Next(20, 41), Status = DroneStatuses.maintenance, CurrentLocation = StationLocation, ParcelId = -1, batteryPerKM = 1/r.Next(1,11) });
         }
         void UpdateDrone(int _Id, string _Model)
         {
             Drones[Drones.FindIndex(drone => drone.Id == _Id)].Model = _Model;
         }
-        double Distance(int StationId,int DroneId)
+        double Distance(Location Location1,Location Location2)
         {
-            DroneForList tmpD = Drones[Drones.FindIndex(drone => drone.Id == DroneId)];
-            StationForList tmpS = Stations[Stations.FindIndex(station => station.Id == StationId)];
-            double LongitudeRadian1 = tmpD.CurrentLocation.Longitude * (Math.PI / 180);
-            double LattitudeRadian1 = tmpD.CurrentLocation.Lattitude * (Math.PI / 180);
-            double LongitudeRadian2 = tmpS.Location.Longitude * (Math.PI / 180);
-            double LattitudeRadian2 = tmpS.Location.Lattitude * (Math.PI / 180);
+            double LongitudeRadian1 = Location1.Longitude * (Math.PI / 180);
+            double LattitudeRadian1 = Location1.Lattitude * (Math.PI / 180);
+            double LongitudeRadian2 = Location2.Longitude * (Math.PI / 180);
+            double LattitudeRadian2 = Location2.Lattitude * (Math.PI / 180);
 
             //Haversine formula
             double dist_long = LongitudeRadian2 - LongitudeRadian1;
@@ -44,27 +42,81 @@ namespace BL
         }
         void ChargeDrone(int _Id)
         {
-            DroneForList tmpD = Drones[Drones.FindIndex(drone => drone.Id == _Id)];
-            StationForList tmpS = Stations[0];
+            int DroneIndex = Drones.FindIndex(drone => drone.Id == _Id);
+            int StationId = 0;
             double smallest = 2147483647;
-            if (tmpD.Status != DroneStatuses.Available)
+            Location StationLocation = new Location();
+            if (Drones[DroneIndex].Status != DroneStatuses.Available)
                 throw new UnAvailabe(_Id);
             for (int i = 0; i < Stations.Count; i++)
             {
-                if(Distance(Stations[i].Id,_Id) <= smallest) 
+                StationLocation = new Location { Longitude = dalObject.GetStation(Stations[i].Id).Longitude, Lattitude = dalObject.GetStation(Stations[i].Id).Lattitude };
+                if (Distance(StationLocation,Drones[DroneIndex].CurrentLocation) <= smallest) 
                 {
-                    smallest = Distance(Stations[i].Id, _Id);
-                    tmpS = Stations[i];
+                    smallest = Distance(StationLocation, Drones[DroneIndex].CurrentLocation);
+                    StationId = Stations[i].Id;
                 }
             }
-            if (tmpD.Battery < smallest * tmpD.batteryPerKM)
+            if (Drones[DroneIndex].Battery < smallest * Drones[DroneIndex].batteryPerKM)
                 throw new NotEnoughBattery(_Id);
-            Drones[Drones.FindIndex(drone => drone.Id == _Id)].Battery -= smallest * tmpD.batteryPerKM;
-            Drones[Drones.FindIndex(drone => drone.Id == _Id)].CurrentLocation = tmpS.Location;
-            Drones[Drones.FindIndex(drone => drone.Id == _Id)].Status = DroneStatuses.maintenance;
-            Stations[Stations.FindIndex(station => station.Id == tmpS.Id)].NumOfVacantChargers++;
-            ChargingDrones.Add(new ChargingDrone { Id = tmpD.Id, Battery = Drones[Drones.FindIndex(drone => drone.Id == _Id)].Battery });
+            Drones[DroneIndex].Battery -= smallest * Drones[DroneIndex].batteryPerKM;
+            Drones[DroneIndex].CurrentLocation = StationLocation;
+            Drones[DroneIndex].Status = DroneStatuses.maintenance;
+            Stations[Stations.FindIndex(station => station.Id == StationId)].NumOfVacantChargers--;
+            ChargingDrones.Add(new ChargingDrone { Id = Drones[DroneIndex].Id, Battery = Drones[Drones.FindIndex(drone => drone.Id == _Id)].Battery });
         }
 
+        void UnChargeDrone(int Id, double time)
+        {
+            int DroneIndex = Drones.FindIndex(drone => drone.Id == Id);
+            int StationId = 0;
+            if (Drones[DroneIndex].Status != DroneStatuses.maintenance)
+                throw new NotInMaintenance(Id);
+            Drones[DroneIndex].Battery += time * Drones[DroneIndex].batteryPerKM;
+            Drones[DroneIndex].Status = DroneStatuses.Available;
+            for (int i = 0; i < dalObject.GetStations().Count(); i++)
+            {
+                if (dalObject.GetStations().ElementAt(i).Lattitude == Drones[DroneIndex].CurrentLocation.Lattitude && dalObject.GetStations().ElementAt(i).Longitude == Drones[DroneIndex].CurrentLocation.Longitude)
+                    StationId = dalObject.GetStations().ElementAt(i).Id;
+            }
+            Stations[Stations.FindIndex(station => station.Id == StationId)].NumOfVacantChargers--;
+        }
+
+        void LinkDroneToParcel(int DroneId)
+        {
+            List<ParcelForList> tmp = Parcels;
+            int DroneIndex = Drones.FindIndex(drone => drone.Id == DroneId);
+            if (Drones[DroneIndex].Status != DroneStatuses.Available)
+                throw new UnAvailabe(DroneId);
+            ParcelForList BestParcel = new ParcelForList();
+            for (int i = 0; i < Parcels.Count(); i++)
+            {
+                if (Parcels[i].Weight <= Drones[DroneIndex].MaxWeight && Distance(Parcels[i].Location, Drones[DroneIndex].CurrentLocation) > )
+                {
+                    if (Parcels[i].Priority > BestParcel.Priority)
+                        BestParcel = Parcels[i];
+                    else if (Parcels[i].Priority == BestParcel.Priority)
+                        if (Parcels[i].Weight > BestParcel.Weight)
+                            BestParcel = Parcels[i];
+                        else if (Parcels[i].Weight == BestParcel.Weight)
+                            if (Distance(Parcels[i].Location, Drones[DroneIndex].CurrentLocation) < Distance(BestParcel.Location, Drones[DroneIndex].CurrentLocation))
+                                BestParcel = Parcels[i];
+                }
+            }
+            
+        }
+        void PickUpParcel(int DroneId)
+        {
+            int DroneIndex = Drones.FindIndex(drone => drone.Id == DroneId);
+            if (Drones[DroneIndex].Status != DroneStatuses.Delivery)
+                throw new NotLinkedYet(DroneId);
+            if (dalObject.GetParcel(Drones[DroneIndex].ParcelId).PickedUp != null)
+                throw new ParcelHasAlreadyBeenPickedUp(Drones[DroneIndex].ParcelId);
+            //i have a error here
+            Drones[DroneIndex].Battery -= Drones[DroneIndex].batteryPerKM * Distance(Drones[DroneIndex].CurrentLocation, Parcel.Location);
+
+
+
+        }
     }
 }
