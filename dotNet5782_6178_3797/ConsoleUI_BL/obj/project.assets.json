@@ -50,11 +50,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
+      "projectUniqueName": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
       "projectName": "ConsoleUI_BL",
-      "projectPath": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
+      "projectPath": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
       "packagesPath": "C:\\Users\\shilo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\obj\\",
+      "outputPath": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shilo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -71,8 +71,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj"
+            "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj"
             }
           }
         }

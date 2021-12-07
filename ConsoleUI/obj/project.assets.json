@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\ConsoleUI\\ConsoleUI.csproj",
+      "projectUniqueName": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\ConsoleUI\\ConsoleUI.csproj",
       "projectName": "ConsoleUI",
-      "projectPath": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\ConsoleUI\\ConsoleUI.csproj",
+      "projectPath": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\ConsoleUI\\ConsoleUI.csproj",
       "packagesPath": "C:\\Users\\shilo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\ConsoleUI\\obj\\",
+      "outputPath": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\ConsoleUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shilo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\shilo\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj"
+            "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\shilo\\source\\repos\\msharoni\\minip\\DAL\\DAL.csproj"
             }
           }
         }
