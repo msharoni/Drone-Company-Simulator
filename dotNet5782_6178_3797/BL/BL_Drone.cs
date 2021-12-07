@@ -92,7 +92,7 @@ namespace BL
             ParcelForList BestParcel = new ParcelForList();
             for (int i = 0; i < Parcels.Count(); i++)
             {
-                if (Parcels[i].Weight <= Drones[DroneIndex].MaxWeight && Distance(new Location { Longitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Name == Parcels[i].SenderName).Longitude, Lattitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Name == Parcels[i].SenderName).Lattitude }, Drones[DroneIndex].CurrentLocation) < Drones[DroneIndex].Battery / Drones[DroneIndex].batteryPerKM)
+                if (Parcels[i].Weight <= Drones[DroneIndex].MaxWeight && Distance(Drones[DroneIndex].CurrentLocation , CustomerLocation(Parcels[i].Id)) + Distance(, CustomerLocation(Parcels[i].Id))  < Drones[DroneIndex].Battery / Drones[DroneIndex].batteryPerKM)
                 {
 
                     if (Parcels[i].Priority > BestParcel.Priority)
@@ -101,11 +101,15 @@ namespace BL
                         if (Parcels[i].Weight > BestParcel.Weight)
                             BestParcel = Parcels[i];
                         else if (Parcels[i].Weight == BestParcel.Weight)
-                            if (Distance(new Location { Longitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Name == Parcels[i].SenderName).Longitude, Lattitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Name == Parcels[i].SenderName).Lattitude }, Drones[DroneIndex].CurrentLocation) < Distance(new Location { Longitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Name == BestParcel.SenderName).Longitude, Lattitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Name == BestParcel.SenderName).Lattitude }, Drones[DroneIndex].CurrentLocation))
+                            if (Distance(Drones[DroneIndex].CurrentLocation , CustomerLocation(Parcels[i].Id)) < Distance(Drones[DroneIndex].CurrentLocation , CustomerLocation(BestParcel.Id))
                                 BestParcel = Parcels[i];
                 }
             }
             
+        }
+        Location CustomerLocation(int ParcelId,)
+        {
+            return new Location { Longitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Id == dalObject.GetParcel(ParcelId).SenderId).Longitude, Lattitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Id == dalObject.GetParcel(ParcelId).SenderId).Lattitude }
         }
         void PickUpParcel(int DroneId)
         {
@@ -114,8 +118,19 @@ namespace BL
                 throw new NotLinkedYet(DroneId);
             if (dalObject.GetParcel(Drones[DroneIndex].ParcelId).PickedUp != null)
                 throw new ParcelHasAlreadyBeenPickedUp(Drones[DroneIndex].ParcelId);
-            Drones[DroneIndex].Battery -= Drones[DroneIndex].batteryPerKM * Distance(Drones[DroneIndex].CurrentLocation, new Location { Longitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Id == dalObject.GetParcel(Drones[DroneIndex].ParcelId).SenderId).Longitude, Lattitude = dalObject.GetCustomers().FirstOrDefault(customer => customer.Id == dalObject.GetParcel(Drones[DroneIndex].ParcelId).SenderId).Lattitude });
-
+            Drones[DroneIndex].Battery -= Drones[DroneIndex].batteryPerKM * Distance(Drones[DroneIndex].CurrentLocation, CustomerLocation(Drones[DroneIndex].ParcelId));
+            //might have a error here
+            Drones[DroneIndex].CurrentLocation = CustomerLocation(Drones[DroneIndex].ParcelId);
+            Parcels.ForEach(parcel => parcel.Id == Drones[DroneIndex].ParcelId).PickUp = DateTime.Now;
+        }
+        void DeliverParcel(int DroneId)
+        {
+            int DroneIndex = Drones.FindIndex(drone => drone.Id == DroneId);
+            //need to create exception
+            if (dalObject.GetParcel(Drones[DroneIndex].Status.ParcelId).Delivered != null && dalObject.GetParcel(Drones[DroneIndex].Status.ParcelId).PickedUp != null)
+                throw new NotLinkedOrAlreadyDelivered(DroneId);
+            Drones[DroneIndex].Status = DroneStatuses.Available;
+            Drones[DroneIndex].Battery -= Drones[DroneIndex].batteryPerKM * Distance(Drones[DroneIndex].CurrentLocation, CustomerLocation(Drones[DroneIndex].ParcelId)); 
 
 
         }
