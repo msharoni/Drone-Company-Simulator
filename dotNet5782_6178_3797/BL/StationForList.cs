@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class StationForList
+    public class StationForList
     {
-        int Id;
-        string Name;
-        int NumOfFreeChargers;
-        int NumOfOccupiedChargers;
+        public int Id{get; set;}
+        public string Name{get; set;}
+        public int NumOfVacantChargers{get; set;}
+        public int NumOfOccupiedChargers{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Name: {Name} Number of Vacant Chargers: {NumOfVacantChargers} Number Of Occupied Chargers: {NumOfOccupiedChargers}";
+        }
     }
 }

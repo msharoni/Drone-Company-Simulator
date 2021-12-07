@@ -186,7 +186,7 @@ namespace DalObject
         {
             return DataSource.Parcels.FindAll(parcel => parcel.DroneId == 0);
         }
-        public IEnumerable<Station> GetFreeStations()
+        public IEnumerable<Station> GetVacantStations()
         {
             return DataSource.Stations.FindAll(station => station.ChargeSlots != 0);
         }
@@ -227,6 +227,7 @@ namespace DalObject
             return result;
         }
     }
+
 }
 
         /*                           <----       BONUS BONUS BONUS  ---->                                       */

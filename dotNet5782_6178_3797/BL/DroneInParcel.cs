@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class DroneInParcel
+    public class DroneInParcel
     {
         int Id;
-        double Battery;
-        Place CurrentPlace;
+        double Battery{get; set;}
+        Location CurrentLocation{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Battery: {Battery} Current Location: {CurrentLocation}";
+        }
     }
 }

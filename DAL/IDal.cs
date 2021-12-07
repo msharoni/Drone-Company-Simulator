@@ -24,7 +24,7 @@ namespace IDAL
         public List<Parcel> GetParcels();
         public List<Customer> GetCustomers();
         public List<Parcel> GetFreeParcels();
-        public List<Station> GetFreeStations();
+        public List<Station> GetvacantStations();
         public String sexagisamel(double Longitude, double Lattitude);
     }
 }

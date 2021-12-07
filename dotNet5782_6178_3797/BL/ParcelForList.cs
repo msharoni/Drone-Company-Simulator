@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class ParcelForList
+    public class ParcelForList
     {
-        int Id;
-        string SenderName;
-        string ReciverName;
-        WeightCategories Weight;
-        Priorities Priority;
-        ParcelStatus Status;
+        public int Id{get; set;}
+        public string SenderName{get; set;}
+        public string ReciverName{get; set;}
+        public WeightCategories Weight{get; set;}
+        public Priorities Priority{get; set;}
+        ParcelStatus Status{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Sender name: {SenderName} Reciver name: {ReciverName} Weight: {Weight} Priority: {Priority} Status: {Status}";
+        }
     }
 }

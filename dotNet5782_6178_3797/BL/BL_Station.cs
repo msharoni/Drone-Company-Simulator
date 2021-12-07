@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    
-    class Place
+    partial class BL : IBL.IBL
     {
-        double Longitude;
-        double Lattitude;
-    }
+        List<StationForList> Stations;
 
+    }
 }

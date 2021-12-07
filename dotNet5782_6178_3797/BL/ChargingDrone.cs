@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class ChargingDrone
+    public class ChargingDrone
     {
-        int Id;
-        double Battery;
+        public int Id {get; set;}
+        public double Battery {get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Battery: {Battery}";
+        }
     }
 }

@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class ParcelInCustomer
+    public class ParcelInCustomer
     {
-        int Id;
-        WeightCategories Weight;
-        Priorities Priority;
-        ParcelStatus Status;
-        CustomerInParcel Customer;
+        int Id{get; set;}
+        WeightCategories Weight{get; set;}
+        Priorities Priority{get; set;}
+        ParcelStatus Status{get; set;}
+        CustomerInParcel Customer{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Weight: {Weight} Priority: {Priority} Status: {Status} Customer: {Customer}";
+        }
     }
 }

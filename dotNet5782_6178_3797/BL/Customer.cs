@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class Customer
+    public class Customer
     {
-        int Id;
-        string name;
-        int phone;
-        Place place;
-        List<ParcelInCustomer> FromCustomer;
-        List<ParcelInCustomer> ForCustomer;
+        int Id {get; set;}
+        string name {get; set;}
+        int phone {get; set;}
+        Location Location {get; set;}
+        List<ParcelInCustomer> FromCustomer {get; set;}
+        List<ParcelInCustomer> ForCustomer {get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} name: {name} phone: {phone} Location: {Location} Parcels Sent: {FromCustomer} Parcels Recived: {ForCustomer}";
+        }
     }
 }

@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class Parcel
+    public class Parcel
     {
-        int Id;
-        CustomerInParcel Sender;
-        CustomerInParcel Reciver;
-        WeightCategories Weight;
-        Priorities Priority;
-        DroneInParcel Drone;
-        DateTime Created;
-        DateTime Linked;
-        DateTime PickedUp;
-        DateTime Delivered;
+        int Id{get; set;}
+        CustomerInParcel Sender{get; set;}
+        CustomerInParcel Reciver{get; set;}
+        WeightCategories Weight{get; set;}
+        Priorities Priority{get; set;}
+        DroneInParcel Drone{get; set;}
+        DateTime Created{get; set;}
+        DateTime Linked{get; set;}
+        DateTime PickedUp{get; set;}
+        DateTime Delivered{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Sender: {Sender} Reciver: {Reciver} Weight: {Weight} Priority: {Priority} Drone: {Drone} Time Created: {Created} Time Linked: {Linked} Time Picked-Up: {PickedUp} Time Delivered: {Delivered}";
+        }
     }
 }

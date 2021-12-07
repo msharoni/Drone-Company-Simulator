@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class CustomerForList
+    public class CustomerForList
     {
-        int Id;
-        string name;
-        int phone;
-        int NumOfSent;
-        int NumOfUnsent;
-        int NumRecived;
-        int OnTheWay;
+        public int Id {get; set;}
+        public string name {get; set;}
+        public int phone {get; set;}
+        public int NumOfSent {get; set;}
+        public int NumOfUnsent {get; set;}
+        public int NumRecived {get; set;}
+        public int OnTheWay {get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} name: {name} phone: {phone} Amount Sent: {NumOfSent} Amount not yet sent: {NumOfUnsent} Amount recived: {NumRecived} Amount on the way: {OnTheWay}";
+        }
     }
 }

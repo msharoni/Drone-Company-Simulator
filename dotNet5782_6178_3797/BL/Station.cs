@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class Station
+    public class Station
     {
-        int Id;
-        string Name;
-        Place place;
-        int NumOfFreeChargers;
-        List<ChargingDrone> DronesCharging;
+        int Id{get; set;}
+        string Name{get; set;}
+        Location Location{get; set;}
+        int NumOfVacantChargers{get; set;}
+        List<ChargingDrone> DronesCharging{get; set;}
+        public override string ToString()
+        {
+            return $"Id: {Id} Name: {Name} Location: {Location} Number of Vacant Chargers: {NumOfVacantChargers} Drones Charging: {DronesCharging}";
+        }
     }
 }
