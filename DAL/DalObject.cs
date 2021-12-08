@@ -6,7 +6,7 @@ using IDAL.DO;
 
 namespace DalObject
 {
-    public class DalObject
+    public class DalObject : IDAL.IDAL
     {
         public DalObject()
         {
@@ -190,6 +190,42 @@ namespace DalObject
         {
             return DataSource.Stations.FindAll(station => station.ChargeSlots != 0);
         }
+        public void UpdateDrone(int _Id, string _Model)
+        {
+            int index = DataSource.Drones.FindIndex(drone => drone.Id == _Id);
+            if (index == -1)
+                throw new IdNotExistException(_Id);
+            Drone drone = DataSource.Drones[index];
+            drone.Model = _Model;
+            DataSource.Drones[index] = drone;
+        }
+        public void UpdateCustomer(int Id, string? name, string? Phone)
+        {
+            int index  = DataSource.Customers.FindIndex(customer => customer.Id == Id);
+            Customer customer = DataSource.Customers[index];
+            if (name != null)
+                customer.Name = name;
+            if (Phone != null)
+                customer.Phone = Phone;
+            DataSource.Customers[index] = customer;
+
+        }
+        public void UpdateParcel(Parcel _parcel)
+        {
+            int index = DataSource.Parcels.FindIndex(parcel => parcel.Id == _parcel.Id);
+            DataSource.Parcels[index] = _parcel;
+        }
+        public void UpdateStation(int Id, string? name, int? NumOfSlots)
+        {
+            int index = DataSource.Stations.FindIndex(station => station.Id == Id);
+            Station station = DataSource.Stations[index];
+            if (name != null)
+                station.Name = name;
+            if (NumOfSlots != null)
+                station.ChargeSlots = (int)NumOfSlots;
+            DataSource.Stations[index] = station;
+        }
+
         /*                           <----       BONUS BONUS BONUS  ---->                                      */
         static public String sexagisamel(double Longitude, double Lattitude)
         {

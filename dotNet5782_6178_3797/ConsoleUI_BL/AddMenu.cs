@@ -39,31 +39,31 @@ namespace ConsoleUI_BL
         VacantStations
 
     }
-
     partial class Program
     {
         static public void AddMenu()
         {
             Console.WriteLine("Options: Add station press 1, Add Drone press 2, Add customer Press 3 to Add Parcel press 4");
             int choice = Convert.ToInt32(Console.ReadLine());
-            switch(choice)
+            switch (choice)
             {
-                case (int)AddStation:
-                    Console.WriteLine("Enter Id: ");
-                    int Id = Console.ReadLine();
+                case (int)AddChoices.Station:
+                    AddStation();
                     break;
             }
-        static public void UpdateMenu()
-        {
+            static public void UpdateMenu()
+            {
                 int c = 0;
-        }
-        static public void DisplayMenu()
-        {
+            }
+            static public void DisplayMenu()
+            {
 
-        }
-        static public void DisplayAllMenu()
-        {
+            }
+            static public void DisplayAllMenu()
+            {
 
+            }
         }
     }
 }
+

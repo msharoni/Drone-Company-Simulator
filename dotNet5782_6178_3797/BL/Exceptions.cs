@@ -155,4 +155,34 @@ namespace BL
             return $"the parcel with Id: {parcelId} has been picked up already";
         }
     }
+    [Serializable]
+    public class NotLinkedOrAlreadyDelivered : Exception
+    {
+        private int droneId;
+
+        public NotLinkedOrAlreadyDelivered()
+        {
+        }
+
+        public NotLinkedOrAlreadyDelivered(int droneId)
+        {
+            this.droneId = droneId;
+        }
+
+        public NotLinkedOrAlreadyDelivered(string message) : base(message)
+        {
+        }
+
+        public NotLinkedOrAlreadyDelivered(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected NotLinkedOrAlreadyDelivered(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+        public override string ToString()
+        {
+            return $"the drone with Id: {droneId} is either not linked to a parcel yet or has already delivered the parcel";
+        }
+    }
 }
