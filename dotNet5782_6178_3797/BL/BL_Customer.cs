@@ -32,7 +32,28 @@ namespace BL
         }
         public Customer DisplayCustomer(int Id)
         {
-            return customer;
+            Customer tmpCustomer = new Customer();
+            IDal.DO.Customer customer = dalObject.GetCustomer(Id);
+            tmpCustomer.Id = Id;
+            tmpCustomer.name = customer.Name;
+            tmpCustomer.Phone = customer.phone;
+            tmpCustomer.Location = new Location{Longitude = customer.Longitude, Lattitude = customer.Lattitude};
+            List<ParcelInCustomer> FromCustomer;
+            List<ParcelInCustomer> ForCustomer;
+            ParcelInCustomer cParcel = new ParcelInCustomer();
+            foreach(parcel in DisplayParcels())
+            {
+                if(parcel.SenderId == Id)
+                {
+                    cParcel.Id = parcel.Id;
+                    cParcel.Weight = parcel.Weight;
+                    cParcel.Priority = parcel.Priority;
+                    cParcel.Status = parcel.Status;
+                    cParcel.Customer = new
+                    FromCustomer.Add(cParcel)
+                }
+            }
+            return tmpCustomer;
         }
         public List<CustomerForList> DisplayCustomers()
         {

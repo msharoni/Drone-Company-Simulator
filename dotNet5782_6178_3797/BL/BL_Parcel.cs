@@ -54,7 +54,35 @@ namespace BL
         }
         public Parcel DisplayParcel(int Id)
         {
-            return parcel;
+            Parcel tmpParcel = new Parcel();
+            IDal.DO.Parcel parcel = dalObject.GetParcel(Id);
+            tmpParcel.Id = Id;
+            //creating 2 customers of type CustomerInParcel for our movedParcel
+            CustomerInParcel Sender = new CustomerInParcel();
+            CustomerInParcel Reciver = new CustomerInParcel();
+            IDal.DO.Customer sCustomer = dalObject.GetCustomer(parcel.SenderId);
+            IDal.DO.Customer tCustomer = dalObject.GetCustomer(parcel.TargetId)
+            Sender.Id = sCustomer.Id;
+            Sender.name = sCustomer.Name;
+            Reciver.Id = tCustomer.Id;
+            Reciver.name = tCustomer.Name;
+            //putting the customers in the movedParcel
+            tmpParcel.Sender = Sender;
+            tmpParcel.Reciver = Reciver;
+            tmpParcel.Weight = parcel.Weight;
+            tmpParcel.Priority = parcel.Priority;
+            //creating drone of type DroneInParcel to put in parcel
+            DroneInParcel drone = new DroneInParcel();
+            int DroneIndex = Drones.FindIndex(drone => drone.Id == parcel.DroneId);
+            drone.Id = parcel.DroneId;
+            drone.Battery = Drones[DroneIndex].Battery;
+            drone.CurrentLocation = Drones[DroneIndex].CurrentLocation;
+            tmpParcel.Drone = drone;
+            tmpParcel.Created =1; //idk bro
+            tmpParcel.Linked = parcel.Scheduled;
+            tmpParcel.PickedUp = parcel.PickedUp;
+            tmpParcel.Delivered = parcel.Delivered;
+            return tmpParcel;
         }
         public List<ParcelForList> DisplayParcels()
         {
