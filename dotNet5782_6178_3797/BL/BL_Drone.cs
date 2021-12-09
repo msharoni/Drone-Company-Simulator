@@ -146,10 +146,42 @@ namespace BL
         }
         public Drone DisplayDrone(int Id)
         {
+            int DroneIndex = Drones.FindIndex(drone => drone.Id == Id);
+            Drone drone = new Drone();
+            drone.Id = Drones[DroneIndex].Id;
+            drone.Model = Drones[DroneIndex].Model;
+            drone.Weight = Drones[DroneIndex].Weight;
+            drone.Battery = Drones[DroneIndex].Battery;
+            drone.Status = Drones[DroneIndex].Status;
+            drone.CurrentLocation = Drones[DroneIndex].CurrentLocation;
+            //creating a parcel of type moved parcel to put in drone
+            MovedParcel mParcel = new MovedParcel();
+            IDal.DO.Parcel parcel = dalObject.GetParcel(Drones[DroneIndex].parcelId);
+            mParcel.Id = parcel.Id;
+            mParcel.Status = (parcel.PickedUp == null) ? false : true; 
+            mParcel.Priority = parcel.Priority;
+            mParcel.Weight = parcel.Weight;
+            //creating 2 customers of type CustomerInParcel for our movedParcel
+            CustomerInParcel Sender = new CustomerInParcel();
+            CustomerInParcel Reciver = new CustomerInParcel();
+            IDal.DO.Customer sCustomer = dalObject.GetCustomer(parcel.SenderId);
+            IDal.DO.Customer tCustomer = dalObject.GetCustomer(parcel.TargetId)
+            Sender.Id = sCustomer.Id;
+            Sender.name = sCustomer.Name;
+            Reciver.Id = tCustomer.Id;
+            Reciver.name = tCustomer.Name;
+            //putting the customers in the movedParcel
+            mParcel.Sender = Sender;
+            mParcel.Reciver = Reciver;
+            mParcel.PickUp = SenderLocation(parcel.Id);
+            mParcel.DropOff = ReciverLocation(parcel.Id);
+            mParcel.Distance = Distance(SenderLocation(parcel.Id),ReciverLocation(parcel.Id));
+            drone.Parcel = mParcel;
             return drone;
         }
         public List<DroneForList> DisplayDrones()
         {
+            
             return drones;
         }
     }
