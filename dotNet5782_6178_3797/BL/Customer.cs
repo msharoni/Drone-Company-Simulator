@@ -8,12 +8,12 @@ namespace BL
 {
     public class Customer
     {
-        int Id {get; set;}
-        string name {get; set;}
-        int phone {get; set;}
-        Location Location {get; set;}
-        List<ParcelInCustomer> FromCustomer {get; set;}
-        List<ParcelInCustomer> ForCustomer {get; set;}
+        public int Id {get; set;}
+        public string name {get; set;}
+        public string phone {get; set;}
+        public Location Location {get; set;}
+        public List<ParcelInCustomer> FromCustomer {get; set;}
+        public List<ParcelInCustomer> ForCustomer {get; set;}
         public override string ToString()
         {
             return $"Id: {Id} name: {name} phone: {phone} Location: {Location} Parcels Sent: {FromCustomer} Parcels Recived: {ForCustomer}";

@@ -33,30 +33,57 @@ namespace BL
         public Customer DisplayCustomer(int Id)
         {
             Customer tmpCustomer = new Customer();
-            IDal.DO.Customer customer = dalObject.GetCustomer(Id);
+            IDAL.DO.Customer customer = dalObject.GetCustomer(Id);
+            //putting the ready variables into tmpCustomer 
             tmpCustomer.Id = Id;
             tmpCustomer.name = customer.Name;
-            tmpCustomer.Phone = customer.phone;
+            tmpCustomer.phone = customer.Phone;
             tmpCustomer.Location = new Location{Longitude = customer.Longitude, Lattitude = customer.Lattitude};
-            List<ParcelInCustomer> FromCustomer;
-            List<ParcelInCustomer> ForCustomer;
+            //creating lists and filling them 
+            List<ParcelInCustomer> FromCustomer = new List<ParcelInCustomer>();
+            List<ParcelInCustomer> ForCustomer = new List<ParcelInCustomer>(); 
             ParcelInCustomer cParcel = new ParcelInCustomer();
-            foreach(parcel in DisplayParcels())
+            foreach(IDAL.DO.Parcel parcel in dalObject.GetParcels())
             {
                 if(parcel.SenderId == Id)
                 {
                     cParcel.Id = parcel.Id;
-                    cParcel.Weight = parcel.Weight;
-                    cParcel.Priority = parcel.Priority;
-                    cParcel.Status = parcel.Status;
-                    cParcel.Customer = new
-                    FromCustomer.Add(cParcel)
+                    cParcel.Weight = (WeightCategories)parcel.Weight;
+                    cParcel.Priority = (Priorities)parcel.Priority;
+                    cParcel.Status = (parcel.Delivered != null) ? ParcelStatus.Delivered : (parcel.PickedUp != null) ? ParcelStatus.PickedUp : (parcel.Scheduled != null) ? ParcelStatus.Linked : ParcelStatus.Created;
+                    cParcel.Customer = new CustomerInParcel {Id = Id, name = customer.Name};
+                    FromCustomer.Add(cParcel);
+                }
+                else if(parcel.TargetId == Id)
+                {
+                    cParcel.Id = parcel.Id;
+                    cParcel.Weight = (WeightCategories)parcel.Weight;
+                    cParcel.Priority = (Priorities)parcel.Priority;
+                    cParcel.Status = (parcel.Delivered != null) ? ParcelStatus.Delivered : (parcel.PickedUp != null) ? ParcelStatus.PickedUp : (parcel.Scheduled != null) ? ParcelStatus.Linked : ParcelStatus.Created;
+                    cParcel.Customer = new CustomerInParcel { Id = Id, name = customer.Name };
+                    ForCustomer.Add(cParcel);
                 }
             }
+            //putting the lists in tmpCustomer
+            tmpCustomer.ForCustomer = ForCustomer;
+            tmpCustomer.FromCustomer = FromCustomer;
             return tmpCustomer;
         }
         public List<CustomerForList> DisplayCustomers()
         {
+            List<CustomerForList> customers = new List<CustomerForList>();
+            CustomerForList CurrentCustomer = new CustomerForList();
+            foreach (IDAL.DO.Customer customer in dalObject.GetCustomers())
+            {
+                CurrentCustomer.Id = customer.Id;
+                CurrentCustomer.name = customer.Name;
+                CurrentCustomer.phone = customer.Phone;
+                CurrentCustomer.NumOfSent = DisplayCustomer(customer.Id).FromCustomer.FindAll(parcel => parcel.Status == ParcelStatus.Delivered).Count();
+                CurrentCustomer.NumOfUnsent = DisplayCustomer(customer.Id).FromCustomer.FindAll(parcel => parcel.Status != ParcelStatus.Delivered).Count();
+                CurrentCustomer.NumRecived = DisplayCustomer(customer.Id).ForCustomer.FindAll(parcel => parcel.Status == ParcelStatus.Delivered).Count();
+                CurrentCustomer.OnTheWay = DisplayCustomer(customer.Id).ForCustomer.FindAll(parcel => parcel.Status != ParcelStatus.Delivered).Count();
+                customers.Add(CurrentCustomer);
+            }
             return customers;
         }
     }

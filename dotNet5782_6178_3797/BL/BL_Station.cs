@@ -34,15 +34,38 @@ namespace BL
         }
         public Station DisplayStation(int Id)
         {
-            return station;
+            Station tmpStation = new Station();
+            IDAL.DO.Station station = dalObject.GetStation(Id);
+            //putting the ready variables into tmpStation 
+            tmpStation.Id = Id;
+            tmpStation.Name = station.Name;
+            tmpStation.Location = new Location { Lattitude = station.Lattitude, Longitude = station.Longitude };
+            tmpStation.NumOfVacantChargers = station.ChargeSlots;
+            //creating list of all drones charging at current station
+            List<ChargingDrone> drones = new List<ChargingDrone>();
+            foreach(DroneForList drone in Drones)
+                if (drone.CurrentLocation == tmpStation.Location)
+                    drones.Add(new ChargingDrone { Id = drone.Id, Battery = drone.Battery});
+            tmpStation.DronesCharging = drones;
+            return tmpStation;
         }
         public List<StationForList> DisplayStations()
         {
+            List<StationForList> stations = new List<StationForList>();
+            StationForList CurrentStation = new StationForList();
+            foreach(IDAL.DO.Station station in dalObject.GetStations())
+            {
+                CurrentStation.Id = station.Id;
+                CurrentStation.Name = station.Name;
+                CurrentStation.NumOfVacantChargers = station.ChargeSlots;
+                CurrentStation.NumOfOccupiedChargers = DisplayStation(station.Id).DronesCharging.Count();
+                stations.Add(CurrentStation);
+            }
             return stations;
         }
         public List<StationForList> DisplayFreeStations()
         {
-            return freeStations;
+            return DisplayStations().FindAll(station => station.NumOfVacantChargers > 0);
         }
 
 

@@ -55,13 +55,13 @@ namespace BL
         public Parcel DisplayParcel(int Id)
         {
             Parcel tmpParcel = new Parcel();
-            IDal.DO.Parcel parcel = dalObject.GetParcel(Id);
+            IDAL.DO.Parcel parcel = dalObject.GetParcel(Id);
             tmpParcel.Id = Id;
             //creating 2 customers of type CustomerInParcel for our movedParcel
             CustomerInParcel Sender = new CustomerInParcel();
             CustomerInParcel Reciver = new CustomerInParcel();
-            IDal.DO.Customer sCustomer = dalObject.GetCustomer(parcel.SenderId);
-            IDal.DO.Customer tCustomer = dalObject.GetCustomer(parcel.TargetId)
+            IDAL.DO.Customer sCustomer = dalObject.GetCustomer(parcel.SenderId);
+            IDAL.DO.Customer tCustomer = dalObject.GetCustomer(parcel.TargetId);
             Sender.Id = sCustomer.Id;
             Sender.name = sCustomer.Name;
             Reciver.Id = tCustomer.Id;
@@ -69,28 +69,40 @@ namespace BL
             //putting the customers in the movedParcel
             tmpParcel.Sender = Sender;
             tmpParcel.Reciver = Reciver;
-            tmpParcel.Weight = parcel.Weight;
-            tmpParcel.Priority = parcel.Priority;
+            tmpParcel.Weight = (WeightCategories)parcel.Weight;
+            tmpParcel.Priority = (Priorities)parcel.Priority;
             //creating drone of type DroneInParcel to put in parcel
             DroneInParcel drone = new DroneInParcel();
             int DroneIndex = Drones.FindIndex(drone => drone.Id == parcel.DroneId);
-            drone.Id = parcel.DroneId;
+            drone.Id = (int)parcel.DroneId;
             drone.Battery = Drones[DroneIndex].Battery;
             drone.CurrentLocation = Drones[DroneIndex].CurrentLocation;
             tmpParcel.Drone = drone;
-            tmpParcel.Created =1; //idk bro
-            tmpParcel.Linked = parcel.Scheduled;
-            tmpParcel.PickedUp = parcel.PickedUp;
-            tmpParcel.Delivered = parcel.Delivered;
+            tmpParcel.Created = 1; //idk bro
+            tmpParcel.Linked = (DateTime)parcel.Scheduled;
+            tmpParcel.PickedUp = (DateTime)parcel.PickedUp;
+            tmpParcel.Delivered = (DateTime)parcel.Delivered;
             return tmpParcel;
         }
         public List<ParcelForList> DisplayParcels()
         {
+            List<ParcelForList> parcels = new List<ParcelForList>();
+            ParcelForList CurrentParcel = new ParcelForList();
+            foreach (IDAL.DO.Parcel parcel in dalObject.GetParcels())
+            {
+                CurrentParcel.Id = parcel.Id;
+                CurrentParcel.SenderName = dalObject.GetCustomer(parcel.SenderId).Name;
+                CurrentParcel.ReciverName = dalObject.GetCustomer(parcel.TargetId).Name;
+                CurrentParcel.Weight = (WeightCategories)parcel.Weight;
+                CurrentParcel.Priority = (Priorities)parcel.Priority;
+                CurrentParcel.Status = (parcel.Delivered != null) ? ParcelStatus.Delivered : (parcel.PickedUp != null) ? ParcelStatus.PickedUp : (parcel.Scheduled != null) ? ParcelStatus.Linked : ParcelStatus.Created;
+                parcels.Add(CurrentParcel);
+            }
             return parcels;
         }
         public List<ParcelForList> DisplayFreeParcels()
         {
-            return freeParcels;
+            return DisplayParcels().FindAll(parcel => parcel.Status == ParcelStatus.Created);
         }
     }
 }

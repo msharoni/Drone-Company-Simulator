@@ -13,7 +13,7 @@ namespace BL
         public string ReciverName{get; set;}
         public WeightCategories Weight{get; set;}
         public Priorities Priority{get; set;}
-        ParcelStatus Status{get; set;}
+        public ParcelStatus Status{get; set;}
         public override string ToString()
         {
             return $"Id: {Id} Sender name: {SenderName} Reciver name: {ReciverName} Weight: {Weight} Priority: {Priority} Status: {Status}";

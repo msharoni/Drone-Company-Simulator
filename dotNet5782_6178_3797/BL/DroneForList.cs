@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class DroneForList
+    public class DroneForList
     {
         public int Id{get; set;}
         public string Model{get; set;}
@@ -15,10 +15,9 @@ namespace BL
         public DroneStatuses Status{get; set;}
         public Location CurrentLocation{get; set;}
         public int ParcelId{get; set;}
-        public double batteryPerKM { get; set; }
         public override string ToString()
         {
-            return $"Id: {Id} Model: {Model} Weight: {Weight} Battery: {Battery} Status: {Status} Current Location: {CurrentLocation} Parcel ID: {ParcelId}";
+            return $"Id: {Id}Model: {Model} MaxWeight: {MaxWeight} Battery: {Battery} Status: {Status} Current Location: {CurrentLocation} Parcel ID: {ParcelId}";
         }
     }
 }

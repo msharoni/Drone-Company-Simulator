@@ -8,11 +8,11 @@ namespace BL
 {
     public class Station
     {
-        int Id{get; set;}
-        string Name{get; set;}
-        Location Location{get; set;}
-        int NumOfVacantChargers{get; set;}
-        List<ChargingDrone> DronesCharging{get; set;}
+        public int Id{get; set;}
+        public string Name{get; set;}
+        public Location Location{get; set;}
+        public int NumOfVacantChargers{get; set;}
+        public List<ChargingDrone> DronesCharging{get; set;}
         public override string ToString()
         {
             return $"Id: {Id} Name: {Name} Location: {Location} Number of Vacant Chargers: {NumOfVacantChargers} Drones Charging: {DronesCharging}";

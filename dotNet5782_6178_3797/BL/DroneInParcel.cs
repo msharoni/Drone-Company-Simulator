@@ -8,9 +8,9 @@ namespace BL
 {
     public class DroneInParcel
     {
-        int Id;
-        double Battery{get; set;}
-        Location CurrentLocation{get; set;}
+        public int Id;
+        public double Battery{get; set;}
+        public Location CurrentLocation{get; set;}
         public override string ToString()
         {
             return $"Id: {Id} Battery: {Battery} Current Location: {CurrentLocation}";

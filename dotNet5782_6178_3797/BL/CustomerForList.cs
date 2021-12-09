@@ -10,7 +10,7 @@ namespace BL
     {
         public int Id {get; set;}
         public string name {get; set;}
-        public int phone {get; set;}
+        public string phone {get; set;}
         public int NumOfSent {get; set;}
         public int NumOfUnsent {get; set;}
         public int NumRecived {get; set;}
