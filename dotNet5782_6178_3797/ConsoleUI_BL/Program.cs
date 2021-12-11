@@ -35,6 +35,7 @@ namespace ConsoleUI_BL
                         DisplayAllMenu();
                         break;
                     case (int)Choice.Exit:
+                        run = false;
                         break;
                     default:
                         Console.WriteLine("invalid input try again");

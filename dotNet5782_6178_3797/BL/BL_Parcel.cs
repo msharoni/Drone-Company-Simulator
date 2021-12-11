@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : IBL
     {
         public void PickUpParcel(int DroneId)
         {
@@ -15,7 +15,7 @@ namespace BL
                 throw new NotLinkedYet(DroneId);
             if (dalObject.GetParcel(Drones[DroneIndex].ParcelId).PickedUp != null)
                 throw new ParcelHasAlreadyBeenPickedUp(Drones[DroneIndex].ParcelId);
-            Drones[DroneIndex].Battery -= Drones[DroneIndex].batteryPerKM * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
+            Drones[DroneIndex].Battery -= dalObject.GetBatteryUsage()[1] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
             Drones[DroneIndex].CurrentLocation = SenderLocation(Drones[DroneIndex].ParcelId);
             IDAL.DO.Parcel parcel = dalObject.GetParcel(Drones[DroneIndex].ParcelId);
             parcel.PickedUp = DateTime.Now;
@@ -29,31 +29,50 @@ namespace BL
                 throw new NotLinkedOrAlreadyDelivered(DroneId);
             //updating drone
             Drones[DroneIndex].Status = DroneStatuses.Available;
-            Drones[DroneIndex].Battery -= Drones[DroneIndex].batteryPerKM * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
+            Drones[DroneIndex].Battery -= dalObject.GetBatteryUsage()[(int)dalObject.GetParcel(Drones[DroneIndex].ParcelId).Weight] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
             //updating parcel
             IDAL.DO.Parcel parcel = dalObject.GetParcel(Drones[DroneIndex].ParcelId);
             parcel.Delivered = DateTime.Now;
             dalObject.UpdateParcel(parcel);
         }
 
-        public void AddParcel()
+        public void AddParcel(int Id,int SenderId,int TargetId,int Weight,int Priority)
         {
-            //check out the id field
-            IDAL.DO.Parcel parcel = new IDAL.DO.Parcel();
-            Console.WriteLine("Enter Id: ");
-            parcel.Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Sender Id: ");
-            parcel.SenderId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Target Id: ");
-            parcel.TargetId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Weight 1 for Light, 2 for Medium, 3 for Heavy: ");
-            parcel.Weight = (IDAL.DO.WeightCategories)Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Priority 1 for Regular, 2 for Fast, 3 for Emergency: ");
-            parcel.Priority = (IDAL.DO.Priorities)Convert.ToInt32(Console.ReadLine());
-            dalObject.AddParcel(parcel.Id, parcel.SenderId, parcel.TargetId, parcel.Weight, parcel.Priority,DateTime.Now ,null, new DateTime() , new DateTime() , new DateTime());
+            try
+            {
+                dalObject.GetCustomer(SenderId);
+            }
+            catch(DalObject.IdNotExistException ex)
+            {
+                throw new IdNotExistException(SenderId);
+            }
+            try
+            {
+                dalObject.GetCustomer(TargetId);
+            }
+            catch (DalObject.IdNotExistException ex)
+            {
+                throw new IdNotExistException(TargetId);
+            }
+            try
+            {
+                dalObject.AddParcel(Id, SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priority, DateTime.Now, null, null, null, null);
+            }
+            catch (DalObject.IdExcistsException ex)
+            {
+                throw new IdExcistsException(Id);
+            }
         }
         public Parcel DisplayParcel(int Id)
         {
+            try
+            {
+                dalObject.GetParcel(Id);
+            }
+            catch (DalObject.IdNotExistException EX)
+            {
+                throw new IdNotExistException(Id);
+            }
             Parcel tmpParcel = new Parcel();
             IDAL.DO.Parcel parcel = dalObject.GetParcel(Id);
             tmpParcel.Id = Id;
@@ -78,18 +97,18 @@ namespace BL
             drone.Battery = Drones[DroneIndex].Battery;
             drone.CurrentLocation = Drones[DroneIndex].CurrentLocation;
             tmpParcel.Drone = drone;
-            tmpParcel.Created = 1; //idk bro
+            tmpParcel.Created = parcel.Requested;
             tmpParcel.Linked = (DateTime)parcel.Scheduled;
             tmpParcel.PickedUp = (DateTime)parcel.PickedUp;
             tmpParcel.Delivered = (DateTime)parcel.Delivered;
             return tmpParcel;
         }
-        public List<ParcelForList> DisplayParcels()
+        public IEnumerable<ParcelForList> DisplayParcels()
         {
             List<ParcelForList> parcels = new List<ParcelForList>();
-            ParcelForList CurrentParcel = new ParcelForList();
             foreach (IDAL.DO.Parcel parcel in dalObject.GetParcels())
             {
+                ParcelForList CurrentParcel = new ParcelForList();
                 CurrentParcel.Id = parcel.Id;
                 CurrentParcel.SenderName = dalObject.GetCustomer(parcel.SenderId).Name;
                 CurrentParcel.ReciverName = dalObject.GetCustomer(parcel.TargetId).Name;
@@ -100,9 +119,9 @@ namespace BL
             }
             return parcels;
         }
-        public List<ParcelForList> DisplayFreeParcels()
+        public IEnumerable<ParcelForList> DisplayFreeParcels()
         {
-            return DisplayParcels().FindAll(parcel => parcel.Status == ParcelStatus.Created);
+            return DisplayParcels().Where(parcel => parcel.Status == ParcelStatus.Created);
         }
     }
 }

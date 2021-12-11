@@ -16,7 +16,13 @@ namespace BL
         public List<ParcelInCustomer> ForCustomer {get; set;}
         public override string ToString()
         {
-            return $"Id: {Id} name: {name} phone: {phone} Location: {Location} Parcels Sent: {FromCustomer} Parcels Recived: {ForCustomer}";
+            string tostring  = $"Id: {Id} name: {name} phone: {phone} Location: {Location} Parcels Sent:  ";
+            foreach (ParcelInCustomer parcel in FromCustomer)
+                tostring += parcel.ToString();
+            tostring += "Parcels Recived: ";
+            foreach (ParcelInCustomer parcel in ForCustomer)
+                tostring += parcel.ToString();
+            return tostring;
         }
     }
 }

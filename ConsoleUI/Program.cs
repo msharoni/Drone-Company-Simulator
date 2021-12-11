@@ -174,7 +174,7 @@ namespace ConsoleUI
             int Id = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(db.GetParcel(Id));
         }
-        static void DisplayDrones()
+        /*static void DisplayDrones()
         {
             db.GetDrones().ForEach(name => Console.WriteLine(name));
         }
@@ -198,6 +198,7 @@ namespace ConsoleUI
         {
             db.GetFreeParcels().ForEach(name => Console.WriteLine(name));
         }
+        */
         /*                           <----       BONUS BONUS BONUS  ---->                                      */
         static void Distance()
         {
@@ -314,10 +315,10 @@ namespace ConsoleUI
                         switch (choice)
                         {
                             case (int)DisplayAll.Stations:
-                                DisplayStations();
+                                b.DisplayStations();
                                 break;
                             case (int)DisplayAll.Drones:
-                                DisplayDrones();
+                                b.DisplayDrones();
                                 break;
                             case (int)DisplayAll.Customers:
                                 DisplayCustomers();

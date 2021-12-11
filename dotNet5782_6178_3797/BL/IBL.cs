@@ -4,22 +4,22 @@ namespace BL
 {
     public interface IBL
     {
-        void AddCustomer();
+        void AddCustomer(int Id, string Name, string Phone, Location location);
         void AddDrone(int _Id, string _Model, int _MaxWeight, int _StationId);
-        void AddParcel();
-        void AddStation();
+        void AddParcel(int Id, int SenderId, int TargetId, int Weight, int Priority);
+        void AddStation(int Id, string Name, Location location, int ChargeSlots);
         void ChargeDrone(int _Id);
         void DeliverParcel(int DroneId);
         Customer DisplayCustomer(int Id);
-        List<CustomerForList> DisplayCustomers();
+        IEnumerable<CustomerForList> DisplayCustomers();
         Drone DisplayDrone(int Id);
-        List<DroneForList> DisplayDrones();
-        List<ParcelForList> DisplayFreeParcels();
-        List<StationForList> DisplayFreeStations();
+        IEnumerable<DroneForList> DisplayDrones();
+        IEnumerable<ParcelForList> DisplayFreeParcels();
+        IEnumerable<StationForList> DisplayFreeStations();
         Parcel DisplayParcel(int Id);
-        List<ParcelForList> DisplayParcels();
+        IEnumerable<ParcelForList> DisplayParcels();
         Station DisplayStation(int Id);
-        List<StationForList> DisplayStations();
+        IEnumerable<StationForList> DisplayStations();
         void LinkDroneToParcel(int DroneId);
         void PickUpParcel(int DroneId);
         void UnChargeDrone(int Id, double time);

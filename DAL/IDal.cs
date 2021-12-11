@@ -29,7 +29,7 @@ namespace IDAL
         void UpdateCustomer(int Id, string? name, string? Phone);
         void UpdateParcel(Parcel _parcel);
         void UpdateStation(int Id, string? name, int? NumOfSlots);
-
+        public double[] GetBatteryUsage();
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : IBL
     {
         public void UpdateCustomer(int Id, string? name, string? Phone)
         {
@@ -15,23 +15,27 @@ namespace BL
             if (Phone != null)
                 dalObject.UpdateCustomer(Id,null, Phone);
         }
-        public void AddCustomer()
+        public void AddCustomer(int Id,string Name, string Phone, Location location)
         {
-            IDAL.DO.Customer customer = new IDAL.DO.Customer();
-            Console.WriteLine("Enter Id: ");
-            customer.Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Name: ");
-            customer.Name = Console.ReadLine();
-            Console.WriteLine("Enter Phone Number: ");
-            customer.Phone = Console.ReadLine();
-            Console.WriteLine("Enter Longitude: ");
-            customer.Longitude = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter Lattitude: ");
-            customer.Lattitude = Convert.ToDouble(Console.ReadLine());
-            dalObject.AddCustomer(customer.Id, customer.Name,customer.Phone, customer.Longitude, customer.Lattitude);
+            try
+            {
+                dalObject.AddCustomer(Id, Name, Phone, location.Longitude, location.Lattitude);
+            }
+            catch (DalObject.IdExcistsException ex)
+            {
+                throw new IdExcistsException(Id);
+            }
         }
         public Customer DisplayCustomer(int Id)
         {
+            try
+            {
+                dalObject.GetCustomer(Id);
+            }
+            catch (DalObject.IdNotExistException EX)
+            {
+                throw new IdNotExistException(Id);
+            }
             Customer tmpCustomer = new Customer();
             IDAL.DO.Customer customer = dalObject.GetCustomer(Id);
             //putting the ready variables into tmpCustomer 
@@ -42,10 +46,10 @@ namespace BL
             //creating lists and filling them 
             List<ParcelInCustomer> FromCustomer = new List<ParcelInCustomer>();
             List<ParcelInCustomer> ForCustomer = new List<ParcelInCustomer>(); 
-            ParcelInCustomer cParcel = new ParcelInCustomer();
             foreach(IDAL.DO.Parcel parcel in dalObject.GetParcels())
             {
-                if(parcel.SenderId == Id)
+                ParcelInCustomer cParcel = new ParcelInCustomer();
+                if (parcel.SenderId == Id)
                 {
                     cParcel.Id = parcel.Id;
                     cParcel.Weight = (WeightCategories)parcel.Weight;
@@ -69,12 +73,12 @@ namespace BL
             tmpCustomer.FromCustomer = FromCustomer;
             return tmpCustomer;
         }
-        public List<CustomerForList> DisplayCustomers()
+        public IEnumerable<CustomerForList> DisplayCustomers()
         {
             List<CustomerForList> customers = new List<CustomerForList>();
-            CustomerForList CurrentCustomer = new CustomerForList();
             foreach (IDAL.DO.Customer customer in dalObject.GetCustomers())
             {
+                CustomerForList CurrentCustomer = new CustomerForList();
                 CurrentCustomer.Id = customer.Id;
                 CurrentCustomer.name = customer.Name;
                 CurrentCustomer.phone = customer.Phone;

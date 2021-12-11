@@ -52,7 +52,6 @@ namespace DalObject
             int Dindex = DataSource.Drones.IndexOf(drone);
             int Pindex = DataSource.Parcels.IndexOf(parcel);
             //making the needed changes
-            drone.Status = DroneStatuses.Delivery;
             parcel.DroneId = DroneId;
             parcel.Scheduled = DateTime.Now;
             //copying them back into the List
@@ -89,7 +88,6 @@ namespace DalObject
             int Dindex = DataSource.Drones.IndexOf(drone);
             //making the needed changes
             parcel.Delivered = DateTime.Now;
-            drone.Status = DroneStatuses.Available;
             //copying them back into the list
             DataSource.Parcels[Pindex] = parcel;
             DataSource.Drones[Dindex] = drone;
@@ -110,7 +108,6 @@ namespace DalObject
             int Sindex = DataSource.Stations.IndexOf(station);
             //making the needed changes
             station.ChargeSlots -= 1;
-            drone.Status = DroneStatuses.maintenance;
             DataSource.ChargingDrones.Add(new DroneCharge(DroneId, StationId));
             //copying them back into the list    
             DataSource.Drones[Dindex] = drone;
@@ -132,7 +129,6 @@ namespace DalObject
             int Cindex = DataSource.ChargingDrones.IndexOf(charging);
             //making the needed changes
             station.ChargeSlots += 1;
-            drone.Status = DroneStatuses.Available;
             DataSource.ChargingDrones.RemoveAt(Cindex);
             //copying them back into the list    
             DataSource.Drones[Dindex] = drone;
@@ -225,7 +221,10 @@ namespace DalObject
                 station.ChargeSlots = (int)NumOfSlots;
             DataSource.Stations[index] = station;
         }
-
+        public double[] GetBatteryUsage()
+        {
+            return DataSource.Config.batteryPerKm;
+        }
         /*                           <----       BONUS BONUS BONUS  ---->                                      */
         static public String sexagisamel(double Longitude, double Lattitude)
         {

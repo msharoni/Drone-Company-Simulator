@@ -15,7 +15,10 @@ namespace BL
         public List<ChargingDrone> DronesCharging{get; set;}
         public override string ToString()
         {
-            return $"Id: {Id} Name: {Name} Location: {Location} Number of Vacant Chargers: {NumOfVacantChargers} Drones Charging: {DronesCharging}";
+            string tostring = $"Id: {Id} Name: {Name} Location: {Location} Number of Vacant Chargers: {NumOfVacantChargers} Drones Charging: ";
+            foreach (ChargingDrone drone in DronesCharging)
+                tostring += drone.ToString();
+            return tostring;
         }
     }
 }

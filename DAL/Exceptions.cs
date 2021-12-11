@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace DalObject
 {
     [Serializable]
-    internal class IdNotExistException : Exception
+    public class IdNotExistException : Exception
     {
         int Id;
         private int? droneId;
@@ -37,7 +37,7 @@ namespace DalObject
         }
     }
     [Serializable]
-    internal class IdExcistsException : Exception
+    public class IdExcistsException : Exception
     {
         int Id;
         private int? droneId;
@@ -69,7 +69,7 @@ namespace DalObject
         }
     }
     [Serializable]
-    internal class NoChargeSlotsException : Exception
+    public class NoChargeSlotsException : Exception
     {
         public NoChargeSlotsException()
         {

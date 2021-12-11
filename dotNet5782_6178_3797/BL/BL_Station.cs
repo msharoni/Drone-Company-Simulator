@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : IBL
     {
         List<StationForList> Stations;
         public void UpdateStation(int Id, string? name, int? NumOfSlots)
@@ -16,25 +16,27 @@ namespace BL
             if (NumOfSlots != null)
                 dalObject.UpdateStation(Id, null, NumOfSlots);
         }
-        public void AddStation()
+        public void AddStation(int Id,string Name,Location location,int ChargeSlots)
         {
-            IDAL.DO.Station station = new IDAL.DO.Station();
-            Console.WriteLine("Enter Id: ");
-            station.Id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Name: ");
-            station.Name = Console.ReadLine();
-            Console.WriteLine("Enter Longitude: ");
-            station.Longitude = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter Lattitude: ");
-            station.Lattitude = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter amount of Charging Slots: ");
-            station.ChargeSlots = Convert.ToInt32(Console.ReadLine());
-            dalObject.AddStation(station.Id, station.Name, station.Longitude, station.Lattitude, station.ChargeSlots);
-            //list of charging drones?
+            try
+            {
+                dalObject.AddStation(Id, Name, location.Longitude, location.Lattitude, ChargeSlots);
+            }
+            catch ( DalObject.IdExcistsException)
+            {
+                throw new IdExcistsException(Id);
+            }
         }
         public Station DisplayStation(int Id)
         {
             Station tmpStation = new Station();
+            try { 
+                dalObject.GetStation(Id);
+            }
+            catch(DalObject.IdNotExistException EX)
+            {
+                throw new IdNotExistException(Id);
+            }
             IDAL.DO.Station station = dalObject.GetStation(Id);
             //putting the ready variables into tmpStation 
             tmpStation.Id = Id;
@@ -49,12 +51,12 @@ namespace BL
             tmpStation.DronesCharging = drones;
             return tmpStation;
         }
-        public List<StationForList> DisplayStations()
+        public IEnumerable<StationForList> DisplayStations()
         {
             List<StationForList> stations = new List<StationForList>();
-            StationForList CurrentStation = new StationForList();
             foreach(IDAL.DO.Station station in dalObject.GetStations())
             {
+                StationForList CurrentStation = new StationForList();
                 CurrentStation.Id = station.Id;
                 CurrentStation.Name = station.Name;
                 CurrentStation.NumOfVacantChargers = station.ChargeSlots;
@@ -63,11 +65,14 @@ namespace BL
             }
             return stations;
         }
-        public List<StationForList> DisplayFreeStations()
+        public IEnumerable<StationForList> DisplayFreeStations()
         {
-            return DisplayStations().FindAll(station => station.NumOfVacantChargers > 0);
+            return DisplayStations().Where(station => station.NumOfVacantChargers > 0);
         }
 
 
     }
 }
+
+
+
