@@ -5,7 +5,22 @@
       "ProjectGuid": "1d78318b-bfa5-4c6c-be6e-4a58a31cc4dc",
       "DisplayName": "BL",
       "ColorIndex": 0
+    },
+    "77901895-654d-4287-b024-2cf857c50bd3": {
+      "ProjectGuid": "77901895-654d-4287-b024-2cf857c50bd3",
+      "DisplayName": "DAL",
+      "ColorIndex": 1
+    },
+    "de5846a7-e67e-480b-b2ac-8f7ef49c1f49": {
+      "ProjectGuid": "de5846a7-e67e-480b-b2ac-8f7ef49c1f49",
+      "DisplayName": "ConsoleUI_BL",
+      "ColorIndex": 2
+    },
+    "fd549409-ae69-4edb-aba3-7277f8915fb5": {
+      "ProjectGuid": "fd549409-ae69-4edb-aba3-7277f8915fb5",
+      "DisplayName": "ConsoleUI",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }

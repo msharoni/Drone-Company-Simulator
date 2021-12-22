@@ -15,3 +15,10 @@ C:\Users\eliya\source\repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\Con
 C:\Users\eliya\source\repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.pdb
 C:\Users\eliya\source\repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.genruntimeconfig.cache
 C:\Users\eliya\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.csproj.CopyComplete
+C:\Users\shilo\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.csproj.AssemblyReference.cache
+C:\Users\shilo\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\shilo\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.AssemblyInfoInputs.cache
+C:\Users\shilo\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.AssemblyInfo.cs
+C:\Users\shilo\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.csproj.CoreCompileInputs.cache
+C:\Users\shilo\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.dll
+C:\Users\shilo\Source\Repos\msharoni\minip\ConsoleUI\obj\Debug\netcoreapp3.1\ConsoleUI.pdb
