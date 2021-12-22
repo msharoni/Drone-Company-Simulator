@@ -17,7 +17,7 @@ namespace BL
         public Location CurrentLocation{get; set;}
         public override string ToString()
         {
-            return $"Id: {Id} Model: {Model} Weight: {Weight} Battery: {(int)Battery+1} Status: {Status} Parcel: {Parcel} Current Location: {CurrentLocation}";
+            return $"Id: {Id} Model: {Model} Weight: {Weight} Battery: {(int)Battery}% Status: {Status} Parcel: {Parcel} Current Location: {CurrentLocation}";
         }
     }
 }

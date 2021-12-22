@@ -8,7 +8,6 @@ namespace BL
 {
     public partial class BL : IBL
     {
-        List<StationForList> Stations;
         public void UpdateStation(int Id, string? name, int? NumOfSlots)
         {
             if (name != null)
@@ -45,9 +44,9 @@ namespace BL
             tmpStation.NumOfVacantChargers = station.ChargeSlots;
             //creating list of all drones charging at current station
             List<ChargingDrone> drones = new List<ChargingDrone>();
-            foreach(DroneForList drone in Drones)
-                if (drone.CurrentLocation == tmpStation.Location)
-                    drones.Add(new ChargingDrone { Id = drone.Id, Battery = drone.Battery});
+            foreach(IDAL.DO.DroneCharge drone in dalObject.GetChargingDrones())
+                if (drone.StationId == Id)
+                    drones.Add(new ChargingDrone { Id = drone.DroneId, Battery = DisplayDrone(drone.DroneId).Battery});
             tmpStation.DronesCharging = drones;
             return tmpStation;
         }

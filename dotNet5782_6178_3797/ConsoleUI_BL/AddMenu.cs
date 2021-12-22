@@ -46,7 +46,12 @@ namespace ConsoleUI_BL
         static public void AddMenu()
         {
             Console.WriteLine("Options: Add station press 1, Add Drone press 2, Add customer Press 3 to Add Parcel press 4");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int choice = 0;
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException) { }
             switch (choice)
             {
                 case (int)AddChoices.Station:
@@ -67,7 +72,7 @@ namespace ConsoleUI_BL
                         }
                         catch (BL.IdExcistsException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Station " + ex);
                         }
                     }
                     break;
@@ -87,7 +92,11 @@ namespace ConsoleUI_BL
                         }
                         catch (BL.IdExcistsException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Drone " + ex);
+                        }
+                        catch (BL.IdNotExistException ex)
+                        {
+                            Console.WriteLine("Station " + ex);
                         }
                     }
                     break;
@@ -109,7 +118,7 @@ namespace ConsoleUI_BL
                         }
                         catch (BL.IdExcistsException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Customer " + ex);
                         }
                     }
                     break;
@@ -131,11 +140,11 @@ namespace ConsoleUI_BL
                         }
                         catch(BL.IdNotExistException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Customer" + ex);
                         }
                         catch (BL.IdExcistsException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Parcel" + ex);
                         }
                     }
                     break;
@@ -148,7 +157,12 @@ namespace ConsoleUI_BL
         static public void UpdateMenu()
         {
             Console.WriteLine("Options: to Link Drone to Parcel 1,to Pick-Up parcel press 2, to deliver parcel press 3, to charge drone press 4, to uncharge drone press 5");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int choice = 0;
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException) { }
             switch (choice)
             {
                 case (int)Updates.LinkDrone:
@@ -160,6 +174,10 @@ namespace ConsoleUI_BL
                             b.LinkDroneToParcel(Id);
                         }
                         catch (BL.UnAvailabe ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
+                        catch(BL.IdNotExistException ex)
                         {
                             Console.WriteLine(ex);
                         }
@@ -181,6 +199,10 @@ namespace ConsoleUI_BL
                         {
                             Console.WriteLine(ex);
                         }
+                        catch (BL.IdNotExistException ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
                     }
                     break;
                 case (int)Updates.DropOff:
@@ -192,6 +214,10 @@ namespace ConsoleUI_BL
                             b.DeliverParcel(Id);
                         }
                         catch (BL.NotLinkedOrAlreadyDelivered ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
+                        catch (BL.IdNotExistException ex)
                         {
                             Console.WriteLine(ex);
                         }
@@ -213,6 +239,10 @@ namespace ConsoleUI_BL
                         {
                             Console.WriteLine(ex);
                         }
+                        catch (BL.IdNotExistException ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
                     }
                     break;
                 case (int)Updates.Uncharge:
@@ -229,6 +259,10 @@ namespace ConsoleUI_BL
                         {
                             Console.WriteLine(ex);
                         }
+                        catch (BL.IdNotExistException ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
                     }
                     break;
                 default:
@@ -239,7 +273,12 @@ namespace ConsoleUI_BL
         static public void DisplayMenu()
         {
             Console.WriteLine("Options: to Display Drone press 1,to display parcel press 2, to display customer press 3, to display station press 4");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int choice = 0;
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException) { }
             switch (choice)
             {
                 case (int)Display.Drone:
@@ -252,7 +291,7 @@ namespace ConsoleUI_BL
                         }
                         catch (BL.IdNotExistException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Drone" + ex);
                         }
                     }
                     break;
@@ -266,7 +305,7 @@ namespace ConsoleUI_BL
                         }
                         catch (BL.IdNotExistException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Parcel" + ex);
                         }
                     }
                     break;
@@ -281,7 +320,7 @@ namespace ConsoleUI_BL
                         }
                         catch (BL.IdNotExistException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Customer" + ex);
                         }
                     }
                     break;
@@ -295,7 +334,7 @@ namespace ConsoleUI_BL
                         }
                         catch (BL.IdNotExistException ex)
                         {
-                            Console.WriteLine(ex);
+                            Console.WriteLine("Station" + ex);
                         }
                     }
                     break;
@@ -307,7 +346,12 @@ namespace ConsoleUI_BL
         static public void DisplayAllMenu()
         {
             Console.WriteLine("Options: to Display all Drones press 1,to display all parcels press 2, to display all customers press 3, to display all stations press 4, do display all free parcels press 5, do display all free stations press 6");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int choice = 0;
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException) { }
             switch (choice)
             {
                 case (int)DisplayAll.Drones:

@@ -13,7 +13,7 @@ namespace BL
         public Location CurrentLocation{get; set;}
         public override string ToString()
         {
-            return $"Id: {Id} Battery: {Battery} Current Location: {CurrentLocation}";
+            return $"Id: {Id} Battery: {Battery}% Current Location: {CurrentLocation}";
         }
     }
 }

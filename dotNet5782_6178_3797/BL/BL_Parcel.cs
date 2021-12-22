@@ -10,12 +10,20 @@ namespace BL
     {
         public void PickUpParcel(int DroneId)
         {
+            try
+            {
+                dalObject.GetDrone(DroneId);
+            }
+            catch (DalObject.IdNotExistException)
+            {
+                throw new IdNotExistException(DroneId);
+            }
             int DroneIndex = Drones.FindIndex(drone => drone.Id == DroneId);
             if (Drones[DroneIndex].Status != DroneStatuses.Delivery)
                 throw new NotLinkedYet(DroneId);
-            if (dalObject.GetParcel(Drones[DroneIndex].ParcelId).PickedUp != null)
+            if (dalObject.GetParcel(Drones[DroneIndex].ParcelId).PickedUp != new DateTime())
                 throw new ParcelHasAlreadyBeenPickedUp(Drones[DroneIndex].ParcelId);
-            Drones[DroneIndex].Battery -= dalObject.GetBatteryUsage()[1] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
+            Drones[DroneIndex].Battery -= dalObject.GetBatteryUsage()[(int)dalObject.GetParcel(Drones[DroneIndex].ParcelId).Weight] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
             Drones[DroneIndex].CurrentLocation = SenderLocation(Drones[DroneIndex].ParcelId);
             IDAL.DO.Parcel parcel = dalObject.GetParcel(Drones[DroneIndex].ParcelId);
             parcel.PickedUp = DateTime.Now;
@@ -23,9 +31,17 @@ namespace BL
         }
         public void DeliverParcel(int DroneId)
         {
+            try
+            {
+                dalObject.GetDrone(DroneId);
+            }
+            catch (DalObject.IdNotExistException)
+            {
+                throw new IdNotExistException(DroneId);
+            }
             int DroneIndex = Drones.FindIndex(drone => drone.Id == DroneId);
             //throwing exception if not relevant
-            if (dalObject.GetParcel(Drones[DroneIndex].ParcelId).Delivered != null && dalObject.GetParcel(Drones[DroneIndex].ParcelId).PickedUp != null)
+            if (dalObject.GetParcel(Drones[DroneIndex].ParcelId).Delivered != new DateTime() && Drones[DroneIndex].Status == DroneStatuses.Delivery)
                 throw new NotLinkedOrAlreadyDelivered(DroneId);
             //updating drone
             Drones[DroneIndex].Status = DroneStatuses.Available;
@@ -34,6 +50,7 @@ namespace BL
             IDAL.DO.Parcel parcel = dalObject.GetParcel(Drones[DroneIndex].ParcelId);
             parcel.Delivered = DateTime.Now;
             dalObject.UpdateParcel(parcel);
+            Drones[DroneIndex].ParcelId = -1;
         }
 
         public void AddParcel(int Id,int SenderId,int TargetId,int Weight,int Priority)
@@ -114,7 +131,7 @@ namespace BL
                 CurrentParcel.ReciverName = dalObject.GetCustomer(parcel.TargetId).Name;
                 CurrentParcel.Weight = (WeightCategories)parcel.Weight;
                 CurrentParcel.Priority = (Priorities)parcel.Priority;
-                CurrentParcel.Status = (parcel.Delivered != null) ? ParcelStatus.Delivered : (parcel.PickedUp != null) ? ParcelStatus.PickedUp : (parcel.Scheduled != null) ? ParcelStatus.Linked : ParcelStatus.Created;
+                CurrentParcel.Status = (parcel.Delivered != new DateTime()) ? ParcelStatus.Delivered : (parcel.PickedUp != new DateTime()) ? ParcelStatus.PickedUp : (parcel.Scheduled != new DateTime()) ? ParcelStatus.Linked : ParcelStatus.Created;
                 parcels.Add(CurrentParcel);
             }
             return parcels;

@@ -132,8 +132,5 @@ namespace IDAL
             Fast,
             Emergency
         }
-
-        
-
     }
 }

@@ -58,7 +58,7 @@ namespace BL
                     cParcel.Customer = new CustomerInParcel {Id = Id, name = customer.Name};
                     FromCustomer.Add(cParcel);
                 }
-                else if(parcel.TargetId == Id)
+                if(parcel.TargetId == Id)
                 {
                     cParcel.Id = parcel.Id;
                     cParcel.Weight = (WeightCategories)parcel.Weight;

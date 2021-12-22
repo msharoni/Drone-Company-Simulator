@@ -186,6 +186,10 @@ namespace DalObject
         {
             return DataSource.Stations.FindAll(station => station.ChargeSlots != 0);
         }
+        public IEnumerable<DroneCharge> GetChargingDrones()
+        {
+            return DataSource.ChargingDrones;
+        }
         public void UpdateDrone(int _Id, string _Model)
         {
             int index = DataSource.Drones.FindIndex(drone => drone.Id == _Id);

@@ -17,7 +17,7 @@ namespace BL
         public int ParcelId{get; set;}
         public override string ToString()
         {
-            return $"Id: {Id}Model: {Model} MaxWeight: {MaxWeight} Battery: {(int)Battery+1}% Status: {Status} Current Location: {CurrentLocation} Parcel ID: {ParcelId}";
+            return $"Id: {Id}Model: {Model} MaxWeight: {MaxWeight} Battery: {(int)Battery}% Status: {Status} Current Location: {CurrentLocation} Parcel ID: {ParcelId}";
         }
     }
 }

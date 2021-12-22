@@ -11,6 +11,14 @@ namespace BL
     {
         public double Longitude{get; set;}
         public double Lattitude{get; set;}
+        public static bool operator ==(Location A,Location B)
+        {
+            return A.Longitude != B.Longitude ? false : A.Lattitude == B.Lattitude ? true : false;
+        }
+        public static bool operator !=(Location A, Location B)
+        {
+            return A == B ? false : true;
+        }
         public override string ToString()
         {
             return $"Longitude: {Longitude} Lattitude: {Lattitude}";

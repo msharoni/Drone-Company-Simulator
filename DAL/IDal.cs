@@ -30,6 +30,7 @@ namespace IDAL
         void UpdateParcel(Parcel _parcel);
         void UpdateStation(int Id, string? name, int? NumOfSlots);
         public double[] GetBatteryUsage();
+        public IEnumerable<DroneCharge> GetChargingDrones();
 
     }
 }
