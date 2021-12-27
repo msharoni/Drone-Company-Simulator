@@ -5,19 +5,105 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="LightGray">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Name="dronesListButton" Content="Button" HorizontalAlignment="Left" Margin="63,19,0,0" VerticalAlignment="Top" Height="79" Width="272" Click="dronesListButton_Click"/>
-        <Frame Name="currentPage" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <Grid Background="#a5e2ff"
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text = "Drones Bros"
+                       Foreground="Black"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontWeight="Heavy"/>
+
+            <TextBlock Text = "Powered by The Bros"
+                       Foreground="Black"
+                       Grid.Column="4"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontWeight="light"/>
+            <Button Content="X" Grid.Column="5" Click="Close_Click"
+                    >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Cursor" Value="Hand"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="20" Height="20" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="50" Height="50"
+                       Source="Images/Plane.png"/>
+            </StackPanel>
+        </StackPanel>
+        <Button Name="dronesListButton"
+                Grid.Row="1"
+                Content="Start"
+                HorizontalAlignment="Left"
+                Margin="65,10,0,0"
+                VerticalAlignment="Top"
+                Height="31" Width="122"
+                Click="dronesListButton_Click"
+                >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#b87373"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#b74e4e"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Button.Style>
+
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="100" Height="25" CornerRadius="7" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Frame Name="currentPage" Grid.ColumnSpan="2" Grid.Row="1" Navigated="currentPage_Navigated"/>
     </Grid>
 </Window>

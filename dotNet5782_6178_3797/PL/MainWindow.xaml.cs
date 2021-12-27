@@ -32,5 +32,15 @@ namespace PL
             currentPage.Content = new DronesList();
             
         }
+
+        private void currentPage_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+           // this.close();
+        }
     }
 }
