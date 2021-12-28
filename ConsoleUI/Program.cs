@@ -1,6 +1,6 @@
 ﻿using System;
 using DO;
-
+/*
 namespace ConsoleUI
 {
     class Program
@@ -42,9 +42,9 @@ namespace ConsoleUI
 
         }
 
-        static DalObject.DalObject db = new DalObject.DalObject();
+        static Dal.DalObject db = new Dal.DalObject();
 
-        /*              add functions             */
+        /*              add functions             
         //input output Add functions
         static void AddDrone()
         {
@@ -103,7 +103,7 @@ namespace ConsoleUI
             db.AddParcel(_Id, _SenderId, _TargetId, _MaxWeight, _Priority, DateTime.Now, null, null, null, null);
         }
 
-        /*              update functions             */
+        /*              update functions             
         //link Drone to parcel
         static void LinkDrone()
         {
@@ -149,7 +149,7 @@ namespace ConsoleUI
             db.UnChargeDrone(DroneId, StationId);
         }
 
-        /*              display functions             */
+        /*              display functions             
         static void DisplayDrone()
         {
             Console.WriteLine("Enter Drone Id");
@@ -198,8 +198,8 @@ namespace ConsoleUI
         {
             db.GetFreeParcels().ForEach(name => Console.WriteLine(name));
         }
-        */
-        /*                           <----       BONUS BONUS BONUS  ---->                                      */
+        
+        /*                           <----       BONUS BONUS BONUS  ---->                                      
         static void Distance()
         {
             //get the input from the user
@@ -225,7 +225,7 @@ namespace ConsoleUI
 
             Console.WriteLine(c * r);
         }
-        /*                           <----       BONUS BONUS BONUS  ---->                                      */
+        /*                           <----       BONUS BONUS BONUS  ---->                                      
 
 
         static void Main(string[] args)
@@ -356,3 +356,4 @@ namespace ConsoleUI
         }
     }
 }
+*/

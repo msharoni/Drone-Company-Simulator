@@ -15,11 +15,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{1D78
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{1CCC17FA-6BE6-4F76-A89E-3614361F01C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalApi", "DalApi\DalApi.csproj", "{D32C19A7-9A40-4593-A427-51F4574AA16E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalApi", "DalApi\DalApi.csproj", "{D32C19A7-9A40-4593-A427-51F4574AA16E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalObject", "DalObject\DalObject.csproj", "{53682A94-0235-4003-8D78-8EFFCF605FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalObject", "DalObject\DalObject.csproj", "{53682A94-0235-4003-8D78-8EFFCF605FB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{F4971E31-AB66-4C5E-B60B-106382049097}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{F4971E31-AB66-4C5E-B60B-106382049097}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{8000C75E-A7C1-4B7A-B8B3-A67313CD7288}"
+	ProjectSection(SolutionItems) = preProject
+		xml\dal-config.xml = xml\dal-config.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

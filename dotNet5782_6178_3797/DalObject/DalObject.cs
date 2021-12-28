@@ -5,11 +5,13 @@ using System.Text;
 using DalApi;
 using DO;
 
-namespace DalObject
+namespace Dal
 {
-    internal class DalObject : DalApi.IDal
+    sealed class DalObject : DalApi.IDal
     {
-        public DalObject()
+        static readonly IDal instance = new DalObject();
+        public static IDal Instance { get => instance; }
+        DalObject()
         {
             DataSource.Intalize();
         }
@@ -230,51 +232,5 @@ namespace DalObject
         {
             return DataSource.Config.batteryPerKm;
         }
-        /*                           <----       BONUS BONUS BONUS  ---->                                      */
-        static public String sexagisamel(double Longitude, double Lattitude)
-        {
-            double[] Arr = { Longitude, Lattitude };
-            bool direction = true;
-            String result = "";
-            for (int i = 0; i < 2; i++)
-            {
-                if (0 > Arr[i])
-                    direction = true;
-                else
-                    direction = false;
-                result += Math.Floor(Math.Abs(Arr[i])).ToString() + '�';
-                Arr[i] -= Math.Floor(Arr[i]);
-                Arr[i] *= 60;
-                result += Math.Floor(Arr[i]).ToString() + '`';
-                Longitude -= Math.Floor(Arr[i]);
-                Arr[i] *= 60;
-                result += Math.Round(Arr[i], 4).ToString() + "``";
-                if (i == 0)
-                {
-                    if (direction)
-                        result += "N ";
-                    else
-                        result += "S ";
-                }
-                else
-                {
-                    if (direction)
-                        result += "E";
-                    else
-                        result += "W";
-                }
-            }
-            return result;
-        }
     }
-    class Singleton
-    {
-        public void LogMessage(string message)
-        {
-            WriteLine("Message " + message);
-        }
-    }
-
 }
-
-/*                           <----       BONUS BONUS BONUS  ---->                                       */

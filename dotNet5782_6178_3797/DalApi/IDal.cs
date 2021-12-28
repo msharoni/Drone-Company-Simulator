@@ -33,17 +33,4 @@ namespace DalApi
         public double[] GetBatteryUsage();
         public IEnumerable<DroneCharge> GetChargingDrones();
     }
-    public static class Factory
-    {
-        public static IDal GetDal(string Type)
-        {
-            if (Type.Equals("DalObject"))
-                return IDal.DalObject;
-            else if (Type.Equals("DalXml"))
-                return IDal.DalXml;
-            throw new InvalidInputException();
-        }
-    }
-
-    
 }
