@@ -91,28 +91,5 @@ namespace DalObject
             return "station has no chargeslots left in station";
         }
     }
-    [Serializable]
-    internal class InvalidInputException : Exception
-    {
-        public InvalidInputException()
-        {
-        }
-
-        public InvalidInputException(string message) : base(message)
-        {
-        }
-
-        public InvalidInputException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        protected InvalidInputException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-        public override string ToString()
-        {
-            return "Invalid input entered. ";
-        }
-    }
 }
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using IDAL.DO;
+using DO;
 
 namespace ConsoleUI
 {
@@ -53,7 +53,7 @@ namespace ConsoleUI
             Console.WriteLine("enter Model:"); 
             string _Model = Console.ReadLine();
             Console.WriteLine("enter Max weight (1,2,3):"); 
-            IDAL.DO.WeightCategories _MaxWeight = (WeightCategories)Convert.ToInt32(Console.ReadLine());
+            DO.WeightCategories _MaxWeight = (WeightCategories)Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("enter Drone Status (1 for available, 2 for maintenance and 3 for delivery):");
             DroneStatuses _Status = (DroneStatuses)Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("enter battery power (1-100):");
