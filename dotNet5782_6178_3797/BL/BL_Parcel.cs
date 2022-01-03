@@ -120,7 +120,7 @@ namespace BL
             tmpParcel.Delivered = (DateTime)parcel.Delivered;
             return tmpParcel;
         }
-        public IEnumerable<ParcelForList> DisplayParcels(Predicate<ParcelsForList> filter)
+        public IEnumerable<ParcelForList> DisplayParcels()
         {
             List<ParcelForList> parcels = new List<ParcelForList>();
             foreach (DO.Parcel parcel in dalObject.GetParcels())
@@ -143,17 +143,17 @@ namespace BL
         public IEnumerable<ParcelToList> GetFilterdParcels(Customer Customer, DateTime? startDate, DateTime? endDate, Priorities? Priority, WeightCategories? Weight, ParcelStatus? Status)
         {
             IEnumerable<DO.Parcel> FilteredParcels = dalObject.GetParcels();
-            if(Customer)
+            if(Customer != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => x.SenderId == Customer.Id || p.TargetId == Customer.Id));
-            if(startDate)
+            if(startDate != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Requested >= startDate ));
-            if(endDate)
+            if(endDate != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Requested >= endDate ));
-            if(Priority)
+            if(Priority != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Priority == (DO.Priorities)Priority ));
-            if(Weight)
+            if(Weight != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Weight == (DO.WeightCategories)Weight ));
-            if(Status)
+            if(Status != null)
             {
                 if(Status == Created)
                     FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Requested != null && p.Scheduled == null);
@@ -164,7 +164,19 @@ namespace BL
                 if(Status == Delivered)
                     FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Delivered != null));
             }
-            return FilteredParcels;
+            List<ParcelForList> parcels = new List<ParcelForList>();
+            foreach (DO.Parcel parcel in FilteredParcels)
+            {
+                ParcelForList CurrentParcel = new ParcelForList();
+                CurrentParcel.Id = parcel.Id;
+                CurrentParcel.SenderName = dalObject.GetCustomer(parcel.SenderId).Name;
+                CurrentParcel.ReciverName = dalObject.GetCustomer(parcel.TargetId).Name;
+                CurrentParcel.Weight = (WeightCategories)parcel.Weight;
+                CurrentParcel.Priority = (Priorities)parcel.Priority;
+                CurrentParcel.Status = (parcel.Delivered != null) ? ParcelStatus.Delivered : (parcel.PickedUp != null) ? ParcelStatus.PickedUp : (parcel.Scheduled != null) ? ParcelStatus.Linked : ParcelStatus.Created;
+                parcels.Add(CurrentParcel);
+            }
+            return parcels;
         }
     }
 }

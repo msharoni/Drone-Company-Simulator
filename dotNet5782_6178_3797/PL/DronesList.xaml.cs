@@ -29,7 +29,7 @@ namespace PL
 
             logic = _logic;
 
-            DroneListView.ItemsSource = logic.DisplayDrones();
+            DroneListView.ItemsSource = logic.DisplayDrones(null,null);
 
             FirstCombo.ItemsSource = Enum.GetValues(typeof(BL.DroneStatuses));
             SecondCombo.ItemsSource = Enum.GetValues(typeof(BL.WeightCategories));
@@ -38,13 +38,13 @@ namespace PL
         private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OptionOne = (BL.DroneStatuses)FirstCombo.SelectedItem;
-            DroneListView.ItemsSource = logic.FilteredDisplayDrones(OptionOne, OptionTwo);
+            DroneListView.ItemsSource = logic.DisplayDrones(OptionOne, OptionTwo);
         }
 
         private void SecondCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OptionTwo = (BL.WeightCategories)SecondCombo.SelectedItem;
-            DroneListView.ItemsSource = logic.FilteredDisplayDrones(OptionOne, OptionTwo);
+            DroneListView.ItemsSource = logic.DisplayDrones(OptionOne, OptionTwo);
         }
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)

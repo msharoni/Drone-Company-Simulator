@@ -27,6 +27,6 @@ namespace BL
         void UpdateDrone(int _Id, string _Model);
         void UpdateStation(int Id, string name, int? NumOfSlots);
         public IEnumerable<ParcelToList> GetFilterdParcels(Customer Customer, DateTime? startDate, DateTime? endDate, Priorities? Priority, WeightCategories? Weight, ParcelStatus? Status);
-
+        
     }
 }
