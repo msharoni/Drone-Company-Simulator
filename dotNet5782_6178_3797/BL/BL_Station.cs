@@ -36,7 +36,7 @@ namespace BL
             {
                 throw new IdNotExistException(Id);
             }
-            IDAL.DO.Station station = dalObject.GetStation(Id);
+            DO.Station station = dalObject.GetStation(Id);
             //putting the ready variables into tmpStation 
             tmpStation.Id = Id;
             tmpStation.Name = station.Name;
@@ -44,7 +44,7 @@ namespace BL
             tmpStation.NumOfVacantChargers = station.ChargeSlots;
             //creating list of all drones charging at current station
             List<ChargingDrone> drones = new List<ChargingDrone>();
-            foreach(IDAL.DO.DroneCharge drone in dalObject.GetChargingDrones())
+            foreach(DO.DroneCharge drone in dalObject.GetChargingDrones())
                 if (drone.StationId == Id)
                     drones.Add(new ChargingDrone { Id = drone.DroneId, Battery = DisplayDrone(drone.DroneId).Battery});
             tmpStation.DronesCharging = drones;
@@ -53,7 +53,7 @@ namespace BL
         public IEnumerable<StationForList> DisplayStations()
         {
             List<StationForList> stations = new List<StationForList>();
-            foreach(IDAL.DO.Station station in dalObject.GetStations())
+            foreach(DO.Station station in dalObject.GetStations())
             {
                 StationForList CurrentStation = new StationForList();
                 CurrentStation.Id = station.Id;

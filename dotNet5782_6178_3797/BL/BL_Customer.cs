@@ -37,7 +37,7 @@ namespace BL
                 throw new IdNotExistException(Id);
             }
             Customer tmpCustomer = new Customer();
-            IDAL.DO.Customer customer = dalObject.GetCustomer(Id);
+            DO.Customer customer = dalObject.GetCustomer(Id);
             //putting the ready variables into tmpCustomer 
             tmpCustomer.Id = Id;
             tmpCustomer.name = customer.Name;
@@ -46,7 +46,7 @@ namespace BL
             //creating lists and filling them 
             List<ParcelInCustomer> FromCustomer = new List<ParcelInCustomer>();
             List<ParcelInCustomer> ForCustomer = new List<ParcelInCustomer>(); 
-            foreach(IDAL.DO.Parcel parcel in dalObject.GetParcels())
+            foreach(DO.Parcel parcel in dalObject.GetParcels())
             {
                 ParcelInCustomer cParcel = new ParcelInCustomer();
                 if (parcel.SenderId == Id)
@@ -76,7 +76,7 @@ namespace BL
         public IEnumerable<CustomerForList> DisplayCustomers()
         {
             List<CustomerForList> customers = new List<CustomerForList>();
-            foreach (IDAL.DO.Customer customer in dalObject.GetCustomers())
+            foreach (DO.Customer customer in dalObject.GetCustomers())
             {
                 CustomerForList CurrentCustomer = new CustomerForList();
                 CurrentCustomer.Id = customer.Id;
