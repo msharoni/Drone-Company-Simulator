@@ -13,7 +13,7 @@ namespace BL
         Customer DisplayCustomer(int Id);
         IEnumerable<CustomerForList> DisplayCustomers();
         Drone DisplayDrone(int Id);
-        IEnumerable<DroneForList> DisplayDrones();
+        public IEnumerable<DroneForList> DisplayDrones(DroneStatuses? DS, WeightCategories? DC)
         IEnumerable<ParcelForList> DisplayFreeParcels();
         IEnumerable<StationForList> DisplayFreeStations();
         Parcel DisplayParcel(int Id);
@@ -26,7 +26,7 @@ namespace BL
         void UpdateCustomer(int Id, string name, string Phone);
         void UpdateDrone(int _Id, string _Model);
         void UpdateStation(int Id, string name, int? NumOfSlots);
-        IEnumerable<DroneForList> FilteredDisplayDrones(DroneStatuses? DS, WeightCategories? DC);
+        public IEnumerable<ParcelToList> GetFilterdParcels(Customer Customer, DateTime? startDate, DateTime? endDate, Priorities? Priority, WeightCategories? Weight, ParcelStatus? Status);
 
     }
 }

@@ -32,5 +32,6 @@ namespace DalApi
         void UpdateStation(int Id, string? name, int? NumOfSlots);
         public double[] GetBatteryUsage();
         public IEnumerable<DroneCharge> GetChargingDrones();
+        public IEnumerable<Parcel> GetFilteredParcels(Predicate<Parcel> filter);
     }
 }

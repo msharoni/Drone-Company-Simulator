@@ -306,8 +306,15 @@ namespace BL
             }
             return drone;
         }
-        public IEnumerable<DroneForList> DisplayDrones()
+
+        public IEnumerable<DroneForList> DisplayDrones(DroneStatuses? DS, WeightCategories? DC)
         {
+            if( !DS && DC)
+                return Drones.FindAll(d => d.MaxWeight == DC);
+            if (DS && !DC)
+                return Drones.FindAll(d => d.Status == DS);
+            if(DS && DC)
+                retutn Drones.FindAll(d => d.Status == DS && d.MaxWeight == DC);
             return Drones;
         }
     }
