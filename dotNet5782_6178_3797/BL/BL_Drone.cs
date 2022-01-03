@@ -309,11 +309,11 @@ namespace BL
 
         public IEnumerable<DroneForList> DisplayDrones(DroneStatuses? DS, WeightCategories? DC)
         {
-            if( !DS && DC)
+            if(DS == null && DC != null)
                 return Drones.FindAll(d => d.MaxWeight == DC);
-            if (DS && !DC)
+            if (DS != null && DC == null)
                 return Drones.FindAll(d => d.Status == DS);
-            if(DS && DC)
+            if(DS != null && DC != null)
                 retutn Drones.FindAll(d => d.Status == DS && d.MaxWeight == DC);
             return Drones;
         }

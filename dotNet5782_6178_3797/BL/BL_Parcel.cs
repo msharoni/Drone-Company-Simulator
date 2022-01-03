@@ -143,17 +143,17 @@ namespace BL
         public IEnumerable<ParcelToList> GetFilterdParcels(Customer Customer, DateTime? startDate, DateTime? endDate, Priorities? Priority, WeightCategories? Weight, ParcelStatus? Status)
         {
             IEnumerable<DO.Parcel> FilteredParcels = dalObject.GetParcels();
-            if(Customer)
+            if(Customer != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => x.SenderId == Customer.Id || p.TargetId == Customer.Id));
-            if(startDate)
+            if(startDate != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Requested >= startDate ));
-            if(endDate)
+            if(endDate != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Requested >= endDate ));
-            if(Priority)
+            if(Priority != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Priority == (DO.Priorities)Priority ));
-            if(Weight)
+            if(Weight != null)
                 FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Weight == (DO.WeightCategories)Weight ));
-            if(Status)
+            if(Status != null)
             {
                 if(Status == Created)
                     FilteredParcels = FilteredParcels.Intersect(dalObject.GetFilterdParcels(p => p.Requested != null && p.Scheduled == null);
