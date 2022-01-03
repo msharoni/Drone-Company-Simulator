@@ -6,7 +6,23 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Name="MainGrid">
+        <StackPanel Height="260" Width="120" Margin="143,67,557,67">
+            <TextBlock Text="ID:"/>
+            <TextBox Name="IdTextBox" Text="{Binding Id}"/>
+            <TextBlock Text="Status:"/>
+            <TextBox Name="StatusTextBox" Text="{Binding Status}"/>
+            <TextBlock Text="Model:"/>
+            <TextBox Name="ModelTextBox" Text="{Binding Model}"/>
+            <TextBlock Text="Weight:"/>
+            <TextBox Name="WeightTextBox" Text="{Binding Weight}"/>
+            <TextBlock Text="Parcel:"/>
+            <TextBox Name="ParcelTextBox" Text="{Binding Parcel}"/>
+            <TextBlock Text="Battery:"/>
+            <TextBox Name="BatteryTextBox" Text="{Binding Battery}"/>
+            <TextBlock Text="Current Location:"/>
+            <TextBox Name="CurrentLocationTextBox" Text="{Binding CurrentLocation}"/>
+
+        </StackPanel>
     </Grid>
 </Window>

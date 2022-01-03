@@ -19,9 +19,18 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
-        public Drone()
+        BL.IBL blObject;
+        public Drone(BL.DroneForList drone = null)
         {
             InitializeComponent();
+            if (drone == null) // add mode
+            {
+                //yes. thts it.
+            }
+            else // options mode
+            {
+                MainGrid.DataContext = blObject.GetDrone(drone.Id); //emm mor should take care of that
+            }
         }
     }
 }

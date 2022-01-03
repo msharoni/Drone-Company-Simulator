@@ -35,14 +35,11 @@ namespace PL
             SecondCombo.ItemsSource = Enum.GetValues(typeof(BL.WeightCategories));
 
         }
-
         private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OptionOne = (BL.DroneStatuses)FirstCombo.SelectedItem;
             DroneListView.ItemsSource = logic.FilteredDisplayDrones(OptionOne, OptionTwo);
         }
-
-
 
         private void SecondCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -50,6 +47,16 @@ namespace PL
             DroneListView.ItemsSource = logic.FilteredDisplayDrones(OptionOne, OptionTwo);
         }
 
-   
+        private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+           BL.DroneForList drone = (BL.DroneForList)((ListView)sender).SelectedItem;
+            Drone droneWindow = new Drone(drone);
+            droneWindow.Show();
+        }
+
+        private void AddDroneButton_Click(object sender, RoutedEventArgs e)
+        {
+            new Drone(); //without a paramter => add mode!
+        }
     }
-}
+}// wait a mintute
