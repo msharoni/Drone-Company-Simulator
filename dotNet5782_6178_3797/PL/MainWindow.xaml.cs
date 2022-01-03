@@ -29,7 +29,7 @@ namespace PL
 
         private void dronesListButton_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Content = new DronesList();
+            currentPage.Content = new DronesList(BLObject);
             
         }
 
@@ -40,7 +40,7 @@ namespace PL
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-           // this.close();
+           this.Close();
         }
     }
 }

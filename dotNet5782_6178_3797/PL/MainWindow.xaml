@@ -70,7 +70,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0">
             <StackPanel Orientation="Horizontal">
                 <Image Width="50" Height="50"
-                       Source="Images/Plane.png"/>
+                       Source="Images/SunGlasses"/>
             </StackPanel>
         </StackPanel>
         <Button Name="dronesListButton"

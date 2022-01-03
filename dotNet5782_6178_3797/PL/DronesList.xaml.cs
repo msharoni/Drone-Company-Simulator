@@ -20,14 +20,36 @@ namespace PL
     /// </summary>
     public partial class DronesList : Page
     {
-        public DronesList()
+        private BL.DroneStatuses? OptionOne = null;
+        private BL.WeightCategories? OptionTwo = null;
+        private BL.IBL logic;
+        public DronesList(BL.IBL _logic)
         {
             InitializeComponent();
-        }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        X: Name = "DroneListVeiw";
+
+            logic = _logic;
+
+            DroneListView.ItemsSource = logic.DisplayDrones();
+
+            FirstCombo.ItemsSource = Enum.GetValues(typeof(BL.DroneStatuses));
+            SecondCombo.ItemsSource = Enum.GetValues(typeof(BL.WeightCategories));
+
         }
 
+        private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OptionOne = (BL.DroneStatuses)FirstCombo.SelectedItem;
+            DroneListView.ItemsSource = logic.FilteredDisplayDrones(OptionOne, OptionTwo);
+        }
+
+
+
+        private void SecondCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OptionTwo = (BL.WeightCategories)SecondCombo.SelectedItem;
+            DroneListView.ItemsSource = logic.FilteredDisplayDrones(OptionOne, OptionTwo);
+        }
+
+   
     }
 }

@@ -26,5 +26,7 @@ namespace BL
         void UpdateCustomer(int Id, string name, string Phone);
         void UpdateDrone(int _Id, string _Model);
         void UpdateStation(int Id, string name, int? NumOfSlots);
+        IEnumerable<DroneForList> FilteredDisplayDrones(DroneStatuses? DS, WeightCategories? DC);
+
     }
 }

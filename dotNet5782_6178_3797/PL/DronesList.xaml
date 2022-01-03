@@ -21,10 +21,9 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="190" Height="50"/>
-            <ComboBox Grid.Column="3" Margin="0,0,1,0" VerticalAlignment="Center" Height="51"/>
+            <ComboBox x:Name="FirstCombo" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="190" Height="50" SelectionChanged="FirstCombo_SelectionChanged"/>
+            <ComboBox x:Name="SecondCombo" Grid.Column="3" Margin="0,0,1,0" VerticalAlignment="Center" Height="51" SelectionChanged="SecondCombo_SelectionChanged"/>
         </Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="300" Height="76" SelectionChanged="ComboBox_SelectionChanged"/>
         <ListView x:Name="DroneListView" Grid.Row="1">
             <ListView.View>
                 <GridView>
