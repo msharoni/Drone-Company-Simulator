@@ -1,23 +1,150 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj": {}
+    "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj": {
+    "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\BL\\BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj",
-        "projectName": "DAL",
-        "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\eliya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\obj\\",
+        "projectUniqueName": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\BL\\BL.csproj",
+        "projectName": "BL",
+        "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\BL\\BL.csproj",
+        "packagesPath": "C:\\Users\\msharoni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\BL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\eliya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\msharoni\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj": {
+                "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj"
+              },
+              "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalObject\\DalObject.csproj": {
+                "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalObject\\DalObject.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
+        "projectName": "ConsoleUI_BL",
+        "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
+        "packagesPath": "C:\\Users\\msharoni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\ConsoleUI_BL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\msharoni\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\BL\\BL.csproj": {
+                "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\BL\\BL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj",
+        "projectName": "DalApi",
+        "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj",
+        "packagesPath": "C:\\Users\\msharoni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\msharoni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -58,24 +185,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj": {
+    "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalObject\\DalObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj",
-        "projectName": "BL",
-        "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj",
-        "packagesPath": "C:\\Users\\eliya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\obj\\",
+        "projectUniqueName": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalObject\\DalObject.csproj",
+        "projectName": "DalObject",
+        "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalObject\\DalObject.csproj",
+        "packagesPath": "C:\\Users\\msharoni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalObject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\eliya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\msharoni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -90,8 +217,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj"
+              "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj": {
+                "projectPath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj"
               }
             }
           }
@@ -120,69 +247,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
-        "projectName": "ConsoleUI_BL",
-        "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
-        "packagesPath": "C:\\Users\\eliya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\eliya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj": {
-                "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\BL\\BL.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

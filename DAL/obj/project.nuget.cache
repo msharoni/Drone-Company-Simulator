@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uwqPnJAQGU1aJpXYf3/a3qoqGrcgFSxK27z80GEFe/KcPIoop8Spo8khDbUkERo/4mlPxJdfWWyjK2RmEnueTg==",
+  "dgSpecHash": "xpl1cyht/0HXiVS+TJD0uniET5vFFQdFo7jMDunW88E1UkSITB2gPndLqMXiTvRuB3l91ehkRCylikbIvHh9zg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Users\\msharoni\\Source\\Repos\\msharoni\\mini\\DAL\\DAL.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
