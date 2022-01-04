@@ -2,28 +2,47 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "DAL/1.0.0": {
+      "DalApi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "compile": {
-          "bin/placeholder/DAL.dll": {}
+          "bin/placeholder/DalApi.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DAL.dll": {}
+          "bin/placeholder/DalApi.dll": {}
+        }
+      },
+      "DalObject/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "DalApi": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DalObject.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DalObject.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "DAL/1.0.0": {
+    "DalApi/1.0.0": {
       "type": "project",
-      "path": "../../DAL/DAL.csproj",
-      "msbuildProject": "../../DAL/DAL.csproj"
+      "path": "../DalApi/DalApi.csproj",
+      "msbuildProject": "../DalApi/DalApi.csproj"
+    },
+    "DalObject/1.0.0": {
+      "type": "project",
+      "path": "../DalObject/DalObject.csproj",
+      "msbuildProject": "../DalObject/DalObject.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "DAL >= 1.0.0"
+      "DalApi >= 1.0.0",
+      "DalObject >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -58,8 +77,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\DAL\\DAL.csproj"
+            "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj": {
+              "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\DalApi\\DalApi.csproj"
+            },
+            "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\DalObject\\DalObject.csproj": {
+              "projectPath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\DalObject\\DalObject.csproj"
             }
           }
         }
