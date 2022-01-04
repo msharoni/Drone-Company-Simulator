@@ -29,7 +29,7 @@ namespace PL
             }
             else // options mode
             {
-                MainGrid.DataContext = blObject.GetDrone(drone.Id); //emm mor should take care of that
+                MainGrid.DataContext = blObject.DisplayDrone(drone.Id); //emm mor should take care of that
             }
         }
     }

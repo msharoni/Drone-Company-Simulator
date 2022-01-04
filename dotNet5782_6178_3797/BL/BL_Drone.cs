@@ -314,7 +314,7 @@ namespace BL
             if (DS != null && DC == null)
                 return Drones.FindAll(d => d.Status == DS);
             if(DS != null && DC != null)
-                retutn Drones.FindAll(d => d.Status == DS && d.MaxWeight == DC);
+                return Drones.FindAll(d => d.Status == DS && d.MaxWeight == DC);
             return Drones;
         }
     }
