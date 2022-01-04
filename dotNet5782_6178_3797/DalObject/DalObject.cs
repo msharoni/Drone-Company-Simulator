@@ -182,7 +182,7 @@ namespace Dal
         //filtered lists
         public IEnumerable<Parcel> GetFilteredParcels(Predicate<Parcel> filter)
         {
-            return DataSource.Parcels.Where(p => filter(p);
+            return DataSource.Parcels.FindAll(p => filter(p));
         }
         //making sure that the relevant fields exsist
         public IEnumerable<Parcel> GetFreeParcels()

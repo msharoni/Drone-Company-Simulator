@@ -41,7 +41,7 @@ namespace DO
         //ToString overrided func
         public override string ToString()
         {
-            return $"Id: {Id} Name: {Name} Longitude/Lattitude: {DalApi.DalFactory.GetDal().sexagisamel(Longitude,Lattitude)} ChargeSlots: {ChargeSlots}";
+            return $"Id: {Id} Name: {Name} Longitude/Lattitude: {Lattitude} ChargeSlots: {ChargeSlots}";
         }
         }
     public struct DroneCharge {

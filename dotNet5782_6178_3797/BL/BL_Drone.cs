@@ -11,7 +11,7 @@ namespace BL
     {
         List<DroneForList> Drones = new List<DroneForList>();
         List<ChargingDrone> ChargingDrones = new List<ChargingDrone>();
-        DalApi.IDal dalObject = new DalObject.DalObject();
+        DalApi.IDal dalObject =  DalApi.DalFactory.GetDal();
         Random r = new Random();
 
         public BL()
@@ -86,7 +86,7 @@ namespace BL
             {
                 dalObject.GetStation(_StationId);
             }
-            catch (DalObject.IdNotExistException)
+            catch (DO.IdNotExistException)
             {
                 throw new IdNotExistException(_StationId);
             }
@@ -94,7 +94,7 @@ namespace BL
             {
                 dalObject.AddDrone(_Id, _Model, (DO.WeightCategories)_MaxWeight);
             }
-            catch (DalObject.IdExcistsException)
+            catch (DO.IdExcistsException)
             {
                 throw new IdExcistsException(_Id);
             }
@@ -160,7 +160,7 @@ namespace BL
             {
                 dalObject.GetDrone(_Id);
             }
-            catch(DalObject.IdNotExistException)
+            catch(DO.IdNotExistException)
             {
                 throw new IdNotExistException(_Id);
             }
@@ -194,7 +194,7 @@ namespace BL
             {
                 dalObject.GetDrone(Id);
             }
-            catch (DalObject.IdNotExistException)
+            catch (DO.IdNotExistException)
             {
                 throw new IdNotExistException(Id);
             }
@@ -220,7 +220,7 @@ namespace BL
             {
                 dalObject.GetDrone(DroneId);
             }
-            catch (DalObject.IdNotExistException)
+            catch (DO.IdNotExistException)
             {
                 throw new IdNotExistException(DroneId);
             }
@@ -265,7 +265,7 @@ namespace BL
             {
                 dalObject.GetDrone(Id);
             }
-            catch (DalObject.IdNotExistException EX)
+            catch (DO.IdNotExistException EX)
             {
                 throw new IdNotExistException(Id);
             }
