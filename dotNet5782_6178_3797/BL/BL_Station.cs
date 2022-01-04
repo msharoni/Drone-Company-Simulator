@@ -21,7 +21,7 @@ namespace BL
             {
                 dalObject.AddStation(Id, Name, location.Longitude, location.Lattitude, ChargeSlots);
             }
-            catch ( DalObject.IdExcistsException)
+            catch ( DO.IdExcistsException)
             {
                 throw new IdExcistsException(Id);
             }
@@ -32,7 +32,7 @@ namespace BL
             try { 
                 dalObject.GetStation(Id);
             }
-            catch(DalObject.IdNotExistException EX)
+            catch(DO.IdNotExistException EX)
             {
                 throw new IdNotExistException(Id);
             }

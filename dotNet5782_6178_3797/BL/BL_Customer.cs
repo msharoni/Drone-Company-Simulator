@@ -21,7 +21,7 @@ namespace BL
             {
                 dalObject.AddCustomer(Id, Name, Phone, location.Longitude, location.Lattitude);
             }
-            catch (DalObject.IdExcistsException ex)
+            catch (DO.IdExcistsException ex)
             {
                 throw new IdExcistsException(Id);
             }
@@ -32,7 +32,7 @@ namespace BL
             {
                 dalObject.GetCustomer(Id);
             }
-            catch (DalObject.IdNotExistException EX)
+            catch (DO.IdNotExistException EX)
             {
                 throw new IdNotExistException(Id);
             }

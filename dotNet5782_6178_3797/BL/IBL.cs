@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BL
 {
@@ -13,7 +14,7 @@ namespace BL
         Customer DisplayCustomer(int Id);
         IEnumerable<CustomerForList> DisplayCustomers();
         Drone DisplayDrone(int Id);
-        public IEnumerable<DroneForList> DisplayDrones(DroneStatuses? DS, WeightCategories? DC)
+        public IEnumerable<DroneForList> DisplayDrones(DroneStatuses? DS, WeightCategories? DC);
         IEnumerable<ParcelForList> DisplayFreeParcels();
         IEnumerable<StationForList> DisplayFreeStations();
         Parcel DisplayParcel(int Id);
@@ -26,7 +27,7 @@ namespace BL
         void UpdateCustomer(int Id, string name, string Phone);
         void UpdateDrone(int _Id, string _Model);
         void UpdateStation(int Id, string name, int? NumOfSlots);
-        public IEnumerable<ParcelToList> GetFilterdParcels(Customer Customer, DateTime? startDate, DateTime? endDate, Priorities? Priority, WeightCategories? Weight, ParcelStatus? Status);
+        public IEnumerable<ParcelForList> GetFilterdParcels(Customer Customer, DateTime? startDate, DateTime? endDate, Priorities? Priority, WeightCategories? Weight, ParcelStatus? Status);
         
     }
 }
