@@ -9,8 +9,20 @@ namespace Dal
 {
     sealed class DalObject : DalApi.IDal
     {
-        static readonly IDal instance = new DalObject();
-        public static IDal Instance { get => instance; }
+        static DalObject() {}
+        static IDal instance;
+        static readonly object padlock = new object();
+        public static IDal Instance {
+            get { 
+                if(instance == null)
+                    lock(padlock)
+                    {
+                        if (instance == null)
+                            instance = new DalObject();
+                    }
+                return instance;
+            }
+        }
         DalObject()
         {
             DataSource.Intalize();

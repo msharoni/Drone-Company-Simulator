@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL
+    sealed partial class BL : IBL
     {
         public void UpdateCustomer(int Id, string? name, string? Phone)
         {
