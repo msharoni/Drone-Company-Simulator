@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace BO
 {
-    public class ParcelForList
+    public class ParcelInCustomer
     {
         public int Id{get; set;}
-        public string SenderName{get; set;}
-        public string ReciverName{get; set;}
         public WeightCategories Weight{get; set;}
         public Priorities Priority{get; set;}
         public ParcelStatus Status{get; set;}
+        public CustomerInParcel Customer{get; set;}
         public override string ToString()
         {
-            return $"Id: {Id} Sender name: {SenderName} Reciver name: {ReciverName} Weight: {Weight} Priority: {Priority} Status: {Status}";
+            return $"Id: {Id} Weight: {Weight} Priority: {Priority} Status: {Status} Customer: {Customer}";
         }
     }
 }

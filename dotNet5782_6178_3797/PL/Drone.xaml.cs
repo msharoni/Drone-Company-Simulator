@@ -19,8 +19,8 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
-        BL.IBL blObject;
-        public Drone(BL.DroneForList drone = null)
+        BlApi.IBL blObject;
+        public Drone(BO.DroneForList drone = null)
         {
             InitializeComponent();
             if (drone == null) // add mode

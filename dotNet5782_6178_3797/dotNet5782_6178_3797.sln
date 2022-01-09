@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "targil0", "ConsoleUI\targil0.csproj", "{48FD378B-64E3-4F92-AA0D-AA43E7DA9E47}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "..\DAL\DAL.csproj", "{77901895-654D-4287-B024-2CF857C50BD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "..\ConsoleUI\ConsoleUI.csproj", "{FD549409-AE69-4EDB-ABA3-7277F8915FB5}"
@@ -32,10 +30,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{48FD378B-64E3-4F92-AA0D-AA43E7DA9E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48FD378B-64E3-4F92-AA0D-AA43E7DA9E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48FD378B-64E3-4F92-AA0D-AA43E7DA9E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48FD378B-64E3-4F92-AA0D-AA43E7DA9E47}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77901895-654D-4287-B024-2CF857C50BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77901895-654D-4287-B024-2CF857C50BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77901895-654D-4287-B024-2CF857C50BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU

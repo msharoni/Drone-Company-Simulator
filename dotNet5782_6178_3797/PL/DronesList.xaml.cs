@@ -20,10 +20,10 @@ namespace PL
     /// </summary>
     public partial class DronesList : Page
     {
-        private BL.DroneStatuses? OptionOne = null;
-        private BL.WeightCategories? OptionTwo = null;
-        private BL.IBL logic;
-        public DronesList(BL.IBL _logic)
+        private BO.DroneStatuses? OptionOne = null;
+        private BO.WeightCategories? OptionTwo = null;
+        private BlApi.IBL logic;
+        public DronesList(BlApi.IBL _logic)
         {
             InitializeComponent();
 
@@ -31,25 +31,25 @@ namespace PL
 
             DroneListView.ItemsSource = logic.DisplayDrones(null,null);
 
-            FirstCombo.ItemsSource = Enum.GetValues(typeof(BL.DroneStatuses));
-            SecondCombo.ItemsSource = Enum.GetValues(typeof(BL.WeightCategories));
+            FirstCombo.ItemsSource = Enum.GetValues(typeof(BO.DroneStatuses));
+            SecondCombo.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
 
         }
         private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OptionOne = (BL.DroneStatuses)FirstCombo.SelectedItem;
+            OptionOne = (BO.DroneStatuses)FirstCombo.SelectedItem;
             DroneListView.ItemsSource = logic.DisplayDrones(OptionOne, OptionTwo);
         }
 
         private void SecondCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OptionTwo = (BL.WeightCategories)SecondCombo.SelectedItem;
+            OptionTwo = (BO.WeightCategories)SecondCombo.SelectedItem;
             DroneListView.ItemsSource = logic.DisplayDrones(OptionOne, OptionTwo);
         }
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-           BL.DroneForList drone = (BL.DroneForList)((ListView)sender).SelectedItem;
+           BO.DroneForList drone = (BO.DroneForList)((ListView)sender).SelectedItem;
             Drone droneWindow = new Drone(drone);
             droneWindow.Show();
         }

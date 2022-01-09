@@ -21,7 +21,7 @@ namespace PL
     public partial class MainWindow : Window
     {
         DronesList DronesList;
-        BL.IBL BLObject = new BL.BL();
+        BlApi.IBL BLObject = BlApi.BlFactory.GetBl();
         public MainWindow()
         {
             InitializeComponent();

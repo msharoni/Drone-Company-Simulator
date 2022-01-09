@@ -4,7 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-
+using BO;
+using BlApi;
 namespace BL
 {
     sealed partial class BL : IBL
@@ -23,7 +24,7 @@ namespace BL
                     lock(padlock)
                     {
                         if (instance == null)
-                            instance = new IBL();
+                            instance = new BL();
                     }
                 return instance;
             }

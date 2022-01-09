@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace BO
 {
-    public class DroneForList
+    public class Drone
     {
         public int Id{get; set;}
         public string Model{get; set;}
-        public WeightCategories MaxWeight{get; set;}
+        public WeightCategories Weight{get; set;}
         public double Battery{get; set;}
         public DroneStatuses Status{get; set;}
+        public MovedParcel Parcel{get; set;}
         public Location CurrentLocation{get; set;}
-        public int ParcelId{get; set;}
         public override string ToString()
         {
-            return $"Id: {Id}Model: {Model} MaxWeight: {MaxWeight} Battery: {(int)Battery}% Status: {Status} Current Location: {CurrentLocation} Parcel ID: {ParcelId}";
+            return $"Id: {Id} Model: {Model} Weight: {Weight} Battery: {(int)Battery}% Status: {Status} Parcel: {Parcel} Current Location: {CurrentLocation}";
         }
     }
 }

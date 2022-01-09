@@ -9,6 +9,7 @@ namespace Dal
 {
     sealed class DalObject : DalApi.IDal
     {
+        //lazy and thread lock
         static DalObject() {}
         static IDal instance;
         static readonly object padlock = new object();
