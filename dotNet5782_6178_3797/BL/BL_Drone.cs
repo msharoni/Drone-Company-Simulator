@@ -80,7 +80,7 @@ namespace BL
                 }
         }
 
-        public  void AddDrone(int _Id, string _Model, int _MaxWeight, int _StationId)
+        public  void AddDrone(int _Id, string _Model, WeightCategories _MaxWeight, int _StationId)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace BL
             }
            
             Location StationLocation =  new Location { Longitude = dalObject.GetStation(_StationId).Longitude , Lattitude = dalObject.GetStation(_StationId).Lattitude };
-            Drones.Add(new DroneForList { Id = _Id, Model = _Model, MaxWeight = (WeightCategories)_MaxWeight, Battery = r.Next(20, 41), Status = DroneStatuses.maintenance, CurrentLocation = StationLocation, ParcelId = -1});
+            Drones.Add(new DroneForList { Id = _Id, Model = _Model, MaxWeight = _MaxWeight, Battery = r.Next(20, 41), Status = DroneStatuses.maintenance, CurrentLocation = StationLocation, ParcelId = -1});
         }
         public void UpdateDrone(int _Id, string _Model)
         {

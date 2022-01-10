@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{8000C75E-A7C1-4B7A-B8B3-A67313CD7288}"
 	ProjectSection(SolutionItems) = preProject
 		xml\dal-config.xml = xml\dal-config.xml
+		..\..\..\..\..\Desktop\DroneWindow.xaml.cs = ..\..\..\..\..\Desktop\DroneWindow.xaml.cs
 	EndProjectSection
 EndProject
 Global

@@ -21,8 +21,8 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="FirstCombo" Text="Status" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="190" Height="50" SelectionChanged="FirstCombo_SelectionChanged"/>
-            <ComboBox x:Name="SecondCombo" Text="Max Weight" Grid.Column="3" Margin="0,0,1,0" VerticalAlignment="Center" Height="51" SelectionChanged="SecondCombo_SelectionChanged"/>
+            <ComboBox x:Name="FirstCombo" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="190" Height="50" SelectionChanged="FirstCombo_SelectionChanged"/>
+            <ComboBox x:Name="SecondCombo" Text="Max Weight" Background="Gray" Grid.Column="3" Margin="0,0,1,0" VerticalAlignment="Center" Height="51" SelectionChanged="SecondCombo_SelectionChanged"/>
             <Button Name="AddDroneButton" Grid.Column="2" Content="Add drone" Click="AddDroneButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
