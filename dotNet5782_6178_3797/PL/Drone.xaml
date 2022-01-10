@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Drone" Height="450" Width="800">
+        Title="Drone" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="LightGray">
     <Grid>
         <Grid Name="MainGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
@@ -36,7 +39,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontWeight="light"/>
-                <Button Content="X" Grid.Column="5"
+                <Button Content="X" Grid.Column="5" Click="Close_Click"
                     >
                     <Button.Style>
                         <Style TargetType="Button">
@@ -105,7 +108,7 @@
             </Grid.RowDefinitions>
 
             <Grid Background="#a5e2ff"
-              Grid.ColumnSpan="2">
+              Grid.ColumnSpan="2" MouseDown="Grid_MouseDown">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -127,7 +130,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontWeight="light"/>
-                <Button Content="X" Grid.Column="5"
+                <Button Content="X" Grid.Column="5" Click="Close_Click"
                     >
                     <Button.Style>
                         <Style TargetType="Button">

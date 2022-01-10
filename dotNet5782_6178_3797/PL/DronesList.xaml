@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DronesList">
+      Title="DronesList"
+      >
 
     <Grid Name="MainGrid" Margin="0,0,0,-6">
         <Grid.RowDefinitions>
@@ -48,7 +49,7 @@ VerticalAlignment="Stretch" Width="auto">
             </Button>
 
         </Grid>
-        <ListView x:Name="DroneListView" Grid.Row="1" MouseDoubleClick="DroneListView_MouseDoubleClick">
+        <ListView x:Name="DroneListView" Grid.Row="1" MouseDoubleClick="DroneListView_MouseDoubleClick" Background="LightGray">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
