@@ -6,60 +6,61 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
-    <Grid Name="MainGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid Name="MainGrid" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Grid Background="#a5e2ff"
+            <Grid Background="#a5e2ff"
               Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="20"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text = "Drones Bros"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text = "Drones Bros"
                        Foreground="Black"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        FontWeight="Heavy"/>
 
-            <TextBlock Text = "Powered by The Bros"
+                <TextBlock Text = "Powered by The Bros"
                        Foreground="Black"
                        Grid.Column="4"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontWeight="light"/>
-            <Button Content="X" Grid.Column="5"
+                <Button Content="X" Grid.Column="5"
                     >
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Cursor" Value="Hand"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Cursor" Value="Hand"/>
 
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Red"/>
-                            </Trigger>
-                        </Style.Triggers>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
 
-                    </Style>
-                </Button.Style>
+                        </Style>
+                    </Button.Style>
 
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="20" Height="20" Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </Grid>
-        <StackPanel Grid.Row="1" Height="260" Width="160" Margin="143,67,557,67">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20" Height="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="1" Height="260" Width="160" Margin="143,67,557,67">
                 <TextBlock Text="ID:"/>
                 <TextBox Name="IdTextBox" Text="{Binding Id}" TextChanged="IdTextBox_TextChanged"/>
                 <TextBlock Text="Model:"/>
@@ -73,28 +74,100 @@
                 <TextBlock Text="Current Location:"/>
                 <TextBox Name="CurrentLocationTextBox" Text="{Binding CurrentLocation}"/>
             </StackPanel>
-        <Button Name="AddDroneButton" Grid.Row="1"  Content="Add drone" Click="AddDroneButton_Click" >
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#b87373"/>
-                    <Setter Property="Cursor" Value="Hand"/>
+            <Button Name="AddDroneButton" Grid.Row="1"  Content="Add drone" Click="AddDroneButton_Click" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#b87373"/>
+                        <Setter Property="Cursor" Value="Hand"/>
 
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#b74e4e"/>
-                        </Trigger>
-                    </Style.Triggers>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#b74e4e"/>
+                            </Trigger>
+                        </Style.Triggers>
 
-                </Style>
-            </Button.Style>
+                    </Style>
+                </Button.Style>
 
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="200" Height="50" CornerRadius="7" Background="{TemplateBinding Background}">
-                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="200" Height="50" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+        <Grid Name="DroneGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#a5e2ff"
+              Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text = "Drones Bros"
+                       Foreground="Black"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontWeight="Heavy"/>
+
+                <TextBlock Text = "Powered by The Bros"
+                       Foreground="Black"
+                       Grid.Column="4"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontWeight="light"/>
+                <Button Content="X" Grid.Column="5"
+                    >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20" Height="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="1" Height="260" Width="160" Margin="143,67,557,67">
+                <TextBlock Text="Id" Background="#a5e2ff"/>
+                <TextBlock Text="{Binding Id}" Background="LightGray"/>
+                <TextBlock Text="Model" Background="#a5e2ff"/>
+                <TextBlock Text="{Binding Model}" Background="LightGray"/>
+                <TextBlock Text="Weight" Background="#a5e2ff"/>
+                <TextBlock Text="{Binding Weight}" Background="LightGray"/>
+                <TextBlock Text="Battery" Background="#a5e2ff"/>
+                <TextBlock Text="{Binding Battery}" Background="LightGray"/>
+                <TextBlock Text="Status" Background="#a5e2ff"/>
+                <TextBlock Text="{Binding Status}" Background="LightGray"/>
+                <TextBlock Text="Parcel" Background="#a5e2ff"/>
+                <TextBlock Text="{Binding Parcel}" Background="LightGray"/>
+                <TextBlock Text="Location" Background="#a5e2ff"/>
+                <TextBlock Text="{Binding Location}" Background="LightGray"  />
+            </StackPanel>
+        </Grid>
     </Grid>
+    
 </Window>

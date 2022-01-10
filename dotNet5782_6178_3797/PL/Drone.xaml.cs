@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BL;
+using BO;
 namespace PL
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace PL
     {
         BlApi.IBL blObject;
         int Id;
-        BL.WeightCategories Weight;
+        BO.WeightCategories Weight;
         string Model;
         int StationId;
         public Drone(BO.DroneForList drone = null)
