@@ -4,16 +4,31 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-
+using BO;
+using BlApi;
 namespace BL
 {
-    public partial class BL : IBL
+    sealed partial class BL : IBL
     {
         List<DroneForList> Drones = new List<DroneForList>();
         List<ChargingDrone> ChargingDrones = new List<ChargingDrone>();
         DalApi.IDal dalObject =  DalApi.DalFactory.GetDal();
         Random r = new Random();
-
+        //thread safe and lazy
+        static BL() {}
+        static IBL instance;
+        static readonly object padlock = new object();
+        public static IBL Instance {
+            get { 
+                if(instance == null)
+                    lock(padlock)
+                    {
+                        if (instance == null)
+                            instance = new BL();
+                    }
+                return instance;
+            }
+        }
         public BL()
         {
             

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using BlApi;
+using BO;
 namespace BL
 {
-    public partial class BL : IBL
+    sealed partial class BL : IBL
     {
         public void UpdateStation(int Id, string? name, int? NumOfSlots)
         {

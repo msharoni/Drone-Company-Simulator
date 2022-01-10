@@ -19,12 +19,12 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
-        BL.IBL blObject;
+        BlApi.IBL blObject;
         int Id;
         BL.WeightCategories Weight;
         string Model;
         int StationId;
-        public Drone(BL.DroneForList drone = null)
+        public Drone(BO.DroneForList drone = null)
         {
             InitializeComponent();
             FirstCombo.DataContext = Enum.GetValues(typeof(WeightCategories));
