@@ -12,9 +12,23 @@ namespace BL
         public void UpdateStation(int Id, string? name, int? NumOfSlots)
         {
             if (name != null)
-                dalObject.UpdateStation(Id, name, null);
+                try
+                {
+                    dalObject.UpdateStation(Id, name, null);
+                }
+                catch (DO.IdNotExistException)
+                {
+                    throw new IdNotExistException(Id);
+                }
             if (NumOfSlots != null)
-                dalObject.UpdateStation(Id, null, NumOfSlots);
+                try
+                {
+                    dalObject.UpdateStation(Id, null, NumOfSlots);
+                }
+                catch (DO.IdNotExistException)
+                {
+                    throw new IdNotExistException(Id);
+                }
         }
         public void AddStation(int Id,string Name,Location location,int ChargeSlots)
         {

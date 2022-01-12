@@ -228,7 +228,6 @@ namespace Dal
             if (Phone != null)
                 customer.Phone = Phone;
             DataSource.Customers[index] = customer;
-
         }
         public void UpdateParcel(Parcel _parcel)
         {

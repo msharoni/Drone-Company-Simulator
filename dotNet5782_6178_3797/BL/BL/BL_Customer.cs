@@ -12,9 +12,23 @@ namespace BL
         public void UpdateCustomer(int Id, string? name, string? Phone)
         {
             if (name != null)
-                dalObject.UpdateCustomer(Id, name, null);
+                try
+                {
+                    dalObject.UpdateCustomer(Id, name, null);
+                }
+                catch (DO.IdNotExistException)
+                {
+                    throw new IdNotExistException(Id);
+                }
             if (Phone != null)
-                dalObject.UpdateCustomer(Id,null, Phone);
+                try
+                {
+                    dalObject.UpdateCustomer(Id, null, Phone);
+                }
+                catch (DO.IdNotExistException)
+                {
+                    throw new IdNotExistException(Id);
+                }
         }
         public void AddCustomer(int Id,string Name, string Phone, Location location)
         {

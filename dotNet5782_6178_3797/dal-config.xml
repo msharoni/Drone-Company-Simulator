@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<charge>0.1</charge>
+	<none>0.001</none>
+	<light>0.0015</light>
+	<medium>0.002</medium>
+	<heavy>0.0025</heavy>
+	<parcelID>0</parcelID>
+</config>

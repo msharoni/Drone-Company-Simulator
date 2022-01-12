@@ -120,7 +120,14 @@ namespace BL
         public void UpdateDrone(int _Id, string _Model)
         {
             Drones[Drones.FindIndex(drone => drone.Id == _Id)].Model = _Model;
-            dalObject.UpdateDrone(_Id,_Model);
+            try
+            {
+                dalObject.UpdateDrone(_Id, _Model);
+            }
+            catch(DO.IdNotExistException)
+            {
+                throw new IdNotExistException(_Id);
+            }
         }
         Location SenderLocation(int ParcelId)
         {
