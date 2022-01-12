@@ -31,8 +31,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text = "Drones Bros"
+            <TextBlock Text = "Drone Bros"
                        Foreground="Black"
+                       FontFamily="Stronger"
+                       FontSize="30"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
