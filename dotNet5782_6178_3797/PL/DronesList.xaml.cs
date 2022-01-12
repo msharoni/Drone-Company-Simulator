@@ -50,13 +50,13 @@ namespace PL
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
            BO.DroneForList drone = (BO.DroneForList)((ListView)sender).SelectedItem;
-            Drone droneWindow = new Drone(drone);
-            droneWindow.Show();
+           Drone droneWindow = new Drone(drone);
+           droneWindow.Show();
         }
 
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
-            new Drone(); //without a paramter => add mode!
+            new Drone().Show(); //without a paramter => add mode!
         }
     }
 }// wait a mintute

@@ -6,8 +6,8 @@ namespace BlApi
     public interface IBL
     {
         void AddCustomer(int Id, string Name, string Phone, Location location);
-        void AddDrone(int _Id, string _Model, int _MaxWeight, int _StationId);
-        void AddParcel(int Id, int SenderId, int TargetId, int Weight, int Priority);
+        void AddDrone(int _Id, string _Model, WeightCategories _MaxWeight, int _StationId);
+        void AddParcel(int Id, int SenderId, int TargetId, WeightCategories Weight, Priorities Priority);
         void AddStation(int Id, string Name, Location location, int ChargeSlots);
         void ChargeDrone(int _Id);
         void DeliverParcel(int DroneId);

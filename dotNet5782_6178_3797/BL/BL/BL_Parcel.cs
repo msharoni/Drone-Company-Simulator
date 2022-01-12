@@ -54,7 +54,7 @@ namespace BL
             Drones[DroneIndex].ParcelId = -1;
         }
 
-        public void AddParcel(int Id,int SenderId,int TargetId,int Weight,int Priority)
+        public void AddParcel(int Id,int SenderId,int TargetId,WeightCategories Weight, Priorities Priority)
         {
             try
             {
