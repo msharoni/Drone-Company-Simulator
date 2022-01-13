@@ -20,22 +20,27 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
-        BlApi.IBL blObject;
+        BlApi.IBL blObject = BlApi.BlFactory.GetBl();
         int Id;
         BO.WeightCategories Weight;
         string Model;
         int StationId;
+        BO.DroneForList OurDrone;
         public Drone(BO.DroneForList drone = null)
         {
             InitializeComponent();
+            OurDrone = drone;
             FirstCombo.DataContext = Enum.GetValues(typeof(WeightCategories));
             if (drone == null) // add mode
             {
-                //yes. thts it.
+                MainGrid.Visibility = Visibility.Visible;
+                DroneGrid.Visibility = Visibility.Collapsed;
             }
             else // options mode
             {
-                MainGrid.DataContext = blObject.DisplayDrone(drone.Id); //emm mor should take care of that
+                DroneGrid.DataContext = blObject.DisplayDrone(drone.Id);
+                DroneGrid.Visibility = Visibility.Visible;
+                MainGrid.Visibility = Visibility.Collapsed;//emm mor should take care of that
             }
         }
         private void IdTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,6 +87,25 @@ namespace PL
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ChargeDroneButton_Click(object sender, RoutedEventArgs e)
+        {
+            blObject.ChargeDrone(OurDrone.Id);
+        }
+
+        private void Model_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (OptionsModelTextBox.Text != OurDrone.Model)
+            {
+                Model = OptionsModelTextBox.Text;
+                UpdateModel.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void UpdateModel_Click(object sender, RoutedEventArgs e)
+        {
+            blObject.UpdateDrone(OurDrone.Id, OptionsModelTextBox.Text);
         }
     }
 }

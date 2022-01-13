@@ -12,7 +12,7 @@
     <Grid>
         <Grid Name="MainGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -26,9 +26,11 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text = "Drones Bros"
+                <TextBlock Text = "Drone Bros"
                        Foreground="Black"
                        Grid.Column="0"
+                       FontFamily="Stronger"
+                       FontSize="30"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        FontWeight="Heavy"/>
@@ -63,19 +65,23 @@
                     </Button.Template>
                 </Button>
             </Grid>
-            <StackPanel Grid.Row="1" Height="260" Width="160" Margin="143,67,557,67">
-                <TextBlock Text="ID:"/>
-                <TextBox Name="IdTextBox" Text="{Binding Id}" TextChanged="IdTextBox_TextChanged"/>
-                <TextBlock Text="Model:"/>
-                <TextBox Name="ModelTextBox" Text="{Binding Model}" TextChanged="ModelTextBox_TextChanged"/>
-                <TextBlock Text="Weight:"/>
-                <ComboBox x:Name="FirstCombo" Text="MaxWeight" Width="160" Height="20" SelectionChanged="FirstCombo_SelectionChanged" ItemsSource="{Binding}"/>
-                <TextBlock Text="Station Id:"/>
-                <TextBox Name="StationIdTextBox" Text="{Binding StationId}" TextChanged="StationIdTextBox_TextChanged"/>
-                <TextBlock Text="Battery:"/>
-                <TextBox Name="BatteryTextBox" Text="{Binding Battery}"/>
-                <TextBlock Text="Current Location:"/>
-                <TextBox Name="CurrentLocationTextBox" Text="{Binding CurrentLocation}"/>
+            <StackPanel Grid.Row="1" Width="160" Margin="91,85,549,204" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="10.115"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="14.272"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <TextBlock Text="ID:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="IdTextBox" Text="{Binding Id}" TextChanged="IdTextBox_TextChanged" Background="LightGray"/>
+                <TextBlock Text="Model:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="ModelTextBox" Text="{Binding Model}" TextChanged="ModelTextBox_TextChanged" Background="LightGray"/>
+                <TextBlock Text="Weight:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <ComboBox x:Name="FirstCombo" Text="MaxWeight" Width="160" Height="20" SelectionChanged="FirstCombo_SelectionChanged" ItemsSource="{Binding}" Background="LightGray"/>
+                <TextBlock Text="Station Id:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="StationIdTextBox" Text="{Binding StationId}" TextChanged="StationIdTextBox_TextChanged" Background="LightGray"/>
             </StackPanel>
             <Button Name="AddDroneButton" Grid.Row="1"  Content="Add drone" Click="AddDroneButton_Click" >
                 <Button.Style>
@@ -117,8 +123,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text = "Drones Bros"
+                <TextBlock Text = "Drone Bros"
                        Foreground="Black"
+                       FontFamily="Stronger"
+                       FontSize="30"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
@@ -154,23 +162,76 @@
                     </Button.Template>
                 </Button>
             </Grid>
-            <StackPanel Grid.Row="1" Height="260" Width="160" Margin="143,67,557,67">
-                <TextBlock Text="Id" Background="#a5e2ff"/>
+            <StackPanel Grid.Row="1" Height="260" Margin="15,58,192,112" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="6.883"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="14.908"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <TextBlock Text="Id" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding Id}" Background="LightGray"/>
-                <TextBlock Text="Model" Background="#a5e2ff"/>
-                <TextBlock Text="{Binding Model}" Background="LightGray"/>
-                <TextBlock Text="Weight" Background="#a5e2ff"/>
+                <TextBlock Text="Model" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="OptionsModelTextBox" Text="{Binding Model}" Background="LightGray" TextChanged="Model_TextChanged"/>
+                <TextBlock Text="Weight" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding Weight}" Background="LightGray"/>
-                <TextBlock Text="Battery" Background="#a5e2ff"/>
+                <TextBlock Text="Battery" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding Battery}" Background="LightGray"/>
-                <TextBlock Text="Status" Background="#a5e2ff"/>
+                <TextBlock Text="Status" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding Status}" Background="LightGray"/>
-                <TextBlock Text="Parcel" Background="#a5e2ff"/>
-                <TextBlock Text="{Binding Parcel}" Background="LightGray"/>
-                <TextBlock Text="Location" Background="#a5e2ff"/>
-                <TextBlock Text="{Binding Location}" Background="LightGray"  />
+                <TextBlock Text="Parcel" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBlock Text="{Binding Parcel}" Background="LightGray" Height="33" TextWrapping="Wrap"/>
+                <TextBlock Text="Location" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBlock Text="{Binding CurrentLocation}" Background="LightGray" Height="17"  />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="624,41,10,34">
+                <Button x:Name="ChargeDroneButton" FontFamily="Stronger" FontSize="25" Content="Charge" Click="ChargeDroneButton_Click" Height="30">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#b87373"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#b74e4e"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                </Button>
+                <Button x:Name="UpdateModel" Visibility="Collapsed" Content="Update Model" Click="UpdateModel_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="LightGreen"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Green"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>
-    
 </Window>
