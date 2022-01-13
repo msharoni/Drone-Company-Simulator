@@ -48,5 +48,15 @@ namespace PL
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        private void StationListButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new StationList();
+        }
+
+        private void CustomerListButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new CustomerList();
+        }
     }
 }

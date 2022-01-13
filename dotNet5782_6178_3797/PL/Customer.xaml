@@ -1,0 +1,114 @@
+﻿<Window x:Class="PL.Customer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="Custumer" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="LightGray">
+    <Grid>
+        <Grid Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#a5e2ff"
+              Grid.ColumnSpan="2" MouseDown="Grid_MouseDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text = "Drone Bros"
+                       Foreground="Black"
+                       Grid.Column="0"
+                       FontFamily="Stronger"
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontWeight="Heavy"/>
+
+                <TextBlock Text = "Powered by The Bros"
+                       Foreground="Black"
+                       Grid.Column="4"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontWeight="light"/>
+                <Button Content="X" Grid.Column="5" Click="Close_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20" Height="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="1" Margin="14,51,193,75" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="7.373"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-0.256"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <TextBlock Text="Customer Id:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBlock Name="IdTextBox" Text="{Binding Id}" Background="LightGray"/>
+                <TextBlock Text="Name:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="NameTextBox" Text="{Binding name}" TextChanged="NameTextBox_TextChanged"  Background="LightGray"/>
+                <TextBlock Text="Location:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBlock Text="{Binding Location}" Background="LightGray"/>
+                <TextBlock Text="Phone:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBlock Text="{Binding phone}" Background="LightGray"/>
+                <TextBlock Text="From Customer:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <ListView ItemsSource="{Binding FromCustomer}" Background="LightGray"/>
+                <TextBlock Text="For Customer:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <ListView ItemsSource="{Binding ForCustomer}" Background="LightGray"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="40,40,40,40" Width="200">
+                <Button Name="UpdateName" Grid.Row="1"  Content="Update Name" Visibility="Collapsed" Click="UpdateName_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="LightGreen"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Green"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="200" Height="50" CornerRadius="7" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

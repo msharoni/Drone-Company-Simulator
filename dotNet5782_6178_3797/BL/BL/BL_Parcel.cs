@@ -116,9 +116,9 @@ namespace BL
             drone.CurrentLocation = Drones[DroneIndex].CurrentLocation;
             tmpParcel.Drone = drone;
             tmpParcel.Created = parcel.Requested;
-            tmpParcel.Linked = (DateTime)parcel.Scheduled;
-            tmpParcel.PickedUp = (DateTime)parcel.PickedUp;
-            tmpParcel.Delivered = (DateTime)parcel.Delivered;
+            tmpParcel.Linked = (DateTime?)parcel.Scheduled;
+            tmpParcel.PickedUp = (DateTime?)parcel.PickedUp;
+            tmpParcel.Delivered = (DateTime?)parcel.Delivered;
             return tmpParcel;
         }
         public IEnumerable<ParcelForList> DisplayParcels()

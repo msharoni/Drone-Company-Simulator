@@ -12,7 +12,7 @@
     <Grid>
         <Grid Name="MainGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -187,7 +187,7 @@
                 <TextBlock Text="{Binding CurrentLocation}" Background="LightGray" Height="17"  />
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="624,41,10,34">
-                <Button x:Name="ChargeDroneButton" FontFamily="Stronger" FontSize="25" Content="Charge" Click="ChargeDroneButton_Click" Height="30">
+                <Button x:Name="ChargeDroneButton" Visibility="Collapsed" FontFamily="Stronger" FontSize="25" Content="Charge" Click="ChargeDroneButton_Click" Height="30">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#b87373"/>
@@ -208,6 +208,94 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+                </Button>
+                <Button x:Name="UnchargeDroneButton" Visibility="Collapsed" FontFamily="Stronger" FontSize="25" Content="Uncharge" Click="UnchargeDroneButton_Click"  Height="30">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#b87373"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#b74e4e"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="LinktoParcel" Visibility="Collapsed" FontFamily="Stronger" FontSize="25" Content="Link to Parcel" Click="LinktoParcel_Click"  Height="30">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#b87373"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#b74e4e"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="PickupParcelButton" Visibility="Collapsed" FontFamily="Stronger" FontSize="25" Content="Pickup Parcel" Click="PickupParcel_Click"  Height="30">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#b87373"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#b74e4e"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="DeliverParcelButton" Visibility="Collapsed" FontFamily="Stronger" FontSize="25" Content="Deliver Parcel" Click="DeliverParcelButton_Click"  Height="30">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#b87373"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#b74e4e"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
                 <Button x:Name="UpdateModel" Visibility="Collapsed" Content="Update Model" Click="UpdateModel_Click">
                     <Button.Style>

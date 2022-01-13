@@ -26,11 +26,13 @@ namespace PL
         string Model;
         int StationId;
         BO.DroneForList OurDrone;
+        DateTime x;
         public Drone(BO.DroneForList drone = null)
         {
             InitializeComponent();
             OurDrone = drone;
             FirstCombo.DataContext = Enum.GetValues(typeof(WeightCategories));
+
             if (drone == null) // add mode
             {
                 MainGrid.Visibility = Visibility.Visible;
@@ -41,6 +43,27 @@ namespace PL
                 DroneGrid.DataContext = blObject.DisplayDrone(drone.Id);
                 DroneGrid.Visibility = Visibility.Visible;
                 MainGrid.Visibility = Visibility.Collapsed;//emm mor should take care of that
+                if (drone.Status == DroneStatuses.Available)
+                {
+                    ChargeDroneButton.Visibility = Visibility.Visible;
+                    LinktoParcel.Visibility = Visibility.Visible;
+                }
+                else if (drone.Status == DroneStatuses.maintenance)
+                {
+                    UnchargeDroneButton.Visibility = Visibility.Visible;
+                }
+                if (drone.ParcelId != -1)
+                {
+                    Parcel DroneParcel = blObject.DisplayParcel(drone.ParcelId);
+                    if (DroneParcel.Linked != null && DroneParcel.PickedUp == null)
+                    {
+                        PickupParcelButton.Visibility = Visibility.Visible;
+                    }
+                    else if (DroneParcel.PickedUp != null && DroneParcel.Delivered == null)
+                    {
+                        DeliverParcelButton.Visibility = Visibility.Visible;
+                    } 
+                }
             }
         }
         private void IdTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -76,7 +99,16 @@ namespace PL
 
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
-            blObject.AddDrone(Id, Model, Weight, StationId);
+            try
+            {
+                blObject.AddDrone(Id, Model, Weight, StationId);
+                new Drone(OurDrone).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -86,12 +118,23 @@ namespace PL
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            new DronesList(blObject);
+            Close();
         }
 
         private void ChargeDroneButton_Click(object sender, RoutedEventArgs e)
         {
-            blObject.ChargeDrone(OurDrone.Id);
+            try
+            {
+                blObject.ChargeDrone(OurDrone.Id);
+                new Drone(OurDrone).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            x = DateTime.Now;
         }
 
         private void Model_TextChanged(object sender, TextChangedEventArgs e)
@@ -105,7 +148,73 @@ namespace PL
 
         private void UpdateModel_Click(object sender, RoutedEventArgs e)
         {
-            blObject.UpdateDrone(OurDrone.Id, OptionsModelTextBox.Text);
+            try
+            {
+                blObject.UpdateDrone(OurDrone.Id, OptionsModelTextBox.Text);
+                new Drone(OurDrone).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void UnchargeDroneButton_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            try
+            {
+                blObject.UnChargeDrone(OurDrone.Id, (now - x).TotalSeconds);
+                new Drone(OurDrone).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void LinktoParcel_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                blObject.LinkDroneToParcel(OurDrone.Id);
+                new Drone(OurDrone).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void PickupParcel_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                blObject.PickUpParcel(OurDrone.Id);
+                new Drone(OurDrone).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void DeliverParcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                blObject.DeliverParcel(OurDrone.Id);
+                new Drone(OurDrone).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
