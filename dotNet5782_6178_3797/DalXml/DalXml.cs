@@ -294,25 +294,17 @@ namespace Dal
         }
         public void UpdateCustomer(int Id, string? name, string? Phone)
         {
-            XElement CustomerData = XElement.Load(@"Data\Customers.xml");
-            IEnumerable<DO.Customer> Customers = GetCustomers();
-            from Customer in CustomerData.Elements() where int.Parse(Customer.Element("Id").Value) == Id
-            select new DO.Customer()
-            {
-                Id = int.Parse(Customer.Element("Id").Value),
-                Lattitude = double.Parse(Customer.Element("Lattitude").Value),
-                Longitude = double.Parse(Customer.Element("Longitude").Value),
-                Name = Customer.Element("Name").Value,
-                Phone = Customer.Element("Phone").Value
-            });
-            CustomerData.Nodes().Append(new XElement("Customer", new XElement[]
-            {
-                new XElement("Id", "" + Id),
-                new XElement("Name", name),
-                new XElement("Phone", Phone),
-                new XElement("Longitude", ""+Longitude),
-                new XElement("Lattitude", ""+Lattitude)
-            }));
+            DO.Customer c = GetCustomer(Id);
+            XElement Customers = XElement.Load(@"Data\Customers.xml");
+            XElement e = (from customer in Customers.Elements()
+                          where Int32.Parse(customer.Element("Id").Value) == c.Id
+                          select customer).FirstOrDefault();
+            if(name != null)
+                e.Element("Name").Value = name;
+            if(Phone != null)
+                e.Element("Phone").Value = Phone;
+            Customers.Save(@"Data\Customers.xml");
+
         }
         public void UpdateParcel(DO.Parcel _parcel)
         {
