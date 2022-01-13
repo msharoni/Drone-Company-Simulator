@@ -24,6 +24,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{728BB01C-F01
 		xml\dal-config.xml = xml\dal-config.xml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F2EE7330-73D5-40BD-ADCB-547973894258}"
+	ProjectSection(SolutionItems) = preProject
+		ChargingDrones.xml = ChargingDrones.xml
+		Customers.xml = Customers.xml
+		dal-config.xml = dal-config.xml
+		Drones.xml = Drones.xml
+		Parcels.xml = Parcels.xml
+		Stations.xml = Stations.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
