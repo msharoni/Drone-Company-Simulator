@@ -273,4 +273,23 @@ namespace BO
             return "station has no chargeslots left in station";
         }
     }
+    [Serializable]
+    public class NoAvailableStations : Exception
+    {
+        public NoAvailableStations()
+        {
+        }
+
+        public NoAvailableStations(string message) : base(message)
+        {
+        }
+
+        public NoAvailableStations(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected NoAvailableStations(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+    }
 }

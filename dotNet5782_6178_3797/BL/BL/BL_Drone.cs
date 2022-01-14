@@ -14,16 +14,18 @@ namespace BL
     {
         List<DroneForList> Drones = new List<DroneForList>();
         List<ChargingDrone> ChargingDrones = new List<ChargingDrone>();
-        DalApi.IDal Idal =  DalApi.DalFactory.GetDal();
+        DalApi.IDal Idal = DalApi.DalFactory.GetDal();
         Random r = new Random();
         //thread safe and lazy
-        static BL() {}
+        static BL() { }
         static IBL instance;
         static readonly object padlock = new object();
-        public static IBL Instance {
-            get { 
-                if(instance == null)
-                    lock(padlock)
+        public static IBL Instance
+        {
+            get
+            {
+                if (instance == null)
+                    lock (padlock)
                     {
                         if (instance == null)
                             instance = new BL();
@@ -141,6 +143,15 @@ namespace BL
             }
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateDroneLocation(int Id, double Battery, Location newLocation)
+        {
+            lock (Idal)
+            {
+                Drones[Drones.FindIndex(drone => drone.Id == Id)].CurrentLocation = newLocation;
+                Drones[Drones.FindIndex(drone => drone.Id == Id)].Battery = Battery;
+            }
+        }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         Location SenderLocation(int ParcelId)
         {
             lock (Idal)
@@ -184,7 +195,7 @@ namespace BL
             }
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        double Distance(Location Location1,Location Location2)
+        public double Distance(Location Location1, Location Location2)
         {
             double LongitudeRadian1 = Location1.Longitude * (Math.PI / 180);
             double LattitudeRadian1 = Location1.Lattitude * (Math.PI / 180);
@@ -228,6 +239,8 @@ namespace BL
                         StationId = station.Id;
                     }
                 }
+                if (StationId == 0)
+                    throw new NoAvailableStations();
                 if (Drones[DroneIndex].Battery < (smallest * Idal.GetBatteryUsage()[1]))
                     throw new NotEnoughBattery(_Id);
                 Drones[DroneIndex].Battery -= (smallest * Idal.GetBatteryUsage()[1]);
@@ -306,6 +319,8 @@ namespace BL
                                     BestParcel = parcel;
                     }
                 }
+                if (BestParcel.Id == 0)
+                    throw new NotEnoughBattery();
                 //updating the parcel
                 BestParcel.Scheduled = DateTime.Now;
                 BestParcel.DroneId = DroneId;
@@ -369,19 +384,19 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneForList> DisplayDrones(DroneStatuses? DS, WeightCategories? DC)
         {
-            if(DS == null && DC != null)
+            if (DS == null && DC != null)
                 return Drones.FindAll(d => d.MaxWeight == DC);
             if (DS != null && DC == null)
                 return Drones.FindAll(d => d.Status == DS);
-            if(DS != null && DC != null)
+            if (DS != null && DC != null)
                 return Drones.FindAll(d => d.Status == DS && d.MaxWeight == DC);
             return Drones;
         }
-        void ActivateSimulator(int DroneId, Action Update, Func<bool> stop)
+        public void ActivateSimulator(int DroneId, Action Update, Func<bool> stop)
         {
             new DroneSim(instance, DroneId, Update, stop);
         }
-        double[] GetBatteryUsages()
+        public double[] GetBatteryUsages()
         {
             lock (Idal)
             {

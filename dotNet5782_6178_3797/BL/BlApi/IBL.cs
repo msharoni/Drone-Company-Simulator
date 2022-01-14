@@ -30,5 +30,8 @@ namespace BlApi
         void UpdateStation(int Id, string name, int? NumOfSlots);
         public IEnumerable<ParcelForList> GetFilterdParcels(Customer Customer, DateTime? startDate, DateTime? endDate, Priorities? Priority, WeightCategories? Weight, ParcelStatus? Status);
         void ActivateSimulator(int DroneId, Action Update, Func<bool> stop);
+        public double Distance(Location Location1, Location Location2);
+        public void UpdateDroneLocation(int Id, double Battery, Location newLocation);
+        public IEnumerable<Drone> DronesChargingInStation(int StationId);
     }
 }
