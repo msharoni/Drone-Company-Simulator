@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace PL
         string Model;
         int StationId;
         BO.DroneForList OurDrone;
+        private BackgroundWorker backgroundWorker;
         public Drone(BO.DroneForList drone = null)
         {
             InitializeComponent();
@@ -107,5 +109,18 @@ namespace PL
         {
             blObject.UpdateDrone(OurDrone.Id, OptionsModelTextBox.Text);
         }
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            blObject.ActivateSimulator(OurDrone.Id, () => backgroundWorker.ReportProgress(1), () => backgroundWorker.CancellationPending);
+        }
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            OurDrone.CurrentLocation = blObject.DisplayDrone(OurDrone.Id).CurrentLocation;
+            OurDrone.Battery = blObject.DisplayDrone(OurDrone.Id).Battery;
+            OurDrone.ParcelId = blObject.DisplayDrone(OurDrone.Id).Parcel.Id;
+            OurDrone.Status = blObject.DisplayDrone(OurDrone.Id).Status;
+            this.DataContext = OurDrone;
+        }
+        
     }
 }

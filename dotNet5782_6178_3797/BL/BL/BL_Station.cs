@@ -102,6 +102,20 @@ namespace BL
         {
             return DisplayStations().Where(station => station.NumOfVacantChargers > 0);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<Drone> DronesChargingInStation(int StationId)
+        {
+            lock (Idal)
+            {
+                Station station = DisplayStation(StationId);
+                List<Drone> ChargingDroneList = new List<Drone>();
+                foreach (ChargingDrone drone in station.DronesCharging)
+                {
+                    ChargingDroneList.Add(DisplayDrone(drone.Id));
+                }
+                return ChargingDroneList;
+            }
+        }
     }
 }
 

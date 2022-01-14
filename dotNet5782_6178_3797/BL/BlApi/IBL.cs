@@ -32,7 +32,6 @@ namespace BlApi
         void ActivateSimulator(int DroneId, Action Update, Func<bool> stop);
         public double Distance(Location Location1, Location Location2);
         public void UpdateDroneLocation(int Id, double Battery, Location newLocation);
-
-
+        public IEnumerable<Drone> DronesChargingInStation(int StationId);
     }
 }
