@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using DalApi;
@@ -29,24 +30,28 @@ namespace Dal
             DataSource.Intalize();
         }
         //adding each type using List.Add
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddDrone(int Id, string Model, WeightCategories MaxWeight)
         {
             if (DataSource.Drones.FindIndex(drone => drone.Id == Id) != -1)
                 throw new IdExcistsException(Id);
             DataSource.Drones.Add(new Drone(Id, Model, MaxWeight));
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStation(int Id, string Name, double Longitude, double Lattitude, int ChargeSlots)
         {
             if (DataSource.Stations.FindIndex(station => station.Id == Id) != -1)
                 throw new IdExcistsException(Id);
             DataSource.Stations.Add(new Station(Id, Name, Longitude, Lattitude, ChargeSlots));
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddCustomer(int Id, string Name, string Phone, double Longitude, double Lattitude)
         {
             if (DataSource.Customers.FindIndex(customer => customer.Id == Id) != -1)
                 throw new IdExcistsException(Id);
             DataSource.Customers.Add(new Customer(Id, Name, Phone, Longitude, Lattitude));
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddParcel(int Id, int SenderId, int TargetId, WeightCategories Weight, Priorities Priority, DateTime? Requested, int? DroneId, DateTime? Scheduled, DateTime? PickedUp, DateTime? Delivered)
         {
             if (DataSource.Parcels.FindIndex(parcel => parcel.Id == Id) != -1)
@@ -55,6 +60,7 @@ namespace Dal
         }
 
         //Linking the parcel to a drone
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void LinkParcel(int DroneId, int ParcelId)
         {
             //finding the relevant drone/parcel
@@ -74,6 +80,7 @@ namespace Dal
             DataSource.Parcels[Pindex] = parcel;
             DataSource.Drones[Dindex] = drone;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DronePickUp(int ParcelId)
         {
             //finding the relevant drone/parcel
@@ -90,6 +97,7 @@ namespace Dal
             //copying them back into the list
             DataSource.Parcels[Pindex] = parcel;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DroneDropOff(int ParcelId)
         {
             //finding the relevant drone/parcel
@@ -108,6 +116,7 @@ namespace Dal
             DataSource.Parcels[Pindex] = parcel;
             DataSource.Drones[Dindex] = drone;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ChargeDrone(int DroneId, int StationId)
         {
             //finding the relevant drone/station
@@ -129,6 +138,7 @@ namespace Dal
             DataSource.Drones[Dindex] = drone;
             DataSource.Stations[Sindex] = station;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UnChargeDrone(int DroneId, int StationId)
         {
             //finding the relevant drone/station/ChargingDrone
@@ -150,24 +160,28 @@ namespace Dal
             DataSource.Drones[Dindex] = drone;
             DataSource.Stations[Sindex] = station;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Drone GetDrone(int DroneId)
         {
             if (DataSource.Drones.FindIndex(drone => drone.Id == DroneId) == -1)
                 throw new IdNotExistException(DroneId);
             return DataSource.Drones.Find(drone => drone.Id == DroneId);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Parcel GetParcel(int ParcelId)
         {
             if (DataSource.Parcels.FindIndex(parcel => parcel.Id == ParcelId) == -1)
                 throw new IdNotExistException(ParcelId);
             return DataSource.Parcels.Find(parcel => parcel.Id == ParcelId);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer GetCustomer(int CustomerId)
         {
             if (DataSource.Customers.FindIndex(customer => customer.Id == CustomerId) == -1)
                 throw new IdNotExistException(CustomerId);
             return DataSource.Customers.Find(customer => customer.Id == CustomerId);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Station GetStation(int StationId)
         {
             if (DataSource.Stations.FindIndex(station => station.Id == StationId) == -1)
@@ -176,40 +190,48 @@ namespace Dal
         }
 
         //returning each list 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> GetStations()
         {
             return DataSource.Stations;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Drone> GetDrones()
         {
             return DataSource.Drones;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetParcels()
         {
             return DataSource.Parcels;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Customer> GetCustomers()
         {
             return DataSource.Customers;
         }
         //filtered lists
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetFilteredParcels(Predicate<Parcel> filter)
         {
             return DataSource.Parcels.FindAll(p => filter(p));
         }
-        //making sure that the relevant fields exsist
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetFreeParcels()
         {
             return DataSource.Parcels.FindAll(parcel => parcel.DroneId == 0);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> GetVacantStations()
         {
             return DataSource.Stations.FindAll(station => station.ChargeSlots != 0);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneCharge> GetChargingDrones()
         {
             return DataSource.ChargingDrones;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateDrone(int _Id, string _Model)
         {
             int index = DataSource.Drones.FindIndex(drone => drone.Id == _Id);
@@ -219,6 +241,7 @@ namespace Dal
             drone.Model = _Model;
             DataSource.Drones[index] = drone;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateCustomer(int Id, string? name, string? Phone)
         {
             int index = DataSource.Customers.FindIndex(customer => customer.Id == Id);
@@ -229,11 +252,13 @@ namespace Dal
                 customer.Phone = Phone;
             DataSource.Customers[index] = customer;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateParcel(Parcel _parcel)
         {
             int index = DataSource.Parcels.FindIndex(parcel => parcel.Id == _parcel.Id);
             DataSource.Parcels[index] = _parcel;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateStation(int Id, string? name, int? NumOfSlots)
         {
             int index = DataSource.Stations.FindIndex(station => station.Id == Id);
@@ -244,6 +269,7 @@ namespace Dal
                 station.ChargeSlots = (int)NumOfSlots;
             DataSource.Stations[index] = station;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] GetBatteryUsage()
         {
             return DataSource.Config.batteryPerKm;

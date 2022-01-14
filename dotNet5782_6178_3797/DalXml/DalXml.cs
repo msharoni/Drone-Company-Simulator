@@ -6,6 +6,7 @@ using DalApi;
 using System.IO;
 using System;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Dal
 {
@@ -16,6 +17,7 @@ namespace Dal
         DalXml() {}
 
         //gets for each list from xml file
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Customer> GetCustomers()
         {
             XElement CustomerData = XElement.Load(@"Data\Customers.xml");
@@ -29,6 +31,7 @@ namespace Dal
                        Phone = Customer.Element("Phone").Value
                    };
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Drone> GetDrones()
         {
             XmlSerializer ser = new XmlSerializer(typeof(List<DO.Drone>));
@@ -37,6 +40,7 @@ namespace Dal
             reader.Close();
             return data;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Station> GetStations()
         {
             XmlSerializer ser = new XmlSerializer(typeof(List<DO.Station>));
@@ -45,6 +49,7 @@ namespace Dal
             reader.Close();
             return data;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> GetParcels()
         {
             XmlSerializer ser = new XmlSerializer(typeof(List<DO.Parcel>));
@@ -53,6 +58,7 @@ namespace Dal
             reader.Close();
             return data;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.DroneCharge> GetChargingDrones()
         {
             XmlSerializer ser = new XmlSerializer(typeof(List<DO.Parcel>));
@@ -61,15 +67,18 @@ namespace Dal
             reader.Close();
             return data;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> GetFreeParcels()
         {
             return GetParcels().Where(parcel => parcel.DroneId == -1);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Station> GetVacantStations()
         {
             return GetStations().Where(station => station.ChargeSlots > 0);
         }
         //gets for single type
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Customer GetCustomer(int Id)
         {
             
@@ -91,6 +100,7 @@ namespace Dal
                 throw new DO.IdNotExistException(Id);
             }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Drone GetDrone(int Id)
         {
             try
@@ -102,6 +112,7 @@ namespace Dal
                 throw new DO.IdNotExistException(Id);
             }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Station GetStation(int Id)
         {
             try
@@ -113,6 +124,7 @@ namespace Dal
                 throw new DO.IdNotExistException(Id);
             }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Parcel GetParcel(int Id)
         {
             try
@@ -124,11 +136,13 @@ namespace Dal
                 throw new DO.IdNotExistException(Id);
             }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> GetFilteredParcels(Predicate<DO.Parcel> filter)
         {
             return GetParcels().Where(p => filter(p));
         }
         //add functions
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddCustomer(int Id, string Name, string Phone, double Longitude, double Lattitude)
         {
             IEnumerable<DO.Customer> Customers = GetCustomers();
@@ -144,6 +158,7 @@ namespace Dal
                 new XElement("Lattitude", ""+Lattitude)
             }));
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddDrone(int Id, string Model, DO.WeightCategories MaxWeight)
         {
             IEnumerable<DO.Drone> Drones = GetDrones();
@@ -156,6 +171,7 @@ namespace Dal
             ser.Serialize(writer, Drones);
             writer.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddParcel(int Id, int SenderId, int TargetId, DO.WeightCategories Weight, DO.Priorities Priority, DateTime? Requested, int? DroneId, DateTime? Scheduled, DateTime? PickedUp, DateTime? Delivered)
         {
             IEnumerable<DO.Parcel> Parcels = GetParcels();
@@ -169,6 +185,7 @@ namespace Dal
             ser.Serialize(writer, Parcels);
             writer.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStation(int Id, string Name, double Longitude, double Lattitude, int ChargeSlots)
         {
             IEnumerable<DO.Station> Stations = GetStations();
@@ -182,6 +199,7 @@ namespace Dal
             writer.Close();
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ChargeDrone(int DroneId, int StationId)
         {
             //adding a new charging drone to the file/list
@@ -202,6 +220,7 @@ namespace Dal
             StationSer.Serialize(StationWriter, Stations);
             StationWriter.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DroneDropOff(int ParcelId)
         {
 
@@ -220,6 +239,7 @@ namespace Dal
             ser.Serialize(writer, Parcels);
             writer.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DronePickUp(int ParcelId)
         {
             
@@ -238,6 +258,7 @@ namespace Dal
             ser.Serialize(writer, Parcels);
             writer.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void LinkParcel(int DroneId, int ParcelId)
         {
             //checking if they excist
@@ -258,6 +279,7 @@ namespace Dal
             ser.Serialize(writer, Parcels);
             writer.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UnChargeDrone(int DroneId, int StationId)
         {
             //adding a new charging drone to the file/list
@@ -281,6 +303,7 @@ namespace Dal
             StationSer.Serialize(StationWriter, Stations);
             StationWriter.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateDrone(int _Id, string _Model)
         {
             DO.Drone drone = GetDrone(_Id);
@@ -292,28 +315,22 @@ namespace Dal
             ser.Serialize(writer, Drones);
             writer.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateCustomer(int Id, string? name, string? Phone)
         {
-            XElement CustomerData = XElement.Load(@"Data\Customers.xml");
-            IEnumerable<DO.Customer> Customers = GetCustomers();
-            from Customer in CustomerData.Elements() where int.Parse(Customer.Element("Id").Value) == Id
-            select new DO.Customer()
-            {
-                Id = int.Parse(Customer.Element("Id").Value),
-                Lattitude = double.Parse(Customer.Element("Lattitude").Value),
-                Longitude = double.Parse(Customer.Element("Longitude").Value),
-                Name = Customer.Element("Name").Value,
-                Phone = Customer.Element("Phone").Value
-            });
-            CustomerData.Nodes().Append(new XElement("Customer", new XElement[]
-            {
-                new XElement("Id", "" + Id),
-                new XElement("Name", name),
-                new XElement("Phone", Phone),
-                new XElement("Longitude", ""+Longitude),
-                new XElement("Lattitude", ""+Lattitude)
-            }));
+            DO.Customer c = GetCustomer(Id);
+            XElement Customers = XElement.Load(@"Data\Customers.xml");
+            XElement e = (from customer in Customers.Elements()
+                          where Int32.Parse(customer.Element("Id").Value) == c.Id
+                          select customer).FirstOrDefault();
+            if(name != null)
+                e.Element("Name").Value = name;
+            if(Phone != null)
+                e.Element("Phone").Value = Phone;
+            Customers.Save(@"Data\Customers.xml");
+
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateParcel(DO.Parcel _parcel)
         {
             List<DO.Parcel> Parcels = GetParcels().ToList();
@@ -323,6 +340,7 @@ namespace Dal
             ParcelSer.Serialize(ParcelWriter, Parcels);
             ParcelWriter.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateStation(int Id, string? name, int? NumOfSlots)
         {
             DO.Station station = GetStation(Id);
@@ -337,6 +355,7 @@ namespace Dal
             StationSer.Serialize(StationWriter, Stations);
             StationWriter.Close();
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] GetBatteryUsage()
         {
             XElement dalConfig = XElement.Load(@"Data\dal-config.xml");
@@ -348,6 +367,7 @@ namespace Dal
             BatteryUsage[4] = double.Parse(dalConfig.Element("heavy").Value);
             return BatteryUsage;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         internal int ParcelIndex()
         {
             XElement dalConfig = XElement.Load(@"Data\dal-config.xml");
