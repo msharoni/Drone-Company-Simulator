@@ -41,12 +41,39 @@ namespace PL
 
         private void UpdateName_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                blObject.UpdateCustomer(OurCustomer.Id, NameTextBox.Text, OurCustomer.phone);
+                new Customer(OurCustomer).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (NameTextBox.Text != OurCustomer.name)
+            {
+                Name = NameTextBox.Text;
+                UpdateName.Visibility = Visibility.Visible;
+            }
+        }
 
+        private void ForCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.DroneForList drone = (BO.DroneForList)((ListView)sender).SelectedItem;
+            Drone droneWindow = new Drone(drone);
+            droneWindow.Show();
+        }
+
+        private void FromCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.DroneForList drone = (BO.DroneForList)((ListView)sender).SelectedItem;
+            Drone droneWindow = new Drone(drone);
+            droneWindow.Show();
         }
     }
 }

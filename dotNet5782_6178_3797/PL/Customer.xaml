@@ -64,13 +64,13 @@
                     </Button.Template>
                 </Button>
             </Grid>
-            <StackPanel Grid.Row="1" Margin="14,51,193,75" RenderTransformOrigin="0.5,0.5">
+            <StackPanel Grid.Row="1" Margin="14,50,208,76" RenderTransformOrigin="0.5,0.5">
                 <StackPanel.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
-                        <SkewTransform AngleY="7.373"/>
+                        <SkewTransform AngleY="5.512"/>
                         <RotateTransform/>
-                        <TranslateTransform Y="-0.256"/>
+                        <TranslateTransform Y="-10.009"/>
                     </TransformGroup>
                 </StackPanel.RenderTransform>
                 <TextBlock Text="Customer Id:" Background="#a5e2ff" FontWeight="Heavy"/>
@@ -82,11 +82,11 @@
                 <TextBlock Text="Phone:" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding phone}" Background="LightGray"/>
                 <TextBlock Text="From Customer:" Background="#a5e2ff" FontWeight="Heavy"/>
-                <ListView ItemsSource="{Binding FromCustomer}" Background="LightGray"/>
+                <ListView x:Name="FromCustomer" ItemsSource="{Binding FromCustomer}" Background="LightGray" MouseDoubleClick="FromCustomer_MouseDoubleClick"/>
                 <TextBlock Text="For Customer:" Background="#a5e2ff" FontWeight="Heavy"/>
-                <ListView ItemsSource="{Binding ForCustomer}" Background="LightGray"/>
+                <ListView x:Name="ForCustomer" ItemsSource="{Binding ForCustomer}" Background="LightGray" MouseDoubleClick="ForCustomer_MouseDoubleClick"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Margin="40,40,40,40" Width="200">
+            <StackPanel Grid.Row="1" Margin="600,0,0,0" Width="200">
                 <Button Name="UpdateName" Grid.Row="1"  Content="Update Name" Visibility="Collapsed" Click="UpdateName_Click">
                     <Button.Style>
                         <Style TargetType="Button">

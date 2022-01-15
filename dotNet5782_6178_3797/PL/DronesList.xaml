@@ -35,7 +35,6 @@ VerticalAlignment="Stretch" Width="auto">
                                 <Setter Property="Background" Value="#b74e4e"/>
                             </Trigger>
                         </Style.Triggers>
-
                     </Style>
                 </Button.Style>
 
@@ -56,6 +55,5 @@ VerticalAlignment="Stretch" Width="auto">
                 </GridView>
             </ListView.View>
         </ListView>
-        
     </Grid>
 </Page>

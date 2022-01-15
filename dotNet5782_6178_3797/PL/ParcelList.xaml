@@ -24,39 +24,14 @@ VerticalAlignment="Stretch" Width="auto">
                 </Grid.ColumnDefinitions >
                 <ComboBox x:Name="FirstCombo" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="190" Height="50" SelectionChanged="FirstCombo_SelectionChanged"/>
                 <ComboBox x:Name="SecondCombo" Text="Max Weight" Background="Gray" Grid.Column="3" Margin="0,0,1,0" VerticalAlignment="Center" Height="51" SelectionChanged="SecondCombo_SelectionChanged"/>
-                <Button Name="AddDroneButton" Grid.Column="2" Content="Add drone" Click="AddDroneButton_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#b87373"/>
-                            <Setter Property="Cursor" Value="Hand"/>
-
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#b74e4e"/>
-                                </Trigger>
-                            </Style.Triggers>
-
-                        </Style>
-                    </Button.Style>
-
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="200" Height="50" CornerRadius="7" Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
             </Grid>
-            <ListView x:Name="DroneListView" Grid.Row="1" MouseDoubleClick="DroneListView_MouseDoubleClick" Background="LightGray">
+            <ListView x:Name="ParcelListView" Grid.Row="1" MouseDoubleClick="ParcelListView_MouseDoubleClick"  Background="LightGray">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
                     </GridView>
                 </ListView.View>
             </ListView>
-
         </Grid>
     </Grid>
 </Page>

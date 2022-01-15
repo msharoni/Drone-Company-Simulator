@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace PL
 {
     /// <summary>
@@ -20,11 +19,12 @@ namespace PL
     /// </summary>
     public partial class ParcelList : Page
     {
+        BlApi.IBL BLObject = BlApi.BlFactory.GetBl();
         public ParcelList()
         {
             InitializeComponent();
+            ParcelListView.ItemsSource = BLObject.DisplayParcels();
         }
-
         private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -33,6 +33,13 @@ namespace PL
         private void SecondCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ParcelListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.ParcelForList parcel = (BO.ParcelForList)((ListView)sender).SelectedItem;
+            Parcel ParcelWindow = new Parcel(parcel);
+            ParcelWindow.Show();
         }
     }
 }

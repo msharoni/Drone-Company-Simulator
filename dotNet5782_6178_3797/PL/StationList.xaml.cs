@@ -25,7 +25,6 @@ namespace PL
         {
             InitializeComponent();
             StationListView.ItemsSource = BLObject.DisplayStations();
-
         }
 
         private void SortList_Click(object sender, RoutedEventArgs e)
