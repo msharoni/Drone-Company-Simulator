@@ -29,6 +29,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text = "Drone Bros"
@@ -103,11 +104,11 @@
             </Button>
             <TextBlock Text = "Powered by The Bros"
                        Foreground="Black"
-                       Grid.Column="4"
+                       Grid.Column="5"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontWeight="light"/>
-            <Button Content="X" Grid.Column="5" Click="Close_Click"
+            <Button Content="X" Grid.Column="6" Click="Close_Click"
                     >
                 <Button.Style>
                     <Style TargetType="Button">
@@ -144,14 +145,14 @@
                     Margin="-50,0,0,0"
                     CornerRadius="300"
                     Background="Red"/>
-            <Border Width="250"
+        <Border Width="250"
                 Grid.Row="1"
                 Grid.Column="1"
                 Height="250"
                 Margin="-50,0,0,0"
                 CornerRadius="250"
                 Background="White"/>
-            <Border Width="200"
+        <Border Width="200"
                     Height="200"
                     Grid.Row="1"
                     Grid.Column="1"

@@ -219,7 +219,7 @@ namespace PL
         }
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            blObject.ActivateSimulator(OurDrone.Id, () => backgroundWorker.ReportProgress(1), () => backgroundWorker.CancellationPending);
+            blObject.ActivateSimulator(OurDrone.Id, () =>   backgroundWorker.ReportProgress(1), () => backgroundWorker.CancellationPending);
         }
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
