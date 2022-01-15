@@ -28,6 +28,7 @@ namespace PL
         int StationId;
         BO.DroneForList OurDrone;
         DateTime x;
+        BackgroundWorker backgroundWorker;
         public Drone(BO.DroneForList drone = null)
         {
             InitializeComponent();
