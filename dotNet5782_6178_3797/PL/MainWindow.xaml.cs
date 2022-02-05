@@ -58,5 +58,10 @@ namespace PL
         {
             currentPage.Content = new CustomerList();
         }
+
+        private void ParcelListButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new ParcelList();
+        }
     }
 }

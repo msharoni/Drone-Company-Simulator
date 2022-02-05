@@ -22,13 +22,13 @@ namespace PL
         BlApi.IBL blObject = BlApi.BlFactory.GetBl();
         int Id;
         string Name;
-        BO.StationForList OurStation;
-
-        public Station(BO.StationForList station = null)
+        BO.Station OurStation;
+        public Station(int? StationId = null)
         {
             InitializeComponent();
-            OurStation = station;
-            MainGrid.DataContext = blObject.DisplayStation(station.Id);
+            OurStation = blObject.DisplayStation((int)StationId);
+            MainGrid.DataContext = OurStation;
+            DroneListView.ItemsSource = blObject.DronesChargingInStation(OurStation.Id);
         }
         private void Name_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -46,7 +46,7 @@ namespace PL
         {
             try
             {
-                blObject.UpdateStation(OurStation.Id, NameTextBox.Text, (OurStation.NumOfVacantChargers + OurStation.NumOfOccupiedChargers));
+                blObject.UpdateStation(OurStation.Id, NameTextBox.Text, (OurStation.NumOfVacantChargers + OurStation.DronesCharging.Count()));
             }
             catch (Exception ex)
             {
@@ -61,6 +61,20 @@ namespace PL
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                BO.Drone drone = (BO.Drone)((ListView)sender).SelectedItem;
+                Drone droneWindow = new Drone(drone.Id);
+                droneWindow.Show();
+            }
+            catch (Exception me)
+            {
+                MessageBox.Show(me.ToString());
+            }
         }
     }
 }

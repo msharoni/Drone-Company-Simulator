@@ -22,12 +22,24 @@ namespace PL
         BlApi.IBL blObject = BlApi.BlFactory.GetBl();
         int Id;
         string Name;
-        BO.CustomerForList OurCustomer;
-        public Customer(BO.CustomerForList customer = null)
+        int Phone;
+        int Longitude, Latitude;
+        BO.Customer OurCustomer;
+        public Customer(int? customerId = null)
         {
             InitializeComponent();
-            OurCustomer = customer;
-            MainGrid.DataContext = blObject.DisplayCustomer(customer.Id);
+            if (customerId == null) // add mode
+            {
+                AddCutomer.Visibility = Visibility.Visible;
+                MainGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MainGrid.Visibility = Visibility.Visible;
+                AddCutomer.Visibility = Visibility.Collapsed;
+                OurCustomer = blObject.DisplayCustomer((int)customerId);
+                MainGrid.DataContext = blObject.DisplayCustomer((int)customerId);
+            }
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -44,7 +56,7 @@ namespace PL
             try
             {
                 blObject.UpdateCustomer(OurCustomer.Id, NameTextBox.Text, OurCustomer.phone);
-                new Customer(OurCustomer).Show();
+                new Customer(OurCustomer.Id).Show();
                 Close();
             }
             catch (Exception ex)
@@ -64,16 +76,83 @@ namespace PL
 
         private void ForCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.DroneForList drone = (BO.DroneForList)((ListView)sender).SelectedItem;
-            Drone droneWindow = new Drone(drone);
-            droneWindow.Show();
+            BO.ParcelInCustomer parcel = (BO.ParcelInCustomer)((ListView)sender).SelectedItem;
+            Parcel parcelWindow = new Parcel(parcel.Id);
+            parcelWindow.Show();
         }
 
         private void FromCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.DroneForList drone = (BO.DroneForList)((ListView)sender).SelectedItem;
-            Drone droneWindow = new Drone(drone);
-            droneWindow.Show();
+            BO.ParcelInCustomer parcel = (BO.ParcelInCustomer)((ListView)sender).SelectedItem;
+            Parcel parcelWindow = new Parcel(parcel.Id);
+            parcelWindow.Show();
+        }
+
+        private void PhoneTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((int.TryParse(PhoneTextBox.Text, out Phone) && Phone > 0))
+            {
+                PhoneTextBox.Background = Brushes.White;
+            }
+            else
+            {
+                PhoneTextBox.Background = Brushes.Red;
+            }
+        }
+
+        private void LongitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((int.TryParse(LongitudeTextBox.Text, out Longitude) && Longitude >= 0 && Longitude<=180))
+            {
+                LongitudeTextBox.Background = Brushes.White;
+            }
+            else
+            {
+                LongitudeTextBox.Background = Brushes.Red;
+            }
+        }
+
+        private void LatitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((int.TryParse(LatitudeTextBox.Text, out Latitude) && Latitude >= 0 && Latitude <= 180))
+            {
+                LatitudeTextBox.Background = Brushes.White;
+            }
+            else
+            {
+                LatitudeTextBox.Background = Brushes.Red;
+            }
+        }
+
+        private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BO.Location location = new BO.Location { Lattitude = Latitude, Longitude = Longitude };
+                blObject.AddCustomer(Id, Name, Phone.ToString(), location );
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void AddNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Name = AddNameTextBox.Text;
+        }
+
+        private void IdTextBox_1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((int.TryParse(IdTextBox_1.Text, out Id) && Id > 0))
+            {
+                IdTextBox_1.Background = Brushes.White;
+            }
+            else
+            {
+                IdTextBox_1.Background = Brushes.Red;
+            }
         }
     }
 }

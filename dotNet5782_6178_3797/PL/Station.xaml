@@ -84,6 +84,16 @@
                 <TextBlock Text="Number of Drones Charging:" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding DronesCharging}" Background="LightGray"/>
             </StackPanel>
+            <StackPanel Grid.Row="1" Margin="500,40,40,40" Width="200">
+                <TextBlock Text="Drone on Station:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <ListView x:Name="DroneListView" Grid.Row="1" MouseDoubleClick="DroneListView_MouseDoubleClick"  Background="LightGray" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
             <StackPanel Grid.Row="1" Margin="40,40,40,40" Width="200">
                 <Button Name="UpdateName" Grid.Row="1"  Content="Update Name" Visibility="Collapsed" Click="UpdateName_Click">
                     <Button.Style>

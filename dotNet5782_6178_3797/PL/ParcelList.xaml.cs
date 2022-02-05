@@ -25,21 +25,16 @@ namespace PL
             InitializeComponent();
             ParcelListView.ItemsSource = BLObject.DisplayParcels();
         }
-        private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void SecondCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void ParcelListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.ParcelForList parcel = (BO.ParcelForList)((ListView)sender).SelectedItem;
-            Parcel ParcelWindow = new Parcel(parcel);
-            ParcelWindow.Show();
+            Parcel parcelWindow = new Parcel(parcel.Id);
+            parcelWindow.Show();
+        }
+        private void AddParcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Parcel parcelWindow = new Parcel();
+            parcelWindow.Show();
         }
     }
 }

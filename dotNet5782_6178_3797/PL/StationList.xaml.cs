@@ -39,7 +39,7 @@ namespace PL
         private void StationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.StationForList station = (BO.StationForList)((ListView)sender).SelectedItem;
-            Station StationWindow = new Station(station);
+            Station StationWindow = new Station(station.Id);
             StationWindow.Show();
         }
     }

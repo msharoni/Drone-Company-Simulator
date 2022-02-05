@@ -5,11 +5,110 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Custumer" Height="450" Width="800"
+        Title="Customer" Height="450" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="LightGray">
     <Grid>
+        <Grid Name="AddCutomer" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#a5e2ff"
+              Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text = "Drone Bros"
+                       Foreground="Black"
+                       Grid.Column="0"
+                       FontFamily="Stronger"
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontWeight="Heavy"/>
+
+                <TextBlock Text = "Powered by The Bros"
+                       Foreground="Black"
+                       Grid.Column="4"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontWeight="light"/>
+                <Button Content="X" Grid.Column="5" Click="Close_Click"
+                    >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20" Height="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="1" Width="160" Margin="91,85,549,97" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="10.115"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="14.272"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <TextBlock Text="ID:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="IdTextBox_1" Text="{Binding Id}" TextChanged="IdTextBox_1_TextChanged" Background="LightGray"/>
+                <TextBlock Text="Name:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="AddNameTextBox" Text="{Binding Name}" Background="LightGray" TextChanged="AddNameTextBox_TextChanged"/>
+                <TextBlock Text="Phone:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="PhoneTextBox" Text="{Binding Name}" TextChanged="PhoneTextBox_TextChanged" Background="LightGray"/>
+                <TextBlock Text="Longitude:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="LongitudeTextBox" Text="{Binding Longitude}" TextChanged="LongitudeTextBox_TextChanged" Background="LightGray"/>
+                <TextBlock Text="Latitude:" Background="#a5e2ff" FontWeight="Heavy"/>
+                <TextBox Name="LatitudeTextBox" Text="{Binding Latitude}" TextChanged="LatitudeTextBox_TextChanged" Background="LightGray"/>
+            </StackPanel>
+            <Button Name="AddCustomerButton" Grid.Row="1"  Content="Add Customer" Click="AddCustomerButton_Click" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#b87373"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#b74e4e"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="200" Height="50" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
         <Grid Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>

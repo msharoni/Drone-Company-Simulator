@@ -125,15 +125,18 @@ namespace BL
                 tmpParcel.Priority = (Priorities)parcel.Priority;
                 //creating drone of type DroneInParcel to put in parcel
                 DroneInParcel drone = new DroneInParcel();
-                int DroneIndex = Drones.FindIndex(drone => drone.Id == parcel.DroneId);
+                int DroneIndex = Drones.FindIndex(_drone => _drone.Id == parcel.DroneId);
                 drone.Id = (int)parcel.DroneId;
-                drone.Battery = Drones[DroneIndex].Battery;
-                drone.CurrentLocation = Drones[DroneIndex].CurrentLocation;
+                if (DroneIndex != -1)
+                {
+                    drone.Battery = Drones[DroneIndex].Battery;
+                    drone.CurrentLocation = Drones[DroneIndex].CurrentLocation; 
+                }
                 tmpParcel.Drone = drone;
                 tmpParcel.Created = parcel.Requested;
-                tmpParcel.Linked = (DateTime)parcel.Scheduled;
-                tmpParcel.PickedUp = (DateTime)parcel.PickedUp;
-                tmpParcel.Delivered = (DateTime)parcel.Delivered;
+                tmpParcel.Linked = (DateTime?)parcel.Scheduled;
+                tmpParcel.PickedUp = (DateTime?)parcel.PickedUp;
+                tmpParcel.Delivered = (DateTime?)parcel.Delivered;
                 return tmpParcel;
             }
         }

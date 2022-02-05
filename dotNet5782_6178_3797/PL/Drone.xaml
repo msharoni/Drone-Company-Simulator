@@ -202,12 +202,12 @@
                     </Button.Style>
 
                     <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="166" Height="30" CornerRadius="7" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment=" Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
                 <Button x:Name="UnchargeDroneButton" Visibility="Collapsed" FontFamily="Stronger" FontSize="25" Content="Uncharge" Click="UnchargeDroneButton_Click"  Height="30">
                     <Button.Style>
@@ -320,6 +320,8 @@
                     </Button.Template>
                 </Button>
             </StackPanel>
+            <CheckBox Margin="10,10,775,405" Grid.Row="1" Width="15" Height="15" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked" />
+            <TextBlock Text="Simulator" Margin="30,10,710,403" Grid.Row="1" FontWeight="Heavy" Width="60"/>
         </Grid>
     </Grid>
 </Window>

@@ -30,8 +30,13 @@ namespace PL
         private void CustomerListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.CustomerForList customer = (BO.CustomerForList)((ListView)sender).SelectedItem;
-            Customer CustomerWindow = new Customer(customer);
+            Customer CustomerWindow = new Customer(customer.Id);
             CustomerWindow.Show();
+        }
+
+        private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            new Customer().Show();
         }
     }
 }
