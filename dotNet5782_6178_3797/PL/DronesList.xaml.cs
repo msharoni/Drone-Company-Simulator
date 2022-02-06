@@ -35,7 +35,7 @@ namespace PL
             SecondCombo.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
 
         }
-        private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FirstCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)//combolist for drone statuses
         {
             OptionOne = (BO.DroneStatuses)FirstCombo.SelectedItem;
             DroneListView.ItemsSource = logic.DisplayDrones(OptionOne, OptionTwo);

@@ -25,13 +25,13 @@ namespace PL
             InitializeComponent();
             ParcelListView.ItemsSource = BLObject.DisplayParcels();
         }
-        private void ParcelListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ParcelListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)//move window option
         {
             BO.ParcelForList parcel = (BO.ParcelForList)((ListView)sender).SelectedItem;
             Parcel parcelWindow = new Parcel(parcel.Id);
             parcelWindow.Show();
         }
-        private void AddParcelButton_Click(object sender, RoutedEventArgs e)
+        private void AddParcelButton_Click(object sender, RoutedEventArgs e)//add parcel final button
         {
             Parcel parcelWindow = new Parcel();
             parcelWindow.Show();

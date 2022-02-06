@@ -250,6 +250,13 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <TextBlock Text="Drone Bros" Grid.Row="1" Grid.Column="0" FontSize="70" Margin="0,80,0,0" FontWeight="Bold"/>
+        <TextBlock Text="Founded by The Bros" Grid.Row="1" Grid.Column="0" Margin="5,160,0,0" FontWeight="ExtraLight" FontSize="15"/>
+
+        <TextBlock Text="Taking your drones to the next level by using beautiful elagent programming" Grid.Row="1" Grid.Column="0" Margin="0,200,0,0" FontWeight="ExtraLight" FontSize="10"/>
+        <TextBlock Text="A project that was made possible by to fine young men, Mor Sharoni And Eliyahu Yarmish " Grid.Row="1" Grid.Column="0" Margin="0,215,0,0" FontWeight="ExtraLight" FontSize="10"/>
+        <TextBlock Text="Special Thank You to Yair Goldstein our Great Teacher" Grid.Row="1" Grid.Column="0" Margin="0,230,0,0" FontWeight="ExtraLight" FontSize="10"/>
+
         <Frame Name="currentPage" Grid.ColumnSpan="2" Grid.Row="1" Navigated="currentPage_Navigated"/>
     </Grid>
 </Window>

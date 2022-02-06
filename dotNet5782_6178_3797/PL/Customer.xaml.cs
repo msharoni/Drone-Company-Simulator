@@ -20,6 +20,7 @@ namespace PL
     public partial class Customer : Window
     {
         BlApi.IBL blObject = BlApi.BlFactory.GetBl();
+        //customers option
         int Id;
         string Name;
         int Phone;
@@ -33,7 +34,7 @@ namespace PL
                 AddCutomer.Visibility = Visibility.Visible;
                 MainGrid.Visibility = Visibility.Collapsed;
             }
-            else
+            else //normal customer mode
             {
                 MainGrid.Visibility = Visibility.Visible;
                 AddCutomer.Visibility = Visibility.Collapsed;
@@ -41,17 +42,17 @@ namespace PL
                 MainGrid.DataContext = blObject.DisplayCustomer((int)customerId);
             }
         }
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)//move window option
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
-        private void Close_Click(object sender, RoutedEventArgs e)
+        private void Close_Click(object sender, RoutedEventArgs e)//close x
         {
             this.Close();
         }
 
-        private void UpdateName_Click(object sender, RoutedEventArgs e)
+        private void UpdateName_Click(object sender, RoutedEventArgs e)//update the name
         {
             try
             {
@@ -65,7 +66,7 @@ namespace PL
             }
         }
 
-        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)//name of customer
         {
             if (NameTextBox.Text != OurCustomer.name)
             {
@@ -74,21 +75,21 @@ namespace PL
             }
         }
 
-        private void ForCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ForCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)//foe customer parcels
         {
             BO.ParcelInCustomer parcel = (BO.ParcelInCustomer)((ListView)sender).SelectedItem;
             Parcel parcelWindow = new Parcel(parcel.Id);
             parcelWindow.Show();
         }
 
-        private void FromCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void FromCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)//From customer parcels
         {
             BO.ParcelInCustomer parcel = (BO.ParcelInCustomer)((ListView)sender).SelectedItem;
             Parcel parcelWindow = new Parcel(parcel.Id);
             parcelWindow.Show();
         }
 
-        private void PhoneTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void PhoneTextBox_TextChanged(object sender, TextChangedEventArgs e)//Phone changed
         {
             if ((int.TryParse(PhoneTextBox.Text, out Phone) && Phone > 0))
             {
@@ -100,7 +101,7 @@ namespace PL
             }
         }
 
-        private void LongitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void LongitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)//location longatude
         {
             if ((int.TryParse(LongitudeTextBox.Text, out Longitude) && Longitude >= 0 && Longitude<=180))
             {
@@ -112,7 +113,7 @@ namespace PL
             }
         }
 
-        private void LatitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void LatitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)//location latitude
         {
             if ((int.TryParse(LatitudeTextBox.Text, out Latitude) && Latitude >= 0 && Latitude <= 180))
             {
@@ -124,7 +125,7 @@ namespace PL
             }
         }
 
-        private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
+        private void AddCustomerButton_Click(object sender, RoutedEventArgs e) //Adding Customer
         {
             try
             {
@@ -132,18 +133,18 @@ namespace PL
                 blObject.AddCustomer(Id, Name, Phone.ToString(), location );
                 Close();
             }
-            catch (Exception ex)
+            catch (Exception ex)//message box
             {
                 MessageBox.Show(ex.ToString());
             }
         }
 
-        private void AddNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void AddNameTextBox_TextChanged(object sender, TextChangedEventArgs e)//Defineing a parameter
         {
             Name = AddNameTextBox.Text;
         }
 
-        private void IdTextBox_1_TextChanged(object sender, TextChangedEventArgs e)
+        private void IdTextBox_1_TextChanged(object sender, TextChangedEventArgs e)//Id text box
         {
             if ((int.TryParse(IdTextBox_1.Text, out Id) && Id > 0))
             {
