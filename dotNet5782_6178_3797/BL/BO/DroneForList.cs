@@ -17,7 +17,10 @@ namespace BO
         public int ParcelId{get; set;}
         public override string ToString()
         {
-            return $"Id: {Id}Model: {Model} MaxWeight: {MaxWeight} Battery: {(int)Battery}% Status: {Status} Current Location: {CurrentLocation} Parcel ID: {ParcelId}";
+            string str = $"Id: {Id}Model: {Model} MaxWeight: {MaxWeight} Battery: {Battery:f2}% Status: {Status} Current Location: {CurrentLocation}";
+            if(ParcelId != -1)
+                str+= $" Parcel ID: {ParcelId}";
+            return str;
         }
     }
 }

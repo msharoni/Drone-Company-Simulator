@@ -25,7 +25,10 @@ namespace Dal
                 DroneIds[i] = r.Next(0, 2) == 1 ? -1 : Drones[i].Id;
             for (int i = 0; i < 10; ++i)
             {
+                /*
                 Drone drone = Drones.Find(drone => drone.Id == DroneIds[i]);
+                if (r.Next(0, 2) == 1 || Parcels.Exists(parcel => parcel.DroneId == drone.Id))
+                    drone.Id = -1;
                 Parcels.Add(new Parcel { 
                     Id = r.Next(100000000, 1000000000),
                     SenderId = Customers[r.Next(0, Customers.Count)].Id,
@@ -33,10 +36,24 @@ namespace Dal
                     Weight = drone.Id != -1 ? (WeightCategories)r.Next(1,(int)drone.MaxWeight + 1) : (WeightCategories)r.Next(1,4),
                     Priority = (Priorities)r.Next(1, 4),
                     Requested = DateTime.Now,
-                    DroneId = drone.Id,
+                    DroneId = drone.Id == -1 ? null : drone.Id,
                     Scheduled = drone.Id == -1 ? null : DateTime.Now,
                     PickedUp = drone.Id == -1 ? null : r.Next(0,2) ==1 ? null : DateTime.Now,
                     Delivered = drone.Id == -1 ? null : r.Next(0, 2) == 1 ? null : DateTime.Now
+                });
+                */
+                Parcels.Add(new Parcel
+                {
+                    Id = r.Next(100000000, 1000000000),
+                    SenderId = Customers[r.Next(0, Customers.Count)].Id,
+                    TargetId = Customers[r.Next(0, Customers.Count)].Id,
+                    Weight = (WeightCategories)r.Next(1, 4),
+                    Priority = (Priorities)r.Next(1, 4),
+                    Requested = DateTime.Now,
+                    DroneId = null,
+                    Scheduled =null,
+                    PickedUp = null,
+                    Delivered =null,
                 });
             }
         }
