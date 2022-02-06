@@ -28,7 +28,7 @@ namespace BL
                     throw new NotLinkedYet(DroneId);
                 if (Idal.GetParcel(Drones[DroneIndex].ParcelId).PickedUp != null)
                     throw new ParcelHasAlreadyBeenPickedUp(Drones[DroneIndex].ParcelId);
-                Drones[DroneIndex].Battery -= Idal.GetBatteryUsage()[(int)Idal.GetParcel(Drones[DroneIndex].ParcelId).Weight] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
+                Drones[DroneIndex].Battery -= (int)Idal.GetBatteryUsage()[(int)Idal.GetParcel(Drones[DroneIndex].ParcelId).Weight] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
                 Drones[DroneIndex].CurrentLocation = SenderLocation(Drones[DroneIndex].ParcelId);
                 DO.Parcel parcel = Idal.GetParcel(Drones[DroneIndex].ParcelId);
                 parcel.PickedUp = DateTime.Now;
@@ -54,7 +54,7 @@ namespace BL
                     throw new NotLinkedOrAlreadyDelivered(DroneId);
                 //updating drone
                 Drones[DroneIndex].Status = DroneStatuses.Available;
-                Drones[DroneIndex].Battery -= Idal.GetBatteryUsage()[(int)Idal.GetParcel(Drones[DroneIndex].ParcelId).Weight] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
+                Drones[DroneIndex].Battery -= (int)Idal.GetBatteryUsage()[(int)Idal.GetParcel(Drones[DroneIndex].ParcelId).Weight] * Distance(Drones[DroneIndex].CurrentLocation, SenderLocation(Drones[DroneIndex].ParcelId));
                 //updating parcel
                 DO.Parcel parcel = Idal.GetParcel(Drones[DroneIndex].ParcelId);
                 parcel.Delivered = DateTime.Now;

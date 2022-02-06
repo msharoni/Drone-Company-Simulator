@@ -21,7 +21,7 @@ namespace BO
         }
         public override string ToString()
         {
-            return $"Longitude: {Longitude} Lattitude: {Lattitude}";
+            return $"Longitude: {Longitude:f3} Lattitude: {Lattitude:f3}";
         }
     }
 

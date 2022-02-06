@@ -61,8 +61,7 @@ namespace BL
                         else if (parcel.PickedUp != null && parcel.Delivered == null)
                         {
                             double TotalDistance = Distance(senderLocation, ReciverLocation(parcel.Id)) + Distance(ReciverLocation(parcel.Id), ClosestStation(ReciverLocation(parcel.Id)));
-                            addDrone.Battery = r.
-                                Next((int)(TotalDistance * Idal.GetBatteryUsage()[(int)parcel.Weight]) + 1, 100);
+                            addDrone.Battery = r.Next((int)(TotalDistance * Idal.GetBatteryUsage()[(int)parcel.Weight]) + 1, 100);
                             addDrone.CurrentLocation = senderLocation;
                         }
                     }
@@ -78,13 +77,14 @@ namespace BL
                         }
                         else
                         {
-                            List<CustomerForList> CustomerList = new List<CustomerForList>();
-                            foreach (CustomerForList customer in DisplayCustomers())
-                            {
-                                if (customer.NumRecived > 0)
-                                    CustomerList.Add(customer);
-                            }
-                            int Id = CustomerList[r.Next(0, CustomerList.Count())].Id;
+                            //List<CustomerForList> CustomerList = new List<CustomerForList>();
+                            //foreach (CustomerForList customer in DisplayCustomers())
+                            //{
+                            //    if (customer.NumRecived > 0)
+                            //        CustomerList.Add(customer);
+                            //}
+                            //int Id = CustomerList[r.Next(0, CustomerList.Count()-1)].Id;
+                            int Id = Idal.GetCustomers().ElementAt(r.Next(0, Idal.GetCustomers().Count())).Id;
                             addDrone.CurrentLocation = DisplayCustomer(Id).Location;
                             addDrone.Battery = r.Next((int)(Distance(addDrone.CurrentLocation, ClosestStation(addDrone.CurrentLocation)) * Idal.GetBatteryUsage()[1]) + 1, 100);
                         }
@@ -228,7 +228,7 @@ namespace BL
                 int StationId = 0;
                 double smallest = 999999999;
                 Location StationLocation = new Location();
-                if (Drones[DroneIndex].Status != DroneStatuses.Available)
+                if (Drones[DroneIndex].Status == DroneStatuses.Delivery)
                     throw new UnAvailabe(_Id);
                 foreach (DO.Station station in Idal.GetStations())
                 {
@@ -241,9 +241,9 @@ namespace BL
                 }
                 if (StationId == 0)
                     throw new NoAvailableStations();
-                if (Drones[DroneIndex].Battery < (smallest * Idal.GetBatteryUsage()[1]))
+                if (Drones[DroneIndex].Battery / Idal.GetBatteryUsage()[1] < smallest)
                     throw new NotEnoughBattery(_Id);
-                Drones[DroneIndex].Battery -= (smallest * Idal.GetBatteryUsage()[1]);
+                Drones[DroneIndex].Battery -= (int)(smallest * Idal.GetBatteryUsage()[1]);
                 Drones[DroneIndex].CurrentLocation = StationLocation;
                 Drones[DroneIndex].Status = DroneStatuses.maintenance;
                 Idal.ChargeDrone(_Id, StationId);
@@ -271,12 +271,14 @@ namespace BL
                 if (Drones[DroneIndex].Battery > 100)
                     Drones[DroneIndex].Battery = 100;
                 Drones[DroneIndex].Status = DroneStatuses.Available;
+                
                 foreach (DO.Station station in Idal.GetStations())
                 {
                     if (station.Lattitude == Drones[DroneIndex].CurrentLocation.Lattitude && station.Longitude == Drones[DroneIndex].CurrentLocation.Longitude)
                         StationId = station.Id;
                 }
                 Idal.UnChargeDrone(Id, StationId);
+                
             }
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -375,7 +377,7 @@ namespace BL
                     mParcel.Reciver = Reciver;
                     mParcel.PickUp = SenderLocation(parcel.Id);
                     mParcel.DropOff = ReciverLocation(parcel.Id);
-                    mParcel.Distance = Distance(SenderLocation(parcel.Id), ReciverLocation(parcel.Id));
+                    mParcel.Distance = Idal.GetParcel(parcel.Id).PickedUp == null ? Distance(drone.CurrentLocation, SenderLocation(parcel.Id)) : Distance(drone.CurrentLocation, ReciverLocation(parcel.Id));
                     drone.Parcel = mParcel;
                 }
                 return drone;
@@ -396,6 +398,7 @@ namespace BL
         {
             new DroneSim(instance, DroneId, Update, stop);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] GetBatteryUsages()
         {
             lock (Idal)

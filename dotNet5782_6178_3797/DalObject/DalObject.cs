@@ -219,7 +219,7 @@ namespace Dal
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetFreeParcels()
         {
-            return DataSource.Parcels.FindAll(parcel => parcel.DroneId == 0);
+            return DataSource.Parcels.FindAll(parcel => parcel.DroneId == null);
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> GetVacantStations()
@@ -256,7 +256,8 @@ namespace Dal
         public void UpdateParcel(Parcel _parcel)
         {
             int index = DataSource.Parcels.FindIndex(parcel => parcel.Id == _parcel.Id);
-            DataSource.Parcels[index] = _parcel;
+            DataSource.Parcels.RemoveAt(index);
+            DataSource.Parcels.Add(_parcel);
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateStation(int Id, string? name, int? NumOfSlots)

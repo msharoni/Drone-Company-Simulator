@@ -26,7 +26,7 @@ namespace BL
                             bl.UnChargeDrone(DroneId, 0);
                         else
                         {
-                            bl.UnChargeDrone(DroneId, 1);
+                            bl.UnChargeDrone(DroneId, 50);
                             bl.ChargeDrone(DroneId);
                         }
                         break;
@@ -59,7 +59,7 @@ namespace BL
                                 bl.UpdateDroneLocation(DroneId, drone.Battery - (BatteryUsage[1] * DroneSpeed), location);
                             }
                         }
-                        else
+                        else if (parcel.Delivered == null)
                         {
                             if (bl.Distance(drone.CurrentLocation, bl.DisplayCustomer(parcel.Reciver.Id).Location) < DroneSpeed)
                                 bl.DeliverParcel(DroneId);
@@ -70,10 +70,11 @@ namespace BL
                                 bl.UpdateDroneLocation(DroneId, drone.Battery - (BatteryUsage[Weight+1] * DroneSpeed), location);
                             }
                         }
-
                         break;
                     
                 }
+                Thread.Sleep(Delay);
+                Update();
             }
         }
         private BO.Location LocationCalculater(BO.Location from, BO.Location to, double Speed)

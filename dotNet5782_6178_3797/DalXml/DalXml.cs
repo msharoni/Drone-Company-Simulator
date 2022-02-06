@@ -70,7 +70,7 @@ namespace Dal
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> GetFreeParcels()
         {
-            return GetParcels().Where(parcel => parcel.DroneId == -1);
+            return GetParcels().Where(parcel => parcel.DroneId == null);
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Station> GetVacantStations()
