@@ -35,7 +35,7 @@ namespace PL
         {
             InitializeComponent();
 
-            Id = (int)droneId;
+            
             
             FirstCombo.DataContext = Enum.GetValues(typeof(WeightCategories));
 
@@ -46,6 +46,7 @@ namespace PL
             }
             else // options mode
             {
+                Id = (int)droneId;
                 OurDrone = blObject.DisplayDrone((int)droneId);
                 DroneGrid.DataContext = blObject.DisplayDrone(OurDrone.Id);
                 DroneGrid.Visibility = Visibility.Visible;
