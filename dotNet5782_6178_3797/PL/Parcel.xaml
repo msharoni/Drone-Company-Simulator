@@ -31,7 +31,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid Name="AddParcel" Visibility="Visible" >
+        <Grid Name="AddParcel" Visibility="Collapsed" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="*"/>
@@ -141,7 +141,7 @@
                     </Button.Template>
                 </Button>
         </Grid>
-        <Grid Name="MainGrid" Visibility="Collapsed">
+        <Grid Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="*"/>
@@ -224,11 +224,11 @@
                     <StackPanel Name="ReceiverStackPanel">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Id: "/>
-                            <TextBlock Text="{Binding Sender.Id}"/>
+                            <TextBlock Text="{Binding Reciver.Id}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Name: "/>
-                            <TextBlock Text="{Binding Sender.name}"/>
+                            <TextBlock Text="{Binding Reciver.name}"/>
                         </StackPanel>
                     </StackPanel>
                 </Button>

@@ -21,7 +21,7 @@ namespace PL
     public partial class Parcel : Window
     {
         BlApi.IBL blObject = BlApi.BlFactory.GetBl();
-        BO.Parcel OurParcel;
+        BO.Parcel OurParcel = new BO.Parcel();
         public WeightCategories? Weight = null;
         public Priorities? Priority = null;
         int AddParcelid;
@@ -54,7 +54,7 @@ namespace PL
         }
         private void ReceiverButton_Click(object sender, RoutedEventArgs e)
         {
-            new Customer(OurParcel.Sender.Id).Show();
+            new Customer(OurParcel.Reciver.Id).Show();
         }
         private void WeightValueComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -128,6 +128,10 @@ namespace PL
             {
                 AddParcelId.Background = Brushes.Red;
             }
+        }
+        public void refresh()
+        {
+
         }
     }
 }

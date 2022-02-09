@@ -182,7 +182,7 @@
                 <TextBlock Text="Status" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding Status}" Background="LightGray"/>
                 <TextBlock Text="Parcel" Background="#a5e2ff" FontWeight="Heavy"/>
-                <TextBlock Text="{Binding Parcel}" Background="LightGray" Height="33" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding Parcel}" Background="LightGray" Height="46" TextWrapping="Wrap"/>
                 <TextBlock Text="Location" Background="#a5e2ff" FontWeight="Heavy"/>
                 <TextBlock Text="{Binding CurrentLocation}" Background="LightGray" Height="17"  />
             </StackPanel>
