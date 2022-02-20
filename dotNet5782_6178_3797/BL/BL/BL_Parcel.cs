@@ -125,7 +125,7 @@ namespace BL
                 tmpParcel.Priority = (Priorities)parcel.Priority;
                 //creating drone of type DroneInParcel to put in parcel
                 DroneInParcel drone = new DroneInParcel();
-                if (parcel.DroneId != -null)
+                if (parcel.DroneId != null)
                 {
                     int DroneIndex = Drones.FindIndex(_drone => _drone.Id == parcel.DroneId);
                     drone.Id = (int)parcel.DroneId;
