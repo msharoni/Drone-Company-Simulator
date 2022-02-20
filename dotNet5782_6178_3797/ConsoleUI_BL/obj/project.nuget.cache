@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "oNqvWM3aDi4dCXGvMzgWaHxS/m01ZuDRdVu203L7q5UjWotJUlW0wMZUR+i/cIZkg3tBeWu+VVITPG9SjkfkiA==",
+  "dgSpecHash": "Tmmi/gK+PmiUKuf5beqXw3qVu+m0qCdcjYSdh1yH3FhcqCDS8A4PgJ8KhqSJfYv2vooxDJIkpKw2aWwm0z/qeA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\mor\\Source\\Repos\\msharoni\\minip\\dotNet5782_6178_3797\\ConsoleUI_BL\\ConsoleUI_BL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512",
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

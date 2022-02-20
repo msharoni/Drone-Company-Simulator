@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "bUZA7hVXQ9g9O8lVuRhkl9u4RvY915g9LayyQcf4EO0EdOkAZzLcodTBHonB0ZTnS1TZFKMyTu2gPrke9qB/Dw==",
+  "dgSpecHash": "77VIEbSqXOADFB8kodnrma0uV/ePW8p6xqZ4mT5ZRx2k2mwe2CSVnhk2mg0L4VovW2hVw85C8WlLlBWmaPfP+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\eliya\\Source\\Repos\\msharoni\\minip\\ConsoleUI\\ConsoleUI.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\mor\\Source\\Repos\\msharoni\\minip\\ConsoleUI\\ConsoleUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512",
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\mor\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
